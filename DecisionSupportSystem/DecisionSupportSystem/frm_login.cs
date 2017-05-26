@@ -16,5 +16,10 @@ namespace DecisionSupportSystem
         {
             InitializeComponent();
         }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
