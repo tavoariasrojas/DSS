@@ -21,5 +21,12 @@ namespace DecisionSupportSystem
         {
             Application.Exit();
         }
+
+        private void btn_ingresar_Click(object sender, EventArgs e)
+        {
+            frm_main ventana = new frm_main();
+            ventana.Show();
+            this.Visible = false;
+        }
     }
 }
