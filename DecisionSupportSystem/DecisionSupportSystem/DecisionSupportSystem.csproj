@@ -93,6 +93,7 @@
     <Content Include="Images\blue_line.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="OCX\" />
     <Folder Include="System\Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
