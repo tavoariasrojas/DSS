@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionSupportSystem", "DecisionSupportSystem\DecisionSupportSystem.csproj", "{1AB77D17-1D34-4EE8-A710-3301EEAF4214}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4C3EBAF-9A38-472D-97AB-543FFCA8851D} = {E4C3EBAF-9A38-472D-97AB-543FFCA8851D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{E4C3EBAF-9A38-472D-97AB-543FFCA8851D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9608575-A53B-4E50-A6E2-25451D647A4A} = {A9608575-A53B-4E50-A6E2-25451D647A4A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{A9608575-A53B-4E50-A6E2-25451D647A4A}"
 EndProject
