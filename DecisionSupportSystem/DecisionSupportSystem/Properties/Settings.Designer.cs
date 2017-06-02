@@ -28,9 +28,9 @@ namespace DecisionSupportSystem.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.32.220;Initial Catalog=Sama;User ID=hojasexcel;Password=hojas" +
             "excel")]
-        public string Setting {
+        public string CNXN {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["CNXN"]));
             }
         }
     }

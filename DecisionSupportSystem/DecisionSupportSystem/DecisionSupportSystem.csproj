@@ -96,6 +96,16 @@
     <Folder Include="OCX\" />
     <Folder Include="System\Windows\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{e4c3ebaf-9a38-472d-97ab-543ffca8851d}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VG\VG.csproj">
+      <Project>{587b26fc-f503-4bc0-ab3d-07ad2713c751}</Project>
+      <Name>VG</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
