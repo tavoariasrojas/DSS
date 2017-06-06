@@ -147,9 +147,45 @@ namespace BLL
             }
         }
 
-        /*public Login obtieneDatosUsuario(string usuario)
-        
-        }*/
+        public Login obtieneDatosUsuario(string usuario)
+        {
+            string info_encryp = string.Empty;
+            string info_desencryp = string.Empty;
+            Login login = new Login();
+
+            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error validar el usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    sql = "SELECT CONVERT(VARCHAR(300), m1210961861135) datos " +
+                          "FROM m121096070873 " +
+                          "WHERE m1861135121096 = @usuario ";
+
+                    ParamStruct[] parametros = new ParamStruct[1];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
+                    ds = cls_DAL.ejecuta_dataset(conexion, sql, false, parametros, ref mensaje_error, ref numero_error);
+                    info_encryp = ds.Tables[0].Rows[0][0].ToString();
+
+                    if (!string.IsNullOrEmpty(info_encryp))
+                    {
+                        objSupport.encrypted = info_encryp;
+                        objSupport.passkey = usuario;
+                        int resultado = objSupport.Unencrypt();
+                        info_desencryp = objSupport.unencrypted;
+                    }
+                }
+            }
+            return login;
+        }
         #endregion
 
         #region Constructor

@@ -43,6 +43,7 @@ namespace DecisionSupportSystem
 
             if (objLogin.usuarioExiste(txt_sesion.Text))
             {
+                objLogin = objLogin.obtieneDatosUsuario(txt_sesion.Text);
                 frm_main ventana = new frm_main();
                 ventana.Show();
                 this.Visible = false;
