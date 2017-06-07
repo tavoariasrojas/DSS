@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
-
+using DAL;
+using VG;
 
 namespace BLL
 {
-    public class Login
+    public class Login : Fecha
     {
-        SupportOCX objSupport = new SupportOCX();
-
         #region parametros
         private string _password;
 
@@ -147,10 +141,9 @@ namespace BLL
             }
         }
 
-        public Login obtieneDatosUsuario(string usuario)
+        public string obtieneInfoEncriptada(string usuario)
         {
-            string info_encryp = string.Empty;
-            string info_desencryp = string.Empty;
+            string info = string.Empty;
             Login login = new Login();
 
             conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
@@ -173,22 +166,68 @@ namespace BLL
                     ParamStruct[] parametros = new ParamStruct[1];
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
                     ds = cls_DAL.ejecuta_dataset(conexion, sql, false, parametros, ref mensaje_error, ref numero_error);
-                    info_encryp = ds.Tables[0].Rows[0][0].ToString();
-
-                    if (!string.IsNullOrEmpty(info_encryp))
-                    {
-                        objSupport.encrypted = info_encryp;
-                        objSupport.passkey = usuario;
-                        int resultado = objSupport.Unencrypt();
-                        info_desencryp = objSupport.unencrypted;
-                    }
+                    info = ds.Tables[0].Rows[0][0].ToString();
                 }
             }
-            return login;
+            return info;
+        }
+
+        public void descomponeInfoEncriptada(string info)
+        {
+            password            = info.Split(';')[0];
+            VG.Variables.password = password;
+
+            usuario_bd          = info.Split(';')[1];
+            VG.Variables.usuario_bd = usuario_bd;
+
+            password_db         = info.Split(';')[2];
+            VG.Variables.password_db = password;
+
+            fecha_vencimiento   = Convert.ToDateTime(info.Split(';')[3]);
+            VG.Variables.fecha_vencimiento = fecha_vencimiento;
+
+            dias_habilita_clave = Convert.ToInt32(info.Split(';')[4]);
+            VG.Variables.dias_habilita_clave = dias_habilita_clave;
+
+            ind_desactivado     = Convert.ToChar(info.Split(';')[5]);
+            VG.Variables.ind_desactivado = ind_desactivado;
+
+            ind_auditoria       = Convert.ToChar(info.Split(';')[6]);
+            VG.Variables.ind_auditoria = ind_auditoria;
+
+            ind_supervisor      = Convert.ToChar(info.Split(';')[7]);
+            VG.Variables.ind_supervisor = ind_supervisor;
+
+            multiples_conexiones = Convert.ToChar(info.Split(';')[8]);
+            VG.Variables.multiples_conexiones = multiples_conexiones;
+
+            cambiar_password    = Convert.ToChar(info.Split(';')[9]);
+            VG.Variables.cambiar_password = cambiar_password;
+        }
+
+        public int verificaDatos(string password)
+        {
+            if (!password.Equals(this.password))
+            {
+                return 1;
+            }
+
+            if (ind_desactivado.Equals('S'))
+            {
+                return 2;
+            }
+
+            if(obtieneFechaServidor() < this.fecha_vencimiento)
+            {
+                return 2;
+            }
+
+            return 0;
         }
         #endregion
 
         #region Constructor
+
         public Login()
         {
             password = string.Empty;

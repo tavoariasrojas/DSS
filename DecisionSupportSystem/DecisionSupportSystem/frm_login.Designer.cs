@@ -40,8 +40,10 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_ingresar = new System.Windows.Forms.Button();
+            this.axSupport11 = new AxSUPPORT1Lib.AxSupport1();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -101,6 +103,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.axSupport11);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.btn_cancelar);
@@ -158,6 +161,16 @@
             this.btn_ingresar.UseVisualStyleBackColor = true;
             this.btn_ingresar.Click += new System.EventHandler(this.btn_ingresar_Click);
             // 
+            // axSupport11
+            // 
+            this.axSupport11.Enabled = true;
+            this.axSupport11.Location = new System.Drawing.Point(329, 140);
+            this.axSupport11.Name = "axSupport11";
+            this.axSupport11.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport11.OcxState")));
+            this.axSupport11.Size = new System.Drawing.Size(25, 23);
+            this.axSupport11.TabIndex = 9;
+            this.axSupport11.Visible = false;
+            // 
             // frm_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,6 +187,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,6 +205,7 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_ingresar;
         private System.Windows.Forms.Label label4;
+        private AxSUPPORT1Lib.AxSupport1 axSupport11;
     }
 }
 

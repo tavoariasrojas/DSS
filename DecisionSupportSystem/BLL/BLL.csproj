@@ -41,25 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fecha.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SupportOCX.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="SUPPORT1Lib">
-      <Guid>{0D52B800-6360-11D0-BA98-0080AD1CB502}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{a9608575-a53b-4e50-a6e2-25451d647a4a}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VG\VG.csproj">
+      <Project>{587b26fc-f503-4bc0-ab3d-07ad2713c751}</Project>
+      <Name>VG</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

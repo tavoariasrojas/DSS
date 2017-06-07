@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using AxSUPPORT1Lib;
 
 namespace DecisionSupportSystem
 {
@@ -43,10 +44,42 @@ namespace DecisionSupportSystem
 
             if (objLogin.usuarioExiste(txt_sesion.Text))
             {
-                objLogin = objLogin.obtieneDatosUsuario(txt_sesion.Text);
-                frm_main ventana = new frm_main();
-                ventana.Show();
-                this.Visible = false;
+                string info_encrypt = objLogin.obtieneInfoEncriptada(txt_sesion.Text);
+
+                if (String.IsNullOrEmpty(txt_password.Text))
+                {
+                    MessageBox.Show("No se pudo obtener información del usuario.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    axSupport11.encrypted = info_encrypt;
+                    axSupport11.passkey = txt_sesion.Text;
+                    int resultado = axSupport11.Unencrypt();
+                    if (resultado > 0)
+                    {
+                        string desencriptado = axSupport11.unencrypted;
+                        objLogin.descomponeInfoEncriptada(desencriptado);
+
+                        int valor = objLogin.verificaDatos(txt_password.Text);
+                        switch (valor)
+                        {
+                            case 1:
+                                MessageBox.Show("La clave digitada no corresponde al usuario.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case 2:
+                                MessageBox.Show("El usuario se encuentra deshabilitado.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case 3:
+                                MessageBox.Show("El usuario debe cambiar la contraseña.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            default:
+                                frm_main ventana = new frm_main();
+                                ventana.Show();
+                                break;
+                        }
+                        
+                    }
+                }
             }
             else
             {
