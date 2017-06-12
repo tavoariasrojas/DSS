@@ -24,8 +24,10 @@ namespace DecisionSupportSystem
 
         private void frm_main_Load(object sender, EventArgs e)
         {
-            string usuario = VG.Variables.usuario_bd;
-            string menu = objMenu.obtieneMenuUsuario(usuario);
+            //string usuario = VG.Variables.usuario_bd;
+            //string menu = objMenu.obtieneMenuUsuario(usuario);
+            MenuStrip menu = objMenu.crearMenu();
+            this.Controls.Add(menu);
         }
     }
 }

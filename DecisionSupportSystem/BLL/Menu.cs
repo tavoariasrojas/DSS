@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace BLL
 {
@@ -153,26 +154,30 @@ namespace BLL
             }
         }
 
-        public void crearMenu()
+        public MenuStrip crearMenu()
         {
+            MenuStrip menu = new MenuStrip();
+
             if (llenarMenu())
             {
-                //MenuStrip menuMain = new MenuStrip();
-
-                for (int i = 1; i <= listaMenu.Count; i++)
+                for (int a = 0; a < listaMenu.Count; a++)
                 {
-                    if (!string.IsNullOrEmpty(listaMenu[i].objeto_padre))
+                    if (string.IsNullOrEmpty(listaMenu[a].objeto_padre))
                     {
-                      
-                        /* ToolStripMenuItem menuItem = new ToolStripMenuItem();
-                        menuItem.Name = listaMenu[i].objeto;
-                        menuItem.Text = listaMenu[i].objeto_nombre;
-                        EventHandler item_Click = null;
-                        menuItem.Click += new EventHandler(item_Click);
-                        menuMain.ItemAdded += menuItem;*/
+                        ToolStripMenuItem item = new ToolStripMenuItem(listaMenu[a].objeto_nombre);
+                        for (int b = 0; b < listaMenu.Count; b++)
+                        {
+                            if (listaMenu[b].objeto_padre.Equals(listaMenu[a].objeto))
+                            {
+                                ToolStripMenuItem subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre);
+                                item.DropDownItems.Add(subitem);
+                            }
+                        }
+                        menu.Items.Add(item);
                     }
                 }
             }
+            return menu;
         }
         #endregion
 

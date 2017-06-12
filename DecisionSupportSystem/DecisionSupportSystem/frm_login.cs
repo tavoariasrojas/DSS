@@ -75,6 +75,7 @@ namespace DecisionSupportSystem
                             default:
                                 frm_main ventana = new frm_main();
                                 ventana.Show();
+                                this.Visible = false;
                                 break;
                         }
                         
