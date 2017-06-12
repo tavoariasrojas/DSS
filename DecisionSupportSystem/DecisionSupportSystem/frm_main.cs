@@ -26,8 +26,14 @@ namespace DecisionSupportSystem
         {
             //string usuario = VG.Variables.usuario_bd;
             //string menu = objMenu.obtieneMenuUsuario(usuario);
+            VG.Variables.mdiForm = this; 
             MenuStrip menu = objMenu.crearMenu();
             this.Controls.Add(menu);
+        }
+
+        private void frm_main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }
