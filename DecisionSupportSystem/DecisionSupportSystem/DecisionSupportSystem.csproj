@@ -94,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OCX\" />
-    <Folder Include="System\Windows\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

@@ -29,52 +29,52 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
-            this.ms_main = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_main.SuspendLayout();
+            this.ms_td_main = new System.Windows.Forms.MenuStrip();
+            this.mi_archivo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi_salir = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_td_main.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ms_main
+            // ms_td_main
             // 
-            this.ms_main.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.ms_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem});
-            this.ms_main.Location = new System.Drawing.Point(0, 0);
-            this.ms_main.Name = "ms_main";
-            this.ms_main.Size = new System.Drawing.Size(2072, 38);
-            this.ms_main.TabIndex = 1;
-            this.ms_main.Text = "menuStrip1";
+            this.ms_td_main.ImageScalingSize = new System.Drawing.Size(28, 28);
+            this.ms_td_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mi_archivo});
+            this.ms_td_main.Location = new System.Drawing.Point(0, 0);
+            this.ms_td_main.Name = "ms_td_main";
+            this.ms_td_main.Size = new System.Drawing.Size(2072, 38);
+            this.ms_td_main.TabIndex = 1;
+            this.ms_td_main.Text = "menuStrip1";
             // 
-            // archivoToolStripMenuItem
+            // mi_archivo
             // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(95, 34);
-            this.archivoToolStripMenuItem.Text = "Archivo";
+            this.mi_archivo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mi_salir});
+            this.mi_archivo.Name = "mi_archivo";
+            this.mi_archivo.Size = new System.Drawing.Size(95, 34);
+            this.mi_archivo.Text = "Archivo";
             // 
-            // salirToolStripMenuItem
+            // mi_salir
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
-            this.salirToolStripMenuItem.Text = "Salir";
+            this.mi_salir.Name = "mi_salir";
+            this.mi_salir.Size = new System.Drawing.Size(239, 34);
+            this.mi_salir.Text = "Salir";
             // 
             // frm_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2072, 1279);
-            this.Controls.Add(this.ms_main);
+            this.Controls.Add(this.ms_td_main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.ms_main;
+            this.MainMenuStrip = this.ms_td_main;
             this.Name = "frm_main";
             this.Text = "Bienvenido al Sistema de Toma de Desiciones";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_main_Load);
-            this.ms_main.ResumeLayout(false);
-            this.ms_main.PerformLayout();
+            this.ms_td_main.ResumeLayout(false);
+            this.ms_td_main.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,8 +82,8 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip ms_main;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip ms_td_main;
+        private System.Windows.Forms.ToolStripMenuItem mi_archivo;
+        private System.Windows.Forms.ToolStripMenuItem mi_salir;
     }
 }

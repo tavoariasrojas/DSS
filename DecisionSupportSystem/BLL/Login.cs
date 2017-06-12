@@ -217,9 +217,10 @@ namespace BLL
                 return 2;
             }
 
-            if(obtieneFechaServidor() < this.fecha_vencimiento)
+            DateTime ldt_fecha = obtieneFechaServidor();
+            if (ldt_fecha > this.fecha_vencimiento)
             {
-                return 2;
+                return 3;
             }
 
             return 0;

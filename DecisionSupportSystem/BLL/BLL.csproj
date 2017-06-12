@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Fecha.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

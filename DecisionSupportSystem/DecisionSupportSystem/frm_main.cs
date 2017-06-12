@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DecisionSupportSystem
 {
     public partial class frm_main : Form
     {
+        BLL.Menu objMenu = new BLL.Menu();
         public frm_main()
         {
             InitializeComponent();
@@ -30,7 +24,8 @@ namespace DecisionSupportSystem
 
         private void frm_main_Load(object sender, EventArgs e)
         {
-            //windowOpen();
+            string usuario = VG.Variables.usuario_bd;
+            string menu = objMenu.obtieneMenuUsuario(usuario);
         }
     }
 }
