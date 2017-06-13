@@ -28,9 +28,20 @@ namespace DecisionSupportSystem.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.32.220;Initial Catalog=Sama;User ID=hojasexcel;Password=hojas" +
             "excel")]
-        public string CNXN {
+        public string SM {
             get {
-                return ((string)(this["CNXN"]));
+                return ((string)(this["SM"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.32.230;Initial Catalog=Sama_DSS;User ID=hojasexcel;Password=h" +
+            "ojasexcel")]
+        public string DSS {
+            get {
+                return ((string)(this["DSS"]));
             }
         }
     }
