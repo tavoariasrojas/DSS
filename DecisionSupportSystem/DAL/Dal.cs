@@ -19,7 +19,7 @@ namespace DAL
         /// </summary>
         /// <param name="nombre_conexion">nombre de la cadena conexion a buscar en el app.config</param>
         /// <param name="mensaje_error">mensaje de error o confirmacion</param>
-        /// <param name="numero_error">numero del error</param>        
+        /// <param name="numero_error">numero del error</param>
         /// <returns></returns>
         public static SqlConnection trae_conexion(string nombre_conexion, ref string mensaje_error, ref int numero_error)
         {
@@ -28,7 +28,14 @@ namespace DAL
             {
                 string cadena_conexion = "";
 
-                cadena_conexion = ConfigurationManager.ConnectionStrings[nombre_conexion].ToString();
+                if (nombre_conexion.Equals("SM"))
+                {
+                    cadena_conexion = ConfigurationManager.ConnectionStrings[nombre_conexion].ToString();
+                }
+                else
+                {
+                    cadena_conexion = nombre_conexion;
+                }
 
                 cnn = new SqlConnection(cadena_conexion);
                 mensaje_error = String.Empty;

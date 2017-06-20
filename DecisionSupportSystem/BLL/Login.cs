@@ -182,7 +182,7 @@ namespace BLL
             VG.Variables.usuario_bd = usuario_bd;
 
             password_db         = info.Split(';')[2];
-            VG.Variables.password_db = password;
+            VG.Variables.password_db = password_db;
 
             fecha_vencimiento   = Convert.ToDateTime(info.Split(';')[3]);
             VG.Variables.fecha_vencimiento = fecha_vencimiento;
@@ -227,29 +227,6 @@ namespace BLL
             return 0;
         }
 
-        public void stringConexion(string key)
-        {
-            /*try
-            {
-                var conexionString = "Data Source = " + VG.Variables.serverIpAddress + "; Initial Catalog = " + VG.Variables.serverDataBase + "; User ID = " + VG.Variables.usuario_bd + "; Password = " + VG.Variables.password_db + "; Name = " + VG.Variables.nombreAplicacion + " ";
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings[key] == null)
-                {
-                    settings.Add(key, conexionString);
-                }
-                else
-                {
-                    settings[key].Value = conexionString;
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Error writing app settings");
-            }*/
-        }
         #endregion
 
         #region Constructor
