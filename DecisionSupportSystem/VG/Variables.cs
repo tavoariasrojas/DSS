@@ -9,8 +9,10 @@ namespace VG
 {
     public class Variables
     {
+        #region aplicacion
+        public static string nombreAplicacion = "Sistema Toma de Desiciones";
+        #endregion
 
-        #region propiedades
         #region usuario
         public static string password;
         public static string usuario_bd;
@@ -28,6 +30,10 @@ namespace VG
         public static Form mdiForm;
         #endregion
 
+        #region conexion
+        public static string serverIpAddress = "192.168.32.230";
+        public static string serverDataBase = "Sama_DSS";
+        public static string connectionString;
         #endregion
     }
 }

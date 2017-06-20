@@ -16,5 +16,9 @@ namespace DecisionSupportSystem.Reportes
         {
             InitializeComponent();
         }
+
+        private void frm_clientes_nuevos_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
