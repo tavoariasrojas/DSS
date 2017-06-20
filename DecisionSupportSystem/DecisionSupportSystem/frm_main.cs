@@ -24,8 +24,7 @@ namespace DecisionSupportSystem
 
         private void frm_main_Load(object sender, EventArgs e)
         {
-            //string usuario = VG.Variables.usuario_bd;
-            //string menu = objMenu.obtieneMenuUsuario(usuario);
+            VG.Variables.connectionString = "Data Source = 192.168.32.230; Initial Catalog = Sama_DSS; User ID = "+VG.Variables.usuario_bd+"; Password = "+ VG.Variables.password_db+" ";
             VG.Variables.mdiForm = this; 
             MenuStrip menu = objMenu.crearMenu();
             this.Controls.Add(menu);
@@ -33,7 +32,7 @@ namespace DecisionSupportSystem
 
         private void frm_main_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

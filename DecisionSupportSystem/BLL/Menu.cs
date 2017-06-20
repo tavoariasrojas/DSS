@@ -216,10 +216,10 @@ namespace BLL
                         }
 
                         frmShow.MdiParent = VG.Variables.mdiForm;
-                        frmShow.StartPosition = FormStartPosition.CenterParent;
+                        frmShow.StartPosition = FormStartPosition.CenterScreen;
                         frmShow.MinimizeBox = false;
                         frmShow.MaximizeBox = false;
-                        frmShow.Dock = DockStyle.Fill;
+                        //frmShow.Dock = DockStyle.Fill;
                         frmShow.Show();
                         }
                     }
