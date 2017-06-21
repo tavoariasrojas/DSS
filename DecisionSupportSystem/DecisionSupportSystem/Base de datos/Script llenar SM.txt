@@ -1,0 +1,36 @@
+select * from sama..sg_rol where sg_rol_cod_rol = 'US_OPERACIONES'
+select * from sg_rol
+insert into sg_rol values ('TD_DIR_ASESORIA', 'Perfil para Director de Asesoría Financiera', 'garias', getdate(), NULL, NULL)
+insert into sg_rol values ('TD_EJE_ASESORIA', 'Perfil para Ejecutivo de Asesoría Financiera', 'garias', getdate(), NULL, NULL)
+insert into sg_rol values ('TD_GER_GENERAL', 'Perfil para Gerente General', 'garias', getdate(), NULL, NULL)
+insert into sg_rol values ('TD_ANA_RIESGO', 'Perfil para Analista de Riesgo', 'garias', getdate(), NULL, NULL)
+
+select * from sama..sg_obj_contenedor where ge_sis_cod_sistema = 'SP'
+select * from sg_obj_contenedor where ge_sis_cod_sistema = 'TD'
+insert into sg_obj_contenedor values ('TD', 'ms_td_principal', 'Menu del Sistema Toma de Decisiones', 'M')
+
+select * from sama..sg_objeto where ge_sis_cod_sistema = 'SP'
+select * from sg_objeto where ge_sis_cod_sistema = 'SP'
+insert into sg_objeto values ('TD', 'mi_archivo', 'ms_td_principal', NULL, 1, 'Archivo', 'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_salir', 'ms_td_principal', 'mi_archivo', 11, 'Salir', 'A', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_reportes', 'ms_td_principal', NULL, 2, 'Reportes', 'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_rep_nuevos_ctes', 'ms_td_principal', 'mi_reportes', 21, 'Clientes nuevos', 'A', 'garias', getdate(), NULL, NULL, NULL)
+/*
+update sg_objeto
+set sg_nombre_frm = 'frm_clientes_nuevos'
+where ge_sis_cod_sistema = 'TD' and sg_obj_cod_objeto = 'mi_rep_nuevos_ctes'
+*/
+select * from sama..sg_accion_rol where ge_sis_cod_sistema = 'SP'
+select * from sg_accion_rol
+insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_archivo', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_salir', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_reportes', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_rep_nuevos_ctes', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+
+select * from sama..sg_sistemas_x_usuario where ge_sis_cod_sistema = 'SP' and sg_usu_cod_usuario = 'bmora'
+select * from sg_sistemas_x_usuario where ge_sis_cod_sistema = 'TD'
+insert into sg_sistemas_x_usuario values ('001', 'TD', 'garias', 'garias', GETDATE(), NULL, NULL)
+
+select * from sama..sg_usuario_x_rol where ge_sis_cod_sistema = 'SP' and sg_usu_cod_usuario = 'hserrano'
+select * from sg_usuario_x_rol where ge_sis_cod_sistema = 'TD' 
+insert into sg_usuario_x_rol  values ('garias', '001', 'TD_DIR_ASESORIA', 'TD', 'A', 'garias', getdate(), NULL, NULL)

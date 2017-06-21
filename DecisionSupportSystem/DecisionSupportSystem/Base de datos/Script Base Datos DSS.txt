@@ -1,0 +1,20 @@
+CREATE TABLE cliente(
+	codigo varchar(6),
+	nombre varchar(250),
+	estado varchar(1),
+	tipo varchar(1),
+	fecha_nacimiento datetime,
+	genero varchar(1),
+	estado_civil varchar(1),
+	actividad varchar(100),
+	profesion varchar(100),
+	fecha_insercion datetime,
+	pais varchar(75),
+	provincia varchar(75),
+	distrito varchar(75),
+	ejecutivo varchar(50),
+	asesor varchar(10),
+	fecha_bloqueo datetime,
+	fecha_inactivacion datetime,
+	ultimo_movimiento datetime
+)

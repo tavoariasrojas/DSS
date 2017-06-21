@@ -32,7 +32,8 @@ namespace DAL
                 {
                     cadena_conexion = ConfigurationManager.ConnectionStrings[nombre_conexion].ToString();
                 }
-                else
+
+                if (nombre_conexion.Equals("DSS"))
                 {
                     cadena_conexion = nombre_conexion;
                 }

@@ -1,0 +1,187 @@
+CREATE TABLE m121096070873 (
+	m1861135121096 CHAR (255) not null,
+	m1210961861135 TEXT,
+	CONSTRAINT pk_m121096070873 PRIMARY KEY (m1861135121096)
+)
+
+CREATE TABLE seg_usuarios(
+	sg_usu_nombre_usuario char(30) not null,
+	sg_usu_password char(15),
+	sg_usu_nombre_completo char(50),
+	sg_usu_telefono char(15),
+	sg_usu_usuario_bd char(30),
+	sg_usu_password_bd char(15),
+	sg_usu_fecha_vencimiento datetime,
+	sg_usu_dias_habilita_clave int,
+	sg_usu_ind_desactivado char(1),
+	sg_usu_ind_auditoria char(1),
+	sg_usu_ind_supervisor char(1),
+	sg_usu_multiples_conexiones char(1),
+	sg_usu_cambiar_password char(1),
+	sg_usu_usuario_insercion char(10),
+	sg_usu_fecha_insercion datetime,
+	sg_usu_usuario_modificacion char(10),
+	sg_usu_fecha_modificacion datetime,
+	cod_asesor char(5),
+	seg_firma varchar(40),
+	sg_usu_e_mail char(100),
+	sg_usu_ind_local char(1),
+	cod_asesor_asig char(5),
+	sg_maquina char(50),
+	seg_us_ind_inactivo char(1),
+	seg_us_fec_prox_cambio_clave datetime,
+	pass_web varchar(255),
+	seg_usu_intentos_fallidos tinyint,
+	CONSTRAINT pk_seg_usuarios PRIMARY KEY (sg_usu_nombre_usuario)
+)
+
+CREATE TABLE compania(
+	compania	char(4) not null,
+	nombre_compania	varchar(50),
+	CONSTRAINT pk_compania PRIMARY KEY (compania)
+)
+
+CREATE TABLE ge_sistema(
+	ge_sis_cod_sistema char(2) not null,
+	ge_sis_des_sistema varchar(50),
+	ge_sis_version char(30),
+	ge_sis_descripcion varchar(1000),
+	ge_sis_error numeric(5, 0),
+	ge_sis_mejora numeric(5, 0),
+	ge_sis_actualizador char(50),
+	ruta varchar(250),
+	repositorio varchar(250),
+	exe varchar(50),
+	backup_number numeric(2, 0),
+	CONSTRAINT pk_ge_sistema PRIMARY KEY (ge_sis_cod_sistema)
+)
+
+CREATE TABLE ge_compania(
+	ge_cia_cod_compania char(8) not null,
+	ge_cia_nom_compania varchar(100),
+	ge_cia_cod_compania_relacionada	char(4),
+	CONSTRAINT pk_ge_compania PRIMARY KEY (ge_cia_cod_compania),
+	CONSTRAINT fk_ge_cia_compania FOREIGN KEY (ge_cia_cod_compania_relacionada)  REFERENCES compania(compania)
+)
+
+CREATE TABLE ge_sistema_compania(
+	ge_cia_cod_compania	char(8) not null,
+	ge_sis_cod_sistema	char(2) not null,
+	CONSTRAINT pk_ge_sistema_compania PRIMARY KEY (ge_cia_cod_compania, ge_sis_cod_sistema),
+	CONSTRAINT fk_ge_cia_cod_compania FOREIGN KEY (ge_cia_cod_compania)  REFERENCES ge_compania (ge_cia_cod_compania),
+	CONSTRAINT fk_ge_sis_cod_sistema FOREIGN KEY (ge_sis_cod_sistema)  REFERENCES ge_sistema (ge_sis_cod_sistema)
+)
+
+CREATE TABLE sg_rol(
+	sg_rol_cod_rol varchar(15) not null,
+	sg_rol_nom_rol varchar(60),
+	sg_usu_cod_insercion varchar(30),
+	sg_usu_fec_insercion datetime,
+	sg_usu_cod_modificacion varchar(30),
+	sg_usu_fec_modificacion datetime,
+	CONSTRAINT pk_sg_rol PRIMARY KEY (sg_rol_cod_rol)
+)
+
+CREATE TABLE sg_obj_contenedor(
+	ge_sis_cod_sistema char(2) not null,
+	sg_con_cod_obj_contenedor char(30) not null,
+	sg_con_nom_obj_contenedor varchar(50),
+	sg_con_ind_tipo char(1),
+	CONSTRAINT pk_sg_obj_contenedor PRIMARY KEY (ge_sis_cod_sistema, sg_con_cod_obj_contenedor),
+	CONSTRAINT  fk_ge_sis_cod_sistema_sg_obj_contenedor FOREIGN KEY (ge_sis_cod_sistema) REFERENCES ge_sistema (ge_sis_cod_sistema)
+)
+
+CREATE TABLE sg_objeto(
+	ge_sis_cod_sistema char(2),
+	sg_obj_cod_objeto varchar(40),
+	sg_con_cod_obj_contenedor char(30),
+	sg_obj_cod_objeto_padre varchar(40),
+	sg_obj_num_secuencia numeric(8, 0),
+	sg_obj_nom_objeto varchar(80),
+	sg_obj_ind_tipo_objeto char(1),
+	sg_usu_cod_insercion varchar(15),
+	sg_usu_fec_insercion datetime,
+	sg_usu_cod_modificacion varchar(15),
+	sg_usu_fec_modificacion datetime,
+	CONSTRAINT pk_sg_objeto PRIMARY KEY (ge_sis_cod_sistema, sg_obj_cod_objeto, sg_con_cod_obj_contenedor),
+	CONSTRAINT  fk_ge_sistema FOREIGN KEY (ge_sis_cod_sistema) REFERENCES ge_sistema (ge_sis_cod_sistema),
+	CONSTRAINT  fk_sg_obj_contenedor FOREIGN KEY (ge_sis_cod_sistema, sg_con_cod_obj_contenedor) REFERENCES sg_obj_contenedor (ge_sis_cod_sistema, sg_con_cod_obj_contenedor)
+)
+
+CREATE TABLE sg_accion_rol(
+	sg_rol_cod_rol varchar(15),
+	ge_sis_cod_sistema char(2),
+	sg_obj_cod_objeto varchar(40),
+	sg_con_cod_obj_contenedor char(30),
+	sg_usu_cod_insercion char(30),
+	sg_usu_fec_insercion datetime,
+	sg_usu_cod_modificacion char(30),
+	sg_usu_fec_modificacion datetime,
+	sg_acc_ind_estado char(1),
+	CONSTRAINT pk_sg_accion_rol PRIMARY KEY (sg_rol_cod_rol, ge_sis_cod_sistema, sg_obj_cod_objeto, sg_con_cod_obj_contenedor),
+	CONSTRAINT  fk_sg_rol FOREIGN KEY (sg_rol_cod_rol) REFERENCES sg_rol (sg_rol_cod_rol),
+	CONSTRAINT  fk_sg_objeto FOREIGN KEY (ge_sis_cod_sistema, sg_obj_cod_objeto, sg_con_cod_obj_contenedor) REFERENCES sg_objeto (ge_sis_cod_sistema, sg_obj_cod_objeto, sg_con_cod_obj_contenedor)
+)
+
+CREATE TABLE sg_sistemas_x_usuario(
+	ge_cia_cod_compania char(8),
+	ge_sis_cod_sistema char(2),
+	sg_usu_cod_usuario char(30),
+	sg_usu_cod_insercion varchar(15),
+	sg_usu_fec_insercion datetime,
+	sg_usu_cod_modificacion varchar(15),
+	sg_usu_fec_modificacion datetime,
+	CONSTRAINT pk_sg_sistemas_x_usuario PRIMARY KEY (ge_cia_cod_compania, ge_sis_cod_sistema, sg_usu_cod_usuario),
+	CONSTRAINT  fk_ge_sistema_compania FOREIGN KEY (ge_cia_cod_compania, ge_sis_cod_sistema) REFERENCES ge_sistema_compania (ge_cia_cod_compania, ge_sis_cod_sistema),
+	CONSTRAINT  fk_seg_usuarios FOREIGN KEY (sg_usu_cod_usuario) REFERENCES seg_usuarios (sg_usu_nombre_usuario)
+)
+
+CREATE TABLE sg_usuario_x_rol(
+	sg_usu_cod_usuario char(30),
+	ge_cia_cod_compania char(8),
+	sg_rol_cod_rol varchar(15),
+	ge_sis_cod_sistema char(2),
+	sg_rol_ind_estado char(1),
+	sg_usu_cod_insercion char(30),
+	sg_usu_fec_insercion datetime,
+	sg_usu_cod_modificacion char(30),
+	sg_usu_fec_modificacion datetime,
+	CONSTRAINT pk_sg_usuario_x_rol PRIMARY KEY (sg_usu_cod_usuario, ge_cia_cod_compania, sg_rol_cod_rol, ge_sis_cod_sistema),
+	CONSTRAINT  fk_sg_rol_uxr FOREIGN KEY (sg_rol_cod_rol) REFERENCES sg_rol (sg_rol_cod_rol),
+	CONSTRAINT  fk_sg_sistemas_x_usuario FOREIGN KEY (ge_cia_cod_compania, ge_sis_cod_sistema, sg_usu_cod_usuario) REFERENCES sg_sistemas_x_usuario (ge_cia_cod_compania, ge_sis_cod_sistema, sg_usu_cod_usuario)
+)
+
+CREATE TABLE seg_aplicacion(
+	sg_apl_codigo_aplicacion char(2),
+	sg_apl_nombre_aplicacion char(40),
+	sg_apl_usuario_insercion char(10),
+	sg_apl_fecha_insercion datetime,
+	sg_apl_usuario_modificacion char(10),
+	sg_apl_fecha_modificacion datetime,
+	CONSTRAINT pk_seg_aplicacion PRIMARY KEY (sg_apl_codigo_aplicacion)
+)
+
+CREATE TABLE seg_menus(
+	sg_apl_codigo_aplicacion char(2),
+	sg_men_numero_boton int,
+	sg_men_numero_boton_padre int,
+	sg_men_texto char(30),
+	sg_men_proceso char(30),
+	sg_men_tipo_proceso char(1),
+	sg_men_numero_de_imagen int,
+	sg_men_seguridad_boton int,
+	sg_men_seguridad_ingreso int,
+	sg_men_seguridad_modificacion int,
+	sg_men_seguridad_eliminacion int,
+	sg_men_seguridad_opc_1 int,
+	sg_men_nombre_seguridad_opc_1 char(30),
+	sg_men_seguridad_opc_2 int,
+	sg_men_nombre_seguridad_opc_2 char(30),
+	sg_men_orden_de_menu int,
+	sg_men_usuario_insercion char(10),
+	sg_men_fecha_insercion datetime,
+	sg_men_usuario_modificacion char(10),
+	sg_men_fecha_modificacion datetime,
+	CONSTRAINT pk_seg_menus PRIMARY KEY (sg_apl_codigo_aplicacion, sg_men_numero_boton),
+	CONSTRAINT  fk_seg_aplicacion FOREIGN KEY (sg_apl_codigo_aplicacion) REFERENCES seg_aplicacion (sg_apl_codigo_aplicacion)
+)

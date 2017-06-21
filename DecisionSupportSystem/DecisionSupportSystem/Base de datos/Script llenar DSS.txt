@@ -1,0 +1,55 @@
+insert into cliente
+SELECT PC.cli_codigo_cliente codigo,
+		RTRIM(RTRIM(PC.cli_nombre))nombre,
+		CASE 
+			WHEN PC.cli_ind_estado IN ('A', 'X') THEN 'A'
+			ELSE 'I'
+		END estado,
+		PC.cli_ind_tipo_cliente tipo,
+		--DATEDIFF(yy, PC.cli_fecha_nacimiento, getdate()) edad,
+		PC.cli_fecha_nacimiento nacimiento,
+		CASE
+			WHEN PC.cli_ind_tipo_cliente = 'J' THEN NULL
+			ELSE PC2.sexo
+		END sexo,
+		CASE
+			WHEN PC.cli_ind_tipo_cliente = 'J' THEN NULL
+			ELSE PC2.estado_civil
+		END estado_civil,
+		UPPER(PC2.actividad) actividad,
+		UPPER(PC2.profesion) profesión,
+		--DATEDIFF(yy, PC.cli_fecha_insercion, getdate()) anosCliente,
+		PC.cli_fecha_insercion insercion,
+		UPPER(SPA.pai_descripcion) pais,
+		UPPER(SPR.des_provincia)provincia,
+		UPPER(SCA.des_canton)canton,
+		UPPER(SDI.des_distrito)distrito,
+		UPPER(EJ.eje_nombre)ejecutivo,
+		ISNULL(SC.cod_asesor, 'SAMA') asesor,
+		SC.cli_fecha_bloqueo bloqueo,
+		SC.cli_fecha_inactivacion inactivacion,
+		SC.cli_fec_ultimo_mov ultimoMovimiento
+FROM sama..cliente SC
+
+	INNER JOIN padron..cliente PC
+	ON SC.cli_codigo_cliente = PC.cli_codigo_cliente
+
+	INNER JOIN padron..cliente2 PC2
+	ON PC.cli_codigo_cliente = PC2.cli_codigo_cliente
+
+	INNER JOIN sama..ejecutivo EJ
+	ON SC.eje_codigo_ejecutivo = EJ.eje_codigo_ejecutivo
+
+	INNER JOIN sama..pais SPA
+	ON SC.pai_codigo_pais = SPA.pai_codigo_pais
+
+	LEFT JOIN sama..provincia SPR
+	ON PC2.cod_provincia = SPR.cod_provincia
+
+	LEFT JOIN sama..canton SCA
+	ON PC2.cod_canton = SCA.cod_canton
+
+	LEFT JOIN sama..distrito SDI
+	ON PC2.cod_distrito = SDI.cod_distrito
+
+WHERE ( CAST(SC.cli_codigo_cliente as numeric) >= 100000 OR SC.cli_codigo_cliente = '066698' )

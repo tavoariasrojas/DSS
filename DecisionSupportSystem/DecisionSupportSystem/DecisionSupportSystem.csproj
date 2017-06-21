@@ -106,6 +106,7 @@
     <Content Include="Images\blue_line.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base de datos\" />
     <Folder Include="OCX\" />
   </ItemGroup>
   <ItemGroup>
