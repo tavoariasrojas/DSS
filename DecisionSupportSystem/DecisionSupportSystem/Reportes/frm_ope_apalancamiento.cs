@@ -10,15 +10,11 @@ using System.Windows.Forms;
 
 namespace DecisionSupportSystem.Reportes
 {
-    public partial class frm_clientes_nuevos : Form
+    public partial class frm_ope_apalancamiento : Form
     {
-        public frm_clientes_nuevos()
+        public frm_ope_apalancamiento()
         {
             InitializeComponent();
-        }
-
-        private void frm_clientes_nuevos_Load(object sender, EventArgs e)
-        {
         }
     }
 }

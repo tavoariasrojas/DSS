@@ -119,9 +119,9 @@ namespace BLL
                 }
                 else
                 {
-                    sql = sql = "SELECT COUNT(*) cantidad " +
-                                "FROM seg_usuarios " +
-                                "WHERE sg_usu_nombre_usuario = @usuario ";
+                    sql = "SELECT COUNT(*) cantidad " +
+                        "FROM seg_usuarios " +
+                        "WHERE sg_usu_nombre_usuario = @usuario ";
 
                     ParamStruct[] parametros = new ParamStruct[1];
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
@@ -230,7 +230,6 @@ namespace BLL
         #endregion
 
         #region Constructor
-
         public Login()
         {
             password = string.Empty;

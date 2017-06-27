@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using VG;
 
 namespace DAL
 {
@@ -35,7 +36,7 @@ namespace DAL
 
                 if (nombre_conexion.Equals("DSS"))
                 {
-                    cadena_conexion = nombre_conexion;
+                    cadena_conexion = VG.Variables.connectionString;
                 }
 
                 cnn = new SqlConnection(cadena_conexion);

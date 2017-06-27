@@ -70,7 +70,6 @@ namespace DecisionSupportSystem
                                 this.Visible = false;
                                 break;
                         }
-                        
                     }
                 }
             }

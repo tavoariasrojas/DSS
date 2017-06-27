@@ -64,11 +64,41 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes\frm_clientes_nuevos.cs">
+    <Compile Include="Reportes\frm_cte_nuevos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\frm_clientes_nuevos.Designer.cs">
-      <DependentUpon>frm_clientes_nuevos.cs</DependentUpon>
+    <Compile Include="Reportes\frm_cte_nuevos.Designer.cs">
+      <DependentUpon>frm_cte_nuevos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_cte_mayor_vol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_cte_mayor_vol.Designer.cs">
+      <DependentUpon>frm_cte_mayor_vol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_ope_apalancamiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_ope_apalancamiento.Designer.cs">
+      <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_ope_com_minimas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_ope_com_minimas.Designer.cs">
+      <DependentUpon>frm_ope_com_minimas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_prod_desempeno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_prod_desempeno.Designer.cs">
+      <DependentUpon>frm_prod_desempeno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_prod_mayor_rentd_com.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_prod_mayor_rentd_com.Designer.cs">
+      <DependentUpon>frm_prod_mayor_rentd_com.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
@@ -86,8 +116,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reportes\frm_clientes_nuevos.resx">
-      <DependentUpon>frm_clientes_nuevos.cs</DependentUpon>
+    <EmbeddedResource Include="Reportes\frm_cte_mayor_vol.resx">
+      <DependentUpon>frm_cte_mayor_vol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_cte_nuevos.resx">
+      <DependentUpon>frm_cte_nuevos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_ope_apalancamiento.resx">
+      <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_ope_com_minimas.resx">
+      <DependentUpon>frm_ope_com_minimas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_prod_desempeno.resx">
+      <DependentUpon>frm_prod_desempeno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_prod_mayor_rentd_com.resx">
+      <DependentUpon>frm_prod_mayor_rentd_com.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

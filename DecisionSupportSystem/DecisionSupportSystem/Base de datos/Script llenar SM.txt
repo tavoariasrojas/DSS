@@ -10,22 +10,46 @@ select * from sg_obj_contenedor where ge_sis_cod_sistema = 'TD'
 insert into sg_obj_contenedor values ('TD', 'ms_td_principal', 'Menu del Sistema Toma de Decisiones', 'M')
 
 select * from sama..sg_objeto where ge_sis_cod_sistema = 'SP'
-select * from sg_objeto where ge_sis_cod_sistema = 'SP'
-insert into sg_objeto values ('TD', 'mi_archivo', 'ms_td_principal', NULL, 1, 'Archivo', 'M', 'garias', getdate(), NULL, NULL, NULL)
-insert into sg_objeto values ('TD', 'mi_salir', 'ms_td_principal', 'mi_archivo', 11, 'Salir', 'A', 'garias', getdate(), NULL, NULL, NULL)
-insert into sg_objeto values ('TD', 'mi_reportes', 'ms_td_principal', NULL, 2, 'Reportes', 'M', 'garias', getdate(), NULL, NULL, NULL)
-insert into sg_objeto values ('TD', 'mi_rep_nuevos_ctes', 'ms_td_principal', 'mi_reportes', 21, 'Clientes nuevos', 'A', 'garias', getdate(), NULL, NULL, NULL)
+select * from sg_objeto where ge_sis_cod_sistema = 'TD'
+insert into sg_objeto values ('TD', 'mi_archivo',						'ms_td_principal',		NULL,					1,		'Archivo',											'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_salir',							'ms_td_principal',		'mi_archivo',			11,	'Salir',												'A', 'garias', getdate(), NULL, NULL, NULL)
+
+insert into sg_objeto values ('TD', 'mi_rep_cte',						'ms_td_principal',		NULL,					2,		'Reporte clientes',							'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_rep_nuevos_ctes',		'ms_td_principal',		'mi_rep_cte',		21,	'Clientes nuevos',							'A', 'garias', getdate(), NULL, NULL, 'frm_cte_nuevos')
+insert into sg_objeto values ('TD', 'mi_rep_ctes_may_vol',	'ms_td_principal',		'mi_rep_cte',		22,	'Clientes mayor volumen',				'A', 'garias', getdate(), NULL, NULL, 'frm_cte_mayor_vol')
+
+insert into sg_objeto values ('TD', 'mi_rep_ope',					'ms_td_principal',		NULL,					3,		'Reporte operaciones',					'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_rep_ope_apalanc',		'ms_td_principal',		'mi_rep_ope',		31,	'Ope. apalancamiento',					'A', 'garias', getdate(), NULL, NULL, 'frm_ope_apalancamiento')
+insert into sg_objeto values ('TD', 'mi_rep_ope_com_min',		'ms_td_principal',		'mi_rep_ope',		32,	'Ope. comisiones mínimas',				'A', 'garias', getdate(), NULL, NULL, 'frm_ope_com_minimas')
+
+insert into sg_objeto values ('TD', 'mi_rep_prod',					'ms_td_principal',		NULL,					4,		'Reporte productos',						'M', 'garias', getdate(), NULL, NULL, NULL)
+insert into sg_objeto values ('TD', 'mi_rep_prod_rento',		'ms_td_principal',		'mi_rep_prod',		41,	'Prod. mayor rend comisiones',		'A', 'garias', getdate(), NULL, NULL, 'frm_prod_mayor_rentd_com')
+insert into sg_objeto values ('TD', 'mi_rep_prod_desemp',		'ms_td_principal',		'mi_rep_prod',		42,	'Prod. mejor desempeños',				'A', 'garias', getdate(), NULL, NULL, 'frm_prod_desempeno')
+
+--update sg_objeto set sg_obj_nom_objeto = 'Reporte clientes' where ge_sis_cod_sistema = 'TD' and sg_obj_num_secuencia = 2
 /*
 update sg_objeto
 set sg_nombre_frm = 'frm_clientes_nuevos'
 where ge_sis_cod_sistema = 'TD' and sg_obj_cod_objeto = 'mi_rep_nuevos_ctes'
 */
 select * from sama..sg_accion_rol where ge_sis_cod_sistema = 'SP'
-select * from sg_accion_rol
-insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_archivo', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
-insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_salir', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
-insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_reportes', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
-insert into sg_accion_rol values ('TD_DIR_ASESORIA', 'TD', 'mi_rep_nuevos_ctes', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+select * from sg_accion_rol where ge_sis_cod_sistema = 'TD'
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_archivo', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_salir', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_cte', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_nuevos_ctes', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_ctes_may_vol', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_ope', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_ope_apalanc', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_ope_com_min', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_prod', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_prod_rento', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+insert into sg_accion_rol values ('TD_GER_GENERAL', 'TD', 'mi_rep_prod_desemp', 'ms_td_principal', 'garias', getdate(), NULL, NULL, 'A')
+
+
 
 select * from sama..sg_sistemas_x_usuario where ge_sis_cod_sistema = 'SP' and sg_usu_cod_usuario = 'bmora'
 select * from sg_sistemas_x_usuario where ge_sis_cod_sistema = 'TD'
@@ -34,3 +58,4 @@ insert into sg_sistemas_x_usuario values ('001', 'TD', 'garias', 'garias', GETDA
 select * from sama..sg_usuario_x_rol where ge_sis_cod_sistema = 'SP' and sg_usu_cod_usuario = 'hserrano'
 select * from sg_usuario_x_rol where ge_sis_cod_sistema = 'TD' 
 insert into sg_usuario_x_rol  values ('garias', '001', 'TD_DIR_ASESORIA', 'TD', 'A', 'garias', getdate(), NULL, NULL)
+insert into sg_usuario_x_rol  values ('garias', '001', 'TD_GER_GENERAL', 'TD', 'A', 'garias', getdate(), NULL, NULL)
