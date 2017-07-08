@@ -196,37 +196,42 @@ namespace BLL
 
         private void accionMenu(object sender, EventArgs e)
         {
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-            foreach (Type type in frmAssembly.GetTypes())
+            if (sender.ToString().Equals("Salir"))
             {
-                if (type.BaseType == typeof(Form))
-                {
-                    string frm_name = string.Empty;
-                    for (int a = 0; a < listaMenu.Count; a++)
-                    {
-                        if (listaMenu[a].objeto_nombre.Equals(sender.ToString()))
-                        {
-                            frm_name = listaMenu[a]._frm_name;
-                        }
-                    }
-                        if (type.Name == frm_name)
-                        {
-                        Form frmShow = (Form)frmAssembly.CreateInstance(type.ToString());
-
-                        foreach (Form form in VG.Variables.mdiForm.MdiChildren)
-                        {
-                            form.Close();
-                        }
-
-                        frmShow.MdiParent = VG.Variables.mdiForm;
-                        frmShow.StartPosition = FormStartPosition.CenterScreen;
-                        frmShow.MinimizeBox = false;
-                        frmShow.MaximizeBox = false;
-                        //frmShow.Dock = DockStyle.Fill;
-                        frmShow.Show();
-                        }
-                    }
+                Application.Exit();
             }
+                Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+                foreach (Type type in frmAssembly.GetTypes())
+                {
+                    if (type.BaseType == typeof(Form))
+                    {
+                        string frm_name = string.Empty;
+                        for (int a = 0; a < listaMenu.Count; a++)
+                        {
+                            if (listaMenu[a].objeto_nombre.Equals(sender.ToString()))
+                            {
+                                frm_name = listaMenu[a]._frm_name;
+                            }
+                        }
+                            if (type.Name == frm_name)
+                            {
+                            Form frmShow = (Form)frmAssembly.CreateInstance(type.ToString());
+
+                            foreach (Form form in VG.Variables.mdiForm.MdiChildren)
+                            {
+                                form.Close();
+                            }
+
+                            frmShow.MdiParent = VG.Variables.mdiForm;
+                            frmShow.StartPosition = FormStartPosition.CenterScreen;
+                            frmShow.MinimizeBox = false;
+                            frmShow.MaximizeBox = false;
+                            //frmShow.Dock = DockStyle.Fill;
+                            frmShow.Show();
+                            }
+                        }
+                }
+            
         }
 
         #endregion
