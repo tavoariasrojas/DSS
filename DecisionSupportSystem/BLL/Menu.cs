@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Reflection;
 
 namespace BLL
@@ -116,13 +113,19 @@ namespace BLL
                             "AND AR.sg_con_cod_obj_contenedor = OBJ.sg_con_cod_obj_contenedor " +
                             "AND AR.sg_obj_cod_objeto = OBJ.sg_obj_cod_objeto " +
 
-                            "WHERE USU.sg_usu_nombre_usuario = 'garias' " +
+                            "WHERE USU.sg_usu_nombre_usuario = '"+VG.Variables.usuario_bd+"' " +
                             "AND SXU.ge_sis_cod_sistema = 'TD' " +
                             "AND UXR.sg_rol_ind_estado = 'A' " +
                             "AND AR.sg_acc_ind_estado = 'A' " +
 
-                            "ORDER BY OBJ.sg_obj_cod_objeto_padre, " +
-                            "OBJ.sg_obj_num_secuencia";
+                            "GROUP BY OBJ.sg_con_cod_obj_contenedor, " +
+                                    "OBJ.sg_obj_cod_objeto, " +
+                                    "OBJ.sg_obj_cod_objeto_padre, " +
+                                    "OBJ.sg_obj_nom_objeto, " +
+                                    "OBJ.sg_obj_ind_tipo_objeto, " +
+                                    "OBJ.sg_nombre_frm " +
+
+                            "ORDER BY OBJ.sg_obj_cod_objeto_padre";
 
                     ParamStruct[] parametros = new ParamStruct[0];
                     //cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
@@ -228,7 +231,7 @@ namespace BLL
 
         #endregion
 
-            #region Constructor
+        #region Constructor
         public Menu()
         {
             contenedor = string.Empty;
