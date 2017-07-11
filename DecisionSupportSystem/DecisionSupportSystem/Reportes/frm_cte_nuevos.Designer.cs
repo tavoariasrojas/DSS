@@ -31,278 +31,281 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_cte_nuevos));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_generar = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gb_filtro = new System.Windows.Forms.GroupBox();
+            this.gb_fecha = new System.Windows.Forms.GroupBox();
+            this.cmb_semana_hasta = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmb_semana_desde = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmb_mes_hasta = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_mes_desde = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmb_ano_hasta = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmb_ano_desde = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rb_semana = new System.Windows.Forms.RadioButton();
             this.rb_mes = new System.Windows.Forms.RadioButton();
             this.rb_ano = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rb_ejecutivo = new System.Windows.Forms.RadioButton();
-            this.rb_asesor = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtp_fec_hasta = new System.Windows.Forms.DateTimePicker();
-            this.dtp_fec_desde = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dgv_reporte = new System.Windows.Forms.DataGridView();
-            this.chart_cliente = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_reporte)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_cliente)).BeginInit();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.gb_filtro.SuspendLayout();
+            this.gb_fecha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.groupBox1.Controls.Add(this.btn_generar);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox1.Size = new System.Drawing.Size(292, 936);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtro de información";
             // 
             // btn_generar
             // 
             this.btn_generar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_generar.Image = ((System.Drawing.Image)(resources.GetObject("btn_generar.Image")));
             this.btn_generar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_generar.Location = new System.Drawing.Point(72, 502);
-            this.btn_generar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_generar.Location = new System.Drawing.Point(91, 163);
             this.btn_generar.Name = "btn_generar";
-            this.btn_generar.Size = new System.Drawing.Size(149, 72);
-            this.btn_generar.TabIndex = 1;
+            this.btn_generar.Size = new System.Drawing.Size(86, 32);
+            this.btn_generar.TabIndex = 2;
             this.btn_generar.Text = "&Generar";
             this.btn_generar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_generar.UseVisualStyleBackColor = true;
             this.btn_generar.Click += new System.EventHandler(this.btn_generar_Click);
             // 
-            // groupBox4
+            // gb_filtro
             // 
-            this.groupBox4.Controls.Add(this.rb_mes);
-            this.groupBox4.Controls.Add(this.rb_ano);
-            this.groupBox4.Location = new System.Drawing.Point(17, 188);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox4.Size = new System.Drawing.Size(259, 133);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Ver por";
+            this.gb_filtro.Controls.Add(this.gb_fecha);
+            this.gb_filtro.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gb_filtro.Location = new System.Drawing.Point(0, 0);
+            this.gb_filtro.Name = "gb_filtro";
+            this.gb_filtro.Size = new System.Drawing.Size(264, 543);
+            this.gb_filtro.TabIndex = 1;
+            this.gb_filtro.TabStop = false;
+            this.gb_filtro.Text = "Filtros para la consulta";
             // 
-            // rb_mes
+            // gb_fecha
             // 
-            this.rb_mes.AutoSize = true;
-            this.rb_mes.Location = new System.Drawing.Point(13, 78);
-            this.rb_mes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.rb_mes.Name = "rb_mes";
-            this.rb_mes.Size = new System.Drawing.Size(96, 29);
-            this.rb_mes.TabIndex = 6;
-            this.rb_mes.Text = "Meses";
-            this.rb_mes.UseVisualStyleBackColor = true;
+            this.gb_fecha.Controls.Add(this.cmb_semana_hasta);
+            this.gb_fecha.Controls.Add(this.btn_generar);
+            this.gb_fecha.Controls.Add(this.label5);
+            this.gb_fecha.Controls.Add(this.cmb_semana_desde);
+            this.gb_fecha.Controls.Add(this.label6);
+            this.gb_fecha.Controls.Add(this.cmb_mes_hasta);
+            this.gb_fecha.Controls.Add(this.label3);
+            this.gb_fecha.Controls.Add(this.cmb_mes_desde);
+            this.gb_fecha.Controls.Add(this.label4);
+            this.gb_fecha.Controls.Add(this.cmb_ano_hasta);
+            this.gb_fecha.Controls.Add(this.label2);
+            this.gb_fecha.Controls.Add(this.cmb_ano_desde);
+            this.gb_fecha.Controls.Add(this.label1);
+            this.gb_fecha.Controls.Add(this.rb_semana);
+            this.gb_fecha.Controls.Add(this.rb_mes);
+            this.gb_fecha.Controls.Add(this.rb_ano);
+            this.gb_fecha.Location = new System.Drawing.Point(12, 19);
+            this.gb_fecha.Name = "gb_fecha";
+            this.gb_fecha.Size = new System.Drawing.Size(244, 202);
+            this.gb_fecha.TabIndex = 2;
+            this.gb_fecha.TabStop = false;
+            this.gb_fecha.Text = "Clientes nuevos por fechas";
             // 
-            // rb_ano
+            // cmb_semana_hasta
             // 
-            this.rb_ano.AutoSize = true;
-            this.rb_ano.Checked = true;
-            this.rb_ano.Location = new System.Drawing.Point(13, 35);
-            this.rb_ano.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.rb_ano.Name = "rb_ano";
-            this.rb_ano.Size = new System.Drawing.Size(83, 29);
-            this.rb_ano.TabIndex = 5;
-            this.rb_ano.TabStop = true;
-            this.rb_ano.Text = "Años";
-            this.rb_ano.UseVisualStyleBackColor = true;
+            this.cmb_semana_hasta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_semana_hasta.Enabled = false;
+            this.cmb_semana_hasta.FormattingEnabled = true;
+            this.cmb_semana_hasta.Location = new System.Drawing.Point(131, 136);
+            this.cmb_semana_hasta.Name = "cmb_semana_hasta";
+            this.cmb_semana_hasta.Size = new System.Drawing.Size(72, 21);
+            this.cmb_semana_hasta.TabIndex = 17;
             // 
-            // groupBox3
+            // label5
             // 
-            this.groupBox3.Controls.Add(this.rb_ejecutivo);
-            this.groupBox3.Controls.Add(this.rb_asesor);
-            this.groupBox3.Location = new System.Drawing.Point(17, 342);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox3.Size = new System.Drawing.Size(259, 140);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Agrupados por";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(131, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Semana hasta";
             // 
-            // rb_ejecutivo
+            // cmb_semana_desde
             // 
-            this.rb_ejecutivo.AutoSize = true;
-            this.rb_ejecutivo.Location = new System.Drawing.Point(13, 78);
-            this.rb_ejecutivo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.rb_ejecutivo.Name = "rb_ejecutivo";
-            this.rb_ejecutivo.Size = new System.Drawing.Size(126, 29);
-            this.rb_ejecutivo.TabIndex = 9;
-            this.rb_ejecutivo.Text = "Ejecutivos";
-            this.rb_ejecutivo.UseVisualStyleBackColor = true;
+            this.cmb_semana_desde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_semana_desde.Enabled = false;
+            this.cmb_semana_desde.FormattingEnabled = true;
+            this.cmb_semana_desde.Location = new System.Drawing.Point(11, 136);
+            this.cmb_semana_desde.Name = "cmb_semana_desde";
+            this.cmb_semana_desde.Size = new System.Drawing.Size(72, 21);
+            this.cmb_semana_desde.TabIndex = 15;
             // 
-            // rb_asesor
+            // label6
             // 
-            this.rb_asesor.AutoSize = true;
-            this.rb_asesor.Checked = true;
-            this.rb_asesor.Location = new System.Drawing.Point(13, 35);
-            this.rb_asesor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.rb_asesor.Name = "rb_asesor";
-            this.rb_asesor.Size = new System.Drawing.Size(99, 29);
-            this.rb_asesor.TabIndex = 8;
-            this.rb_asesor.TabStop = true;
-            this.rb_asesor.Text = "Asesor";
-            this.rb_asesor.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Semana desde";
             // 
-            // groupBox2
+            // cmb_mes_hasta
             // 
-            this.groupBox2.Controls.Add(this.dtp_fec_hasta);
-            this.groupBox2.Controls.Add(this.dtp_fec_desde);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(17, 35);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox2.Size = new System.Drawing.Size(259, 133);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fechas";
+            this.cmb_mes_hasta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_mes_hasta.Enabled = false;
+            this.cmb_mes_hasta.FormattingEnabled = true;
+            this.cmb_mes_hasta.Location = new System.Drawing.Point(131, 98);
+            this.cmb_mes_hasta.Name = "cmb_mes_hasta";
+            this.cmb_mes_hasta.Size = new System.Drawing.Size(106, 21);
+            this.cmb_mes_hasta.TabIndex = 13;
             // 
-            // dtp_fec_hasta
+            // label3
             // 
-            this.dtp_fec_hasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fec_hasta.Location = new System.Drawing.Point(97, 78);
-            this.dtp_fec_hasta.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.dtp_fec_hasta.Name = "dtp_fec_hasta";
-            this.dtp_fec_hasta.Size = new System.Drawing.Size(145, 29);
-            this.dtp_fec_hasta.TabIndex = 3;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(131, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Mes hasta";
             // 
-            // dtp_fec_desde
+            // cmb_mes_desde
             // 
-            this.dtp_fec_desde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fec_desde.Location = new System.Drawing.Point(97, 30);
-            this.dtp_fec_desde.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.dtp_fec_desde.Name = "dtp_fec_desde";
-            this.dtp_fec_desde.Size = new System.Drawing.Size(145, 29);
-            this.dtp_fec_desde.TabIndex = 2;
+            this.cmb_mes_desde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_mes_desde.Enabled = false;
+            this.cmb_mes_desde.FormattingEnabled = true;
+            this.cmb_mes_desde.Location = new System.Drawing.Point(11, 98);
+            this.cmb_mes_desde.Name = "cmb_mes_desde";
+            this.cmb_mes_desde.Size = new System.Drawing.Size(106, 21);
+            this.cmb_mes_desde.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Mes desde";
+            // 
+            // cmb_ano_hasta
+            // 
+            this.cmb_ano_hasta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_ano_hasta.Enabled = false;
+            this.cmb_ano_hasta.FormattingEnabled = true;
+            this.cmb_ano_hasta.Location = new System.Drawing.Point(131, 60);
+            this.cmb_ano_hasta.Name = "cmb_ano_hasta";
+            this.cmb_ano_hasta.Size = new System.Drawing.Size(72, 21);
+            this.cmb_ano_hasta.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 78);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(131, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Hasta";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Año hasta";
+            // 
+            // cmb_ano_desde
+            // 
+            this.cmb_ano_desde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_ano_desde.Enabled = false;
+            this.cmb_ano_desde.FormattingEnabled = true;
+            this.cmb_ano_desde.Location = new System.Drawing.Point(11, 60);
+            this.cmb_ano_desde.Name = "cmb_ano_desde";
+            this.cmb_ano_desde.Size = new System.Drawing.Size(72, 21);
+            this.cmb_ano_desde.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 37);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(11, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Desde";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Año desde";
             // 
-            // groupBox5
+            // rb_semana
             // 
-            this.groupBox5.Controls.Add(this.dgv_reporte);
-            this.groupBox5.Location = new System.Drawing.Point(303, 0);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox5.Size = new System.Drawing.Size(796, 936);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Resultado";
+            this.rb_semana.AutoSize = true;
+            this.rb_semana.Location = new System.Drawing.Point(169, 19);
+            this.rb_semana.Name = "rb_semana";
+            this.rb_semana.Size = new System.Drawing.Size(69, 17);
+            this.rb_semana.TabIndex = 5;
+            this.rb_semana.TabStop = true;
+            this.rb_semana.Text = "Semanas";
+            this.rb_semana.UseVisualStyleBackColor = true;
+            this.rb_semana.Click += new System.EventHandler(this.rb_semana_Click);
             // 
-            // dgv_reporte
+            // rb_mes
             // 
-            this.dgv_reporte.AllowUserToAddRows = false;
-            this.dgv_reporte.AllowUserToDeleteRows = false;
-            this.dgv_reporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_reporte.Location = new System.Drawing.Point(11, 31);
-            this.dgv_reporte.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.dgv_reporte.Name = "dgv_reporte";
-            this.dgv_reporte.ReadOnly = true;
-            this.dgv_reporte.Size = new System.Drawing.Size(774, 894);
-            this.dgv_reporte.TabIndex = 0;
+            this.rb_mes.AutoSize = true;
+            this.rb_mes.Location = new System.Drawing.Point(84, 19);
+            this.rb_mes.Name = "rb_mes";
+            this.rb_mes.Size = new System.Drawing.Size(56, 17);
+            this.rb_mes.TabIndex = 4;
+            this.rb_mes.TabStop = true;
+            this.rb_mes.Text = "Meses";
+            this.rb_mes.UseVisualStyleBackColor = true;
+            this.rb_mes.Click += new System.EventHandler(this.rb_mes_Click);
             // 
-            // chart_cliente
+            // rb_ano
+            // 
+            this.rb_ano.AutoSize = true;
+            this.rb_ano.Location = new System.Drawing.Point(6, 19);
+            this.rb_ano.Name = "rb_ano";
+            this.rb_ano.Size = new System.Drawing.Size(49, 17);
+            this.rb_ano.TabIndex = 3;
+            this.rb_ano.TabStop = true;
+            this.rb_ano.Text = "Años";
+            this.rb_ano.UseVisualStyleBackColor = true;
+            this.rb_ano.Click += new System.EventHandler(this.rb_ano_Click);
+            // 
+            // chart1
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart_cliente.ChartAreas.Add(chartArea1);
+            this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart_cliente.Legends.Add(legend1);
-            this.chart_cliente.Location = new System.Drawing.Point(1111, 148);
-            this.chart_cliente.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.chart_cliente.Name = "chart_cliente";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn100;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart_cliente.Series.Add(series1);
-            this.chart_cliente.Size = new System.Drawing.Size(892, 554);
-            this.chart_cliente.TabIndex = 2;
-            this.chart_cliente.Text = "chart1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(270, 19);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(885, 482);
+            this.chart1.TabIndex = 3;
+            this.chart1.Text = "chart1";
             // 
             // frm_cte_nuevos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2099, 936);
-            this.Controls.Add(this.chart_cliente);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ClientSize = new System.Drawing.Size(1167, 543);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.gb_filtro);
             this.Name = "frm_cte_nuevos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de nuevos clientes";
             this.Load += new System.EventHandler(this.frm_clientes_nuevos_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_reporte)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_cliente)).EndInit();
+            this.gb_filtro.ResumeLayout(false);
+            this.gb_fecha.ResumeLayout(false);
+            this.gb_fecha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dtp_fec_hasta;
-        private System.Windows.Forms.DateTimePicker dtp_fec_desde;
+        private System.Windows.Forms.Button btn_generar;
+        private System.Windows.Forms.GroupBox gb_filtro;
+        private System.Windows.Forms.GroupBox gb_fecha;
+        private System.Windows.Forms.ComboBox cmb_semana_hasta;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmb_semana_desde;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmb_mes_hasta;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmb_mes_desde;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmb_ano_hasta;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmb_ano_desde;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton rb_ejecutivo;
-        private System.Windows.Forms.RadioButton rb_asesor;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton rb_semana;
         private System.Windows.Forms.RadioButton rb_mes;
         private System.Windows.Forms.RadioButton rb_ano;
-        private System.Windows.Forms.Button btn_generar;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DataGridView dgv_reporte;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_cliente;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

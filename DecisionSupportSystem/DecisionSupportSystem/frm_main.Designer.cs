@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
+            this.il_menu = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
+            // 
+            // il_menu
+            // 
+            this.il_menu.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("il_menu.ImageStream")));
+            this.il_menu.TransparentColor = System.Drawing.Color.Transparent;
+            this.il_menu.Images.SetKeyName(0, "cliente_16_16.png");
+            this.il_menu.Images.SetKeyName(1, "cliente_32_32.png");
             // 
             // frm_main
             // 
@@ -51,5 +60,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ImageList il_menu;
     }
 }

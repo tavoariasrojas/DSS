@@ -1,12 +1,9 @@
 ﻿using DAL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace BLL
 {
@@ -18,6 +15,8 @@ namespace BLL
         string mensaje_error;
         int numero_error;
         DataSet ds;
+
+        public object[] ItemObject { get; private set; }
         #endregion
 
         #region metodos
@@ -47,6 +46,97 @@ namespace BLL
             }
             return fecha;
         }
+
+        public void cargarAnos(ComboBox cmb, string posicion)
+        {
+            try
+            {
+                int anoInicio = 0, anoActual = 0;
+                anoActual = obtieneFechaServidor().Year;
+
+                for (anoInicio = 2000; anoInicio <= anoActual; anoInicio++)
+                {
+                    cmb.Items.Add(anoInicio.ToString());
+                }
+                if (posicion.Equals("min"))
+                {
+                    cmb.SelectedIndex = 0;
+                }
+                if (posicion.Equals("max"))
+                {
+                    cmb.SelectedIndex = cmb.Items.Count - 1;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void cargarMes(ComboBox cmb, string posicion)
+        {
+            try
+            {
+                cmb.Items.Add("Enero");
+                cmb.Items.Add("Febrero");
+                cmb.Items.Add("Marzo");
+                cmb.Items.Add("Abril");
+                cmb.Items.Add("Mayo");
+                cmb.Items.Add("Junio");
+                cmb.Items.Add("Julio");
+                cmb.Items.Add("Agosto");
+                cmb.Items.Add("Septiembre");
+                cmb.Items.Add("Octubre");
+                cmb.Items.Add("Noviembre");
+                cmb.Items.Add("Diciembre");
+                if (posicion.Equals("min"))
+                {
+                    cmb.SelectedIndex = 0;
+                }
+                if (posicion.Equals("max"))
+                {
+                    cmb.SelectedIndex = cmb.Items.Count - 1;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void cargarSemana(ComboBox cmb, int year, string posicion)
+        {
+            try
+            {
+
+                CultureInfo ci = CultureInfo.CurrentCulture;
+                DateTime date = new DateTime(year, 1, 1);
+                int semanas = ci.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+                for (int i = 1; i <= semanas; i++)
+                {
+                    cmb.Items.Add(i.ToString());
+                }
+
+                if (posicion.Equals("min"))
+                {
+                    cmb.SelectedIndex = 0;
+                }
+                if (posicion.Equals("max"))
+                {
+                    cmb.SelectedIndex = cmb.Items.Count - 1;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion metodos
     }
 }
