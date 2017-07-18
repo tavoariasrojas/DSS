@@ -72,5 +72,26 @@ namespace BLL
             cht.Series.Add(series1);
             cht.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
         }
+
+        public void makeChartTipoG(DataSet ds, Chart cht, String titulo)
+        {
+            cht.Titles.Add(titulo);
+            cht.DataSource = ds.Tables[0];
+
+            ChartArea chtArea = new ChartArea("area");
+            cht.ChartAreas.Add(chtArea);
+
+            Series series1 = new Series();
+            series1.XValueMember = "GENERO";
+            series1.YValueMembers = "CANTIDAD";
+            series1.Label = "#PERCENT{P2}";
+
+            series1.LegendText = "#AXISLABEL";
+
+            cht.Series.Add(series1);
+            cht.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            cht.ChartAreas[0].Area3DStyle.Enable3D = true;
+            cht.ChartAreas[0].Area3DStyle.Inclination = 40;
+        }
     }
 }

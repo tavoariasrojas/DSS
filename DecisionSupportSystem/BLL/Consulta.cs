@@ -44,7 +44,6 @@ namespace BLL
         string mensaje_error;
         int numero_error;
         DataSet ds;
-        DataTable dt;
         #endregion
 
         #region metodos

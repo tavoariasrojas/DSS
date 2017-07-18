@@ -25,6 +25,9 @@ namespace DecisionSupportSystem.Reportes
 
             DataSet dse = objReporte.reporteCteEdad();
             objGrafico.makeChartEdad(dse, cht_cte_edad, "Gráfico Distribución de Clientes por Edad");
+
+            DataSet dst = objReporte.reporteCteTipo("G");
+            objGrafico.makeChartTipoG(dst, cht_cte_tipo, "Gráfico Distribución de Clientes por Tipo");
         }
     }
 }
