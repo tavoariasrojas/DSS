@@ -259,11 +259,13 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(270, 19);
+            this.chart1.Location = new System.Drawing.Point(264, 0);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(885, 482);
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            this.chart1.Size = new System.Drawing.Size(903, 543);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
             // 

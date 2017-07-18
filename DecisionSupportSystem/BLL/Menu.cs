@@ -216,8 +216,9 @@ namespace BLL
                             if (type.Name == frm_name)
                             {
                             Form frmShow = (Form)frmAssembly.CreateInstance(type.ToString());
+                            //frmShow.WindowState = FormWindowState.Maximized;
 
-                            foreach (Form form in VG.Variables.mdiForm.MdiChildren)
+                        foreach (Form form in VG.Variables.mdiForm.MdiChildren)
                             {
                                 form.Close();
                             }

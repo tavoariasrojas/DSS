@@ -76,6 +76,12 @@
     <Compile Include="Reportes\frm_cte_mayor_vol.Designer.cs">
       <DependentUpon>frm_cte_mayor_vol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\frm_cte_resumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_cte_resumen.Designer.cs">
+      <DependentUpon>frm_cte_resumen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\frm_ope_apalancamiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_cte_nuevos.resx">
       <DependentUpon>frm_cte_nuevos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_cte_resumen.resx">
+      <DependentUpon>frm_cte_resumen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_ope_apalancamiento.resx">
       <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>

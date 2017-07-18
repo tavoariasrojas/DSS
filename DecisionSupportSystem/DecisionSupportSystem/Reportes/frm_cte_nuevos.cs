@@ -95,17 +95,17 @@ namespace DecisionSupportSystem.Reportes
                                             "FROM " +
                                                 "(SELECT DATEPART(YEAR, fecha_insercion)ano, " +
                                                     "CASE " +
-                                                        "WHEN asesor = 'SAMA' THEN COUNT(*) " +
+                                                        "WHEN asesor_actual = 'SAMA' THEN COUNT(*) " +
                                                         "ELSE 0 " +
                                                     "END sama, " +
                                                     "CASE " +
-                                                        "WHEN asesor = 'CFS' THEN COUNT(*) " +
+                                                        "WHEN asesor_actual = 'CFS' THEN COUNT(*) " +
                                                         "ELSE 0 " +
                                                     "END cfs " +
                                                 "FROM cliente " +
                                                 "WHERE DATEPART(yy, fecha_insercion) BETWEEN "+ano_desde+" AND "+ano_hasta+" " +
                                                 "AND estado = 'A' " +
-                                                "GROUP BY DATEPART(YEAR, fecha_insercion), asesor " +
+                                                "GROUP BY DATEPART(YEAR, fecha_insercion), asesor_actual " +
                                                 ")tabla " +
                                             "GROUP BY ano";
 
@@ -216,6 +216,8 @@ namespace DecisionSupportSystem.Reportes
 
         public void cargarGrafico(DataSet ds)
         {
+            chart1.Series.Clear();
+            chart1.Titles.Clear();
             chart1.DataSource = ds.Tables[0];
             chart1.Titles.Add("Clientes nuevos por años");
 
@@ -223,11 +225,13 @@ namespace DecisionSupportSystem.Reportes
             series1.XValueMember = "AÑO";
             series1.YValueMembers = "SAMA";
             series1.LegendText = "Sama";
+            //series1.Label = "#PERCENT{P2}";
 
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             series2.XValueMember = "AÑO";
             series2.YValueMembers = "CPG";
             series2.LegendText = "Cpg";
+            //series2.Label = "#PERCENT{P2}";
 
             chart1.Series.Add(series1);
             chart1.Series.Add(series2);
