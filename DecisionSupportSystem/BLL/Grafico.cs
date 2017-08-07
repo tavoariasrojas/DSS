@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -6,6 +7,7 @@ namespace BLL
 {
     public class Grafico
     {
+        #region Graficos Resumidos
         public void makeChartGeneroG(DataSet ds, Chart cht, String titulo)
         {
             cht.Titles.Add(titulo);
@@ -100,5 +102,45 @@ namespace BLL
             cht.ChartAreas[0].Area3DStyle.Enable3D = true;
             cht.ChartAreas[0].Area3DStyle.Inclination = 40;
         }
+        #endregion
+
+        #region Grafico Clientes Mayor Volumen Inversion
+        public void makeChartCteMayVOlInv(DataSet ds, Chart cht, String titulo, List<string> series)
+        {
+            cht.Titles.Add(titulo);
+            cht.DataSource = ds.Tables[0];
+
+            if (cht.ChartAreas.Count > 0)
+            {
+                for (int i = 0; i < cht.ChartAreas.Count; i++)
+                {
+                    cht.ChartAreas.RemoveAt(i);
+                }
+            }
+
+            if (cht.Series.Count > 0)
+            {
+                for (int i = 0; i < cht.Series.Count; i++)
+                {
+                    cht.Series.RemoveAt(i);
+                }
+            }
+
+
+            ChartArea chtArea = new ChartArea("area");
+            chtArea.IsSameFontSizeForAllAxes = true;
+            cht.ChartAreas.Add(chtArea);
+
+            for (int i = 0; i < series.Count; i++)
+            {
+                cht.Series.Add(new Series(series[i]));
+                cht.Series[i].XValueMember = "CODIGO";
+                cht.Series[i].YValueMembers = series[i].ToString();
+                cht.Series[i].CustomProperties = "PointWidth=0.8";
+                cht.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            }
+
+        }
+        #endregion
     }
 }

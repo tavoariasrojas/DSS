@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace BLL
@@ -77,18 +78,25 @@ namespace BLL
         {
             try
             {
-                cmb.Items.Add("Enero");
-                cmb.Items.Add("Febrero");
-                cmb.Items.Add("Marzo");
-                cmb.Items.Add("Abril");
-                cmb.Items.Add("Mayo");
-                cmb.Items.Add("Junio");
-                cmb.Items.Add("Julio");
-                cmb.Items.Add("Agosto");
-                cmb.Items.Add("Septiembre");
-                cmb.Items.Add("Octubre");
-                cmb.Items.Add("Noviembre");
-                cmb.Items.Add("Diciembre");
+                Dictionary<string, int> cmbMes = new Dictionary<string, int>();
+
+                cmbMes.Add("Enero", 1);
+                cmbMes.Add("Febrero", 2);
+                cmbMes.Add("Marzo", 3);
+                cmbMes.Add("Abril", 4);
+                cmbMes.Add("Mayo", 5);
+                cmbMes.Add("Junio", 6);
+                cmbMes.Add("Julio", 7);
+                cmbMes.Add("Agosto", 8);
+                cmbMes.Add("Septiempre", 9);
+                cmbMes.Add("Octubre", 10);
+                cmbMes.Add("Noviembre", 11);
+                cmbMes.Add("Diciembre", 12);
+
+                cmb.DataSource = new BindingSource(cmbMes, null);
+                cmb.DisplayMember = "Key";
+                cmb.ValueMember = "Value";
+
                 if (posicion.Equals("min"))
                 {
                     cmb.SelectedIndex = 0;
