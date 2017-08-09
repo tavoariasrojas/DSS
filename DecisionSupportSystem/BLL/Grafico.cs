@@ -107,26 +107,37 @@ namespace BLL
         #region Grafico Clientes Mayor Volumen Inversion
         public void makeChartCteMayVOlInv(DataSet ds, Chart cht, String titulo, List<string> series)
         {
-            cht.Titles.Add(titulo);
             cht.DataSource = ds.Tables[0];
+            int cantidad = 0;
 
+            cantidad = cht.ChartAreas.Count;
             if (cht.ChartAreas.Count > 0)
             {
-                for (int i = 0; i < cht.ChartAreas.Count; i++)
+                for (int i = 0; i < cantidad; i++)
                 {
-                    cht.ChartAreas.RemoveAt(i);
+                    cht.ChartAreas.RemoveAt(0);
                 }
             }
 
+            cantidad = cht.Series.Count;
             if (cht.Series.Count > 0)
             {
-                for (int i = 0; i < cht.Series.Count; i++)
+                for (int i = 0; i < cantidad; i++)
                 {
-                    cht.Series.RemoveAt(i);
+                    cht.Series.RemoveAt(0);
                 }
             }
 
+            cantidad = cht.Titles.Count;
+            if (cht.Titles.Count > 0)
+            {
+                for (int i = 0; i < cantidad; i++)
+                {
+                    cht.Titles.RemoveAt(0);
+                }
+            }
 
+            cht.Titles.Add(titulo);
             ChartArea chtArea = new ChartArea("area");
             chtArea.IsSameFontSizeForAllAxes = true;
             cht.ChartAreas.Add(chtArea);
@@ -139,7 +150,8 @@ namespace BLL
                 cht.Series[i].CustomProperties = "PointWidth=0.8";
                 cht.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             }
-
+            chtArea.RecalculateAxesScale();
+            chtArea.CursorX.IsUserSelectionEnabled = true;
         }
         #endregion
     }
