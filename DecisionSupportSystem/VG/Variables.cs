@@ -35,5 +35,9 @@ namespace VG
         public static string serverDataBase = "Sama_DSS";
         public static string connectionString;
         #endregion
+
+        #region Paths
+        //string menuIco = 
+        #endregion
     }
 }

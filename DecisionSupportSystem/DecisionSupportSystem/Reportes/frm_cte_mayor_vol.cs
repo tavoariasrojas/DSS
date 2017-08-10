@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using BLL;
 using System.Data;
 using System.Collections.Generic;
+using LiveCharts.Wpf;
 
 namespace DecisionSupportSystem.Reportes
 {
@@ -10,7 +11,9 @@ namespace DecisionSupportSystem.Reportes
     {
         BLL.Fecha obj_fecha = new Fecha();
         BLL.Reporte objReporte = new BLL.Reporte();
+        BLL.Funcional objFuncinal = new BLL.Funcional();
         BLL.Grafico objGrafico = new BLL.Grafico();
+        BLL.GraficoLiveCharts objGraficoLC = new BLL.GraficoLiveCharts();
 
         public frm_cte_mayor_vol()
         {
@@ -25,6 +28,9 @@ namespace DecisionSupportSystem.Reportes
             obj_fecha.cargarMes(cmb_mes_hasta, "max");
 
             cmb_tipo_cliente.SelectedIndex = 0;
+
+            objFuncinal.cargarExpresado(cmb_expresado, "min");
+            cmb_expresado.SelectedIndex = 0;
         }
 
         public static List<string> f_series(string tipo, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta){
@@ -136,10 +142,48 @@ namespace DecisionSupportSystem.Reportes
                 int ano_desde = Int32.Parse(cmb_ano_desde.Text.ToString());
                 int ano_hasta = Int32.Parse(cmb_ano_hasta.Text.ToString());
                 decimal top = nud_top.Value;
+                decimal expresado = Convert.ToDecimal(cmb_expresado.SelectedValue.ToString());
 
-                DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, 0, ano_hasta, 0, top);
+                DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, 0, ano_hasta, 0, top, expresado);
                 series = f_series(tipo_reporte, ano_desde, 0, ano_hasta, 0);
-                objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
+                // objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
+
+                objGraficoLC.ds = dsg;
+                objGraficoLC.lista = series;
+                objGraficoLC.limpiarGrafico(mainCartesianChart);
+                objGraficoLC.campo = "CODIGO";
+
+
+                for (int i = 0; i < series.Count; i++)
+                {
+                    mainCartesianChart.Series.Add(new ColumnSeries
+                    {
+                        Title = series[i].ToString(),
+                        Values = objGraficoLC.llenarChartValues(series[i].ToString()),
+                        Width = 1,
+                        DataLabels = true,
+                        LabelPoint = point => point.Y.ToString("N")
+                    });
+                }
+
+                mainCartesianChart.AxisX.Add(new Axis
+                {
+                    Title = "CÓDIGO DE CLIENTES",
+                    Labels = objGraficoLC.llenarEje(),
+                    Separator = new Separator
+                    {
+                        Step = 1,
+                        IsEnabled = false
+                    }
+                });
+
+                mainCartesianChart.AxisY.Add(new Axis
+                {
+                    Title = "MONTO EXPRESADO EN",
+                    LabelFormatter = value => value.ToString("N")
+                
+                });
+
                 dgv_info.DataSource = null;
                 dgv_info.DataSource = dsg.Tables[0];
             }
@@ -185,10 +229,46 @@ namespace DecisionSupportSystem.Reportes
                 int mes_hasta = Int32.Parse(cmb_mes_hasta.SelectedValue.ToString());
 
                 decimal top = nud_top.Value;
+                decimal expresado = Convert.ToDecimal(cmb_expresado.SelectedValue.ToString());
 
-                DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, mes_desde, ano_hasta, mes_hasta, top);
+                DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, mes_desde, ano_hasta, mes_hasta, top, expresado);
                 series = f_series(tipo_reporte, ano_desde, mes_desde, ano_hasta, mes_hasta);
-                objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
+                //objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
+
+                objGraficoLC.ds = dsg;
+                objGraficoLC.lista = series;
+                objGraficoLC.limpiarGrafico(mainCartesianChart);
+                objGraficoLC.campo = "CODIGO";
+
+
+                for (int i = 0; i < series.Count; i++)
+                {
+                    mainCartesianChart.Series.Add(new ColumnSeries
+                    {
+                        Title = series[i].ToString(),
+                        Values = objGraficoLC.llenarChartValues(series[i].ToString()),
+                        Width = 1,
+                        DataLabels = true,
+                        LabelPoint = point => point.Y.ToString("N")
+                    });
+                }
+
+                mainCartesianChart.AxisX.Add(new Axis
+                {
+                    Title = "CÓDIGO DE CLIENTES",
+                    Labels = objGraficoLC.llenarEje(),
+                    Separator = new Separator
+                    {
+                        Step = 1
+                    }
+                });
+
+                mainCartesianChart.AxisY.Add(new Axis
+                {
+                    Title = "MONTO EXPRESADO EN",
+                    LabelFormatter = value => value.ToString("N")
+                });
+
                 dgv_info.DataSource = null;
                 dgv_info.DataSource = dsg.Tables[0];
             }

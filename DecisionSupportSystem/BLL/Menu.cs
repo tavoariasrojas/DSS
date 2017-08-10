@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
+using System.IO;
 
 namespace BLL
 {

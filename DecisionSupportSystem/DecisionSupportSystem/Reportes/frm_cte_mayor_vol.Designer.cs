@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_cte_mayor_vol));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.nud_top = new System.Windows.Forms.NumericUpDown();
@@ -56,7 +54,10 @@
             this.rb_anual = new System.Windows.Forms.RadioButton();
             this.dgv_info = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.mainCartesianChart = new LiveCharts.WinForms.CartesianChart();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cmb_expresado = new System.Windows.Forms.ComboBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_top)).BeginInit();
@@ -66,11 +67,13 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_info)).BeginInit();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.btn_generar);
@@ -87,10 +90,10 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(8, 3);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(172, 409);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(172, 459);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Opciones de filtro";
@@ -99,10 +102,10 @@
             // 
             this.groupBox6.Controls.Add(this.nud_top);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(4, 311);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Location = new System.Drawing.Point(4, 365);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox6.Size = new System.Drawing.Size(164, 42);
             this.groupBox6.TabIndex = 12;
             this.groupBox6.TabStop = false;
@@ -111,7 +114,7 @@
             // nud_top
             // 
             this.nud_top.Location = new System.Drawing.Point(53, 16);
-            this.nud_top.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nud_top.Margin = new System.Windows.Forms.Padding(2);
             this.nud_top.Maximum = new decimal(new int[] {
             10,
             0,
@@ -125,6 +128,7 @@
             this.nud_top.Name = "nud_top";
             this.nud_top.Size = new System.Drawing.Size(44, 20);
             this.nud_top.TabIndex = 0;
+            this.nud_top.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nud_top.Value = new decimal(new int[] {
             1,
             0,
@@ -137,9 +141,9 @@
             this.groupBox5.Controls.Add(this.rb_transado);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(4, 206);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(164, 42);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
@@ -149,7 +153,7 @@
             // 
             this.rb_comision.AutoSize = true;
             this.rb_comision.Location = new System.Drawing.Point(89, 16);
-            this.rb_comision.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_comision.Margin = new System.Windows.Forms.Padding(2);
             this.rb_comision.Name = "rb_comision";
             this.rb_comision.Size = new System.Drawing.Size(67, 17);
             this.rb_comision.TabIndex = 1;
@@ -161,7 +165,7 @@
             this.rb_transado.AutoSize = true;
             this.rb_transado.Checked = true;
             this.rb_transado.Location = new System.Drawing.Point(14, 16);
-            this.rb_transado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_transado.Margin = new System.Windows.Forms.Padding(2);
             this.rb_transado.Name = "rb_transado";
             this.rb_transado.Size = new System.Drawing.Size(70, 17);
             this.rb_transado.TabIndex = 0;
@@ -174,7 +178,7 @@
             this.btn_generar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_generar.Image = ((System.Drawing.Image)(resources.GetObject("btn_generar.Image")));
             this.btn_generar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_generar.Location = new System.Drawing.Point(34, 362);
+            this.btn_generar.Location = new System.Drawing.Point(34, 417);
             this.btn_generar.Name = "btn_generar";
             this.btn_generar.Size = new System.Drawing.Size(104, 32);
             this.btn_generar.TabIndex = 11;
@@ -188,7 +192,7 @@
             this.cmb_mes_hasta.Enabled = false;
             this.cmb_mes_hasta.FormattingEnabled = true;
             this.cmb_mes_hasta.Location = new System.Drawing.Point(90, 125);
-            this.cmb_mes_hasta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_mes_hasta.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_mes_hasta.Name = "cmb_mes_hasta";
             this.cmb_mes_hasta.Size = new System.Drawing.Size(73, 21);
             this.cmb_mes_hasta.TabIndex = 10;
@@ -198,7 +202,7 @@
             this.cmb_mes_desde.Enabled = false;
             this.cmb_mes_desde.FormattingEnabled = true;
             this.cmb_mes_desde.Location = new System.Drawing.Point(4, 125);
-            this.cmb_mes_desde.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_mes_desde.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_mes_desde.Name = "cmb_mes_desde";
             this.cmb_mes_desde.Size = new System.Drawing.Size(73, 21);
             this.cmb_mes_desde.TabIndex = 7;
@@ -227,7 +231,7 @@
             // 
             this.cmb_ano_hasta.FormattingEnabled = true;
             this.cmb_ano_hasta.Location = new System.Drawing.Point(90, 85);
-            this.cmb_ano_hasta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_ano_hasta.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_hasta.Name = "cmb_ano_hasta";
             this.cmb_ano_hasta.Size = new System.Drawing.Size(73, 21);
             this.cmb_ano_hasta.TabIndex = 6;
@@ -236,7 +240,7 @@
             // 
             this.cmb_ano_desde.FormattingEnabled = true;
             this.cmb_ano_desde.Location = new System.Drawing.Point(4, 85);
-            this.cmb_ano_desde.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_ano_desde.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_desde.Name = "cmb_ano_desde";
             this.cmb_ano_desde.Size = new System.Drawing.Size(73, 21);
             this.cmb_ano_desde.TabIndex = 1;
@@ -266,10 +270,10 @@
             this.groupBox4.Controls.Add(this.rb_dol);
             this.groupBox4.Controls.Add(this.rb_col);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(4, 258);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Location = new System.Drawing.Point(4, 259);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(164, 42);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
@@ -279,7 +283,7 @@
             // 
             this.rb_dol.AutoSize = true;
             this.rb_dol.Location = new System.Drawing.Point(89, 16);
-            this.rb_dol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_dol.Margin = new System.Windows.Forms.Padding(2);
             this.rb_dol.Name = "rb_dol";
             this.rb_dol.Size = new System.Drawing.Size(61, 17);
             this.rb_dol.TabIndex = 1;
@@ -291,7 +295,7 @@
             this.rb_col.AutoSize = true;
             this.rb_col.Checked = true;
             this.rb_col.Location = new System.Drawing.Point(14, 16);
-            this.rb_col.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_col.Margin = new System.Windows.Forms.Padding(2);
             this.rb_col.Name = "rb_col";
             this.rb_col.Size = new System.Drawing.Size(63, 17);
             this.rb_col.TabIndex = 0;
@@ -304,9 +308,9 @@
             this.groupBox3.Controls.Add(this.cmb_tipo_cliente);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(4, 149);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(164, 42);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
@@ -319,10 +323,10 @@
             "Todos",
             "Físico",
             "Jurídico"});
-            this.cmb_tipo_cliente.Location = new System.Drawing.Point(14, 16);
-            this.cmb_tipo_cliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_tipo_cliente.Location = new System.Drawing.Point(37, 16);
+            this.cmb_tipo_cliente.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_tipo_cliente.Name = "cmb_tipo_cliente";
-            this.cmb_tipo_cliente.Size = new System.Drawing.Size(130, 21);
+            this.cmb_tipo_cliente.Size = new System.Drawing.Size(99, 21);
             this.cmb_tipo_cliente.TabIndex = 0;
             // 
             // groupBox2
@@ -331,9 +335,9 @@
             this.groupBox2.Controls.Add(this.rb_anual);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(4, 21);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(164, 42);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
@@ -343,7 +347,7 @@
             // 
             this.rb_mensual.AutoSize = true;
             this.rb_mensual.Location = new System.Drawing.Point(89, 16);
-            this.rb_mensual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_mensual.Margin = new System.Windows.Forms.Padding(2);
             this.rb_mensual.Name = "rb_mensual";
             this.rb_mensual.Size = new System.Drawing.Size(65, 17);
             this.rb_mensual.TabIndex = 1;
@@ -356,7 +360,7 @@
             this.rb_anual.AutoSize = true;
             this.rb_anual.Checked = true;
             this.rb_anual.Location = new System.Drawing.Point(14, 16);
-            this.rb_anual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_anual.Margin = new System.Windows.Forms.Padding(2);
             this.rb_anual.Name = "rb_anual";
             this.rb_anual.Size = new System.Drawing.Size(52, 17);
             this.rb_anual.TabIndex = 0;
@@ -368,48 +372,81 @@
             // dgv_info
             // 
             this.dgv_info.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_info.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv_info.Location = new System.Drawing.Point(0, 416);
-            this.dgv_info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv_info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_info.Location = new System.Drawing.Point(3, 16);
+            this.dgv_info.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_info.Name = "dgv_info";
             this.dgv_info.RowTemplate.Height = 28;
-            this.dgv_info.Size = new System.Drawing.Size(1234, 146);
+            this.dgv_info.Size = new System.Drawing.Size(1278, 128);
             this.dgv_info.TabIndex = 1;
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.chart);
+            this.groupBox7.Controls.Add(this.mainCartesianChart);
             this.groupBox7.Location = new System.Drawing.Point(185, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(1049, 409);
+            this.groupBox7.Size = new System.Drawing.Size(1087, 459);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Resultado del gráfico";
             // 
-            // chart
+            // mainCartesianChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(3, 16);
-            this.chart.Margin = new System.Windows.Forms.Padding(2);
-            this.chart.Name = "chart";
-            this.chart.Size = new System.Drawing.Size(1043, 390);
-            this.chart.TabIndex = 3;
-            this.chart.Text = "chart1";
+            this.mainCartesianChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainCartesianChart.Location = new System.Drawing.Point(3, 16);
+            this.mainCartesianChart.Name = "mainCartesianChart";
+            this.mainCartesianChart.Size = new System.Drawing.Size(1081, 440);
+            this.mainCartesianChart.TabIndex = 0;
+            this.mainCartesianChart.Text = "cartesianChart1";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.cmb_expresado);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(4, 312);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Size = new System.Drawing.Size(164, 42);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Expresado en";
+            // 
+            // cmb_expresado
+            // 
+            this.cmb_expresado.FormattingEnabled = true;
+            this.cmb_expresado.Items.AddRange(new object[] {
+            "Todos",
+            "Físico",
+            "Jurídico"});
+            this.cmb_expresado.Location = new System.Drawing.Point(45, 16);
+            this.cmb_expresado.Margin = new System.Windows.Forms.Padding(2);
+            this.cmb_expresado.Name = "cmb_expresado";
+            this.cmb_expresado.Size = new System.Drawing.Size(83, 21);
+            this.cmb_expresado.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.dgv_info);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox9.Location = new System.Drawing.Point(0, 465);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(1284, 147);
+            this.groupBox9.TabIndex = 3;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Vista de información graficada";
             // 
             // frm_cte_mayor_vol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1234, 562);
+            this.ClientSize = new System.Drawing.Size(1284, 612);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.dgv_info);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(1250, 600);
-            this.MinimumSize = new System.Drawing.Size(1250, 600);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1300, 650);
+            this.MinimumSize = new System.Drawing.Size(1300, 650);
             this.Name = "frm_cte_mayor_vol";
             this.Text = "Reporte de clientes con mayor volumen de operaciones";
             this.Load += new System.EventHandler(this.frm_cte_mayor_vol_Load);
@@ -426,7 +463,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_info)).EndInit();
             this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -458,6 +496,9 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.NumericUpDown nud_top;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private LiveCharts.WinForms.CartesianChart mainCartesianChart;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.ComboBox cmb_expresado;
+        private System.Windows.Forms.GroupBox groupBox9;
     }
 }

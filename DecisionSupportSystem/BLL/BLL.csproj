@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts">
+      <HintPath>..\..\..\..\DSS\DecisionSupportSystem\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms">
+      <HintPath>..\..\..\..\DSS\DecisionSupportSystem\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf">
+      <HintPath>..\..\..\..\DSS\DecisionSupportSystem\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -46,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Consulta.cs" />
     <Compile Include="Fecha.cs" />
+    <Compile Include="Funcional.cs" />
     <Compile Include="Grafico.cs" />
+    <Compile Include="GraficoLiveCharts.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
