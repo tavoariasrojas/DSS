@@ -7,6 +7,47 @@ namespace BLL
 {
     public class Grafico
     {
+        #region Utilidades
+        public void limpiarGrafico(Chart cht)
+        {
+            int cantidad = 0;
+            try
+            {
+                cantidad = cht.Titles.Count;
+                if (cht.Titles.Count > 0)
+                {
+                    for (int i = 0; i < cantidad; i++)
+                    {
+                        cht.Titles.RemoveAt(0);
+                    }
+                }
+
+                cantidad = cht.ChartAreas.Count;
+                if (cht.ChartAreas.Count > 0)
+                {
+                    for (int i = 0; i < cantidad; i++)
+                    {
+                        cht.ChartAreas.RemoveAt(0);
+                    }
+                }
+
+                cantidad = cht.Series.Count;
+                if (cht.Series.Count > 0)
+                {
+                    for (int i = 0; i < cantidad; i++)
+                    {
+                        cht.Series.RemoveAt(0);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
         #region Graficos Resumidos
         public void makeChartGeneroG(DataSet ds, Chart cht, String titulo)
         {
@@ -105,38 +146,10 @@ namespace BLL
         #endregion
 
         #region Grafico Clientes Mayor Volumen Inversion
-        public void makeChartCteMayVOlInv(DataSet ds, Chart cht, String titulo, List<string> series)
+        public void makeChartCteMayVolInv(DataSet ds, Chart cht, String titulo, List<string> series)
         {
+            limpiarGrafico(cht);
             cht.DataSource = ds.Tables[0];
-            int cantidad = 0;
-
-            cantidad = cht.ChartAreas.Count;
-            if (cht.ChartAreas.Count > 0)
-            {
-                for (int i = 0; i < cantidad; i++)
-                {
-                    cht.ChartAreas.RemoveAt(0);
-                }
-            }
-
-            cantidad = cht.Series.Count;
-            if (cht.Series.Count > 0)
-            {
-                for (int i = 0; i < cantidad; i++)
-                {
-                    cht.Series.RemoveAt(0);
-                }
-            }
-
-            cantidad = cht.Titles.Count;
-            if (cht.Titles.Count > 0)
-            {
-                for (int i = 0; i < cantidad; i++)
-                {
-                    cht.Titles.RemoveAt(0);
-                }
-            }
-
             cht.Titles.Add(titulo);
             ChartArea chtArea = new ChartArea("area");
             chtArea.IsSameFontSizeForAllAxes = true;

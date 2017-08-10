@@ -139,7 +139,7 @@ namespace DecisionSupportSystem.Reportes
 
                 DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, 0, ano_hasta, 0, top);
                 series = f_series(tipo_reporte, ano_desde, 0, ano_hasta, 0);
-                objGrafico.makeChartCteMayVOlInv(dsg, chart, "Título reporte", series);
+                objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
                 dgv_info.DataSource = null;
                 dgv_info.DataSource = dsg.Tables[0];
             }
@@ -188,7 +188,7 @@ namespace DecisionSupportSystem.Reportes
 
                 DataSet dsg = objReporte.reporteMayVolInv(tipo_reporte, tipo_cliente, tipo_moneda, mto_com, ano_desde, mes_desde, ano_hasta, mes_hasta, top);
                 series = f_series(tipo_reporte, ano_desde, mes_desde, ano_hasta, mes_hasta);
-                objGrafico.makeChartCteMayVOlInv(dsg, chart, "Título reporte", series);
+                objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
                 dgv_info.DataSource = null;
                 dgv_info.DataSource = dsg.Tables[0];
             }
