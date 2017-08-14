@@ -59,13 +59,16 @@ namespace BLL
                 {
                     cmb.Items.Add(anoInicio.ToString());
                 }
-                if (posicion.Equals("min"))
+                if (!string.IsNullOrEmpty(posicion))
                 {
-                    cmb.SelectedIndex = 0;
-                }
-                if (posicion.Equals("max"))
-                {
-                    cmb.SelectedIndex = cmb.Items.Count - 1;
+                    if (posicion.Equals("min"))
+                    {
+                        cmb.SelectedIndex = 0;
+                    }
+                    if (posicion.Equals("max"))
+                    {
+                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                    }
                 }
             }
             catch (Exception)

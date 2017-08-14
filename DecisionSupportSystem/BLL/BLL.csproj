@@ -56,6 +56,7 @@
     <Compile Include="Consulta.cs" />
     <Compile Include="Fecha.cs" />
     <Compile Include="Funcional.cs" />
+    <Compile Include="Funciones.cs" />
     <Compile Include="Grafico.cs" />
     <Compile Include="GraficoLiveCharts.cs" />
     <Compile Include="Login.cs" />

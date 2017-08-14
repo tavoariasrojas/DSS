@@ -102,6 +102,12 @@
     <Compile Include="Reportes\frm_cte_resumen.Designer.cs">
       <DependentUpon>frm_cte_resumen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\frm_eje_comisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_eje_comisiones.Designer.cs">
+      <DependentUpon>frm_eje_comisiones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\frm_ope_apalancamiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_cte_resumen.resx">
       <DependentUpon>frm_cte_resumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_eje_comisiones.resx">
+      <DependentUpon>frm_eje_comisiones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_ope_apalancamiento.resx">
       <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>
