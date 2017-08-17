@@ -256,20 +256,20 @@
             // 
             this.cmb_ano_hasta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_ano_hasta.FormattingEnabled = true;
-            this.cmb_ano_hasta.Location = new System.Drawing.Point(90, 85);
+            this.cmb_ano_hasta.Location = new System.Drawing.Point(99, 85);
             this.cmb_ano_hasta.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_hasta.Name = "cmb_ano_hasta";
-            this.cmb_ano_hasta.Size = new System.Drawing.Size(73, 21);
+            this.cmb_ano_hasta.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_hasta.TabIndex = 6;
             // 
             // cmb_ano_desde
             // 
             this.cmb_ano_desde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_ano_desde.FormattingEnabled = true;
-            this.cmb_ano_desde.Location = new System.Drawing.Point(4, 85);
+            this.cmb_ano_desde.Location = new System.Drawing.Point(13, 85);
             this.cmb_ano_desde.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_desde.Name = "cmb_ano_desde";
-            this.cmb_ano_desde.Size = new System.Drawing.Size(73, 21);
+            this.cmb_ano_desde.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_desde.TabIndex = 1;
             // 
             // label2
@@ -348,9 +348,9 @@
             this.cmb_tipo_cliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_tipo_cliente.FormattingEnabled = true;
             this.cmb_tipo_cliente.Items.AddRange(new object[] {
-            "Todos",
-            "Físico",
-            "Jurídico"});
+            "TODOS",
+            "FÍSICO",
+            "JURÍDICO"});
             this.cmb_tipo_cliente.Location = new System.Drawing.Point(37, 16);
             this.cmb_tipo_cliente.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_tipo_cliente.Name = "cmb_tipo_cliente";

@@ -214,42 +214,46 @@ namespace BLL
         #region Reporte Lista de Ejecutivos Rango de Años
         public DataSet ReporteEjecutivos(int ano_inicial, int ano_final)
         {
-            conexion = cls_DAL.trae_conexion("DSS", ref mensaje_error, ref numero_error);
-            if (conexion == null)
+            if (ano_inicial > 0 && ano_final > 0)
             {
-                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            else
-            {
-                if (numero_error != 0)
+                conexion = cls_DAL.trae_conexion("DSS", ref mensaje_error, ref numero_error);
+                if (conexion == null)
                 {
-                    MessageBox.Show(mensaje_error, "No se pude realizar conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 else
                 {
-                    ParamStruct[] parametros = new ParamStruct[2];
-                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@ano_desde", SqlDbType.Int, ano_inicial);
-                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@ano_hasta", SqlDbType.Int, ano_final);
-                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_filtra_ejecutivo", true, parametros, ref mensaje_error, ref numero_error);
-
                     if (numero_error != 0)
                     {
-                        conexion.Close();
+                        MessageBox.Show(mensaje_error, "No se pude realizar conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return null;
                     }
                     else
                     {
-                        conexion.Close();
-                        return ds;
+                        ParamStruct[] parametros = new ParamStruct[2];
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@ano_desde", SqlDbType.Int, ano_inicial);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@ano_hasta", SqlDbType.Int, ano_final);
+                        ds = cls_DAL.ejecuta_dataset(conexion, "sp_filtra_ejecutivo", true, parametros, ref mensaje_error, ref numero_error);
+
+                        if (numero_error != 0)
+                        {
+                            conexion.Close();
+                            return null;
+                        }
+                        else
+                        {
+                            conexion.Close();
+                            return ds;
+                        }
                     }
                 }
             }
+            return null;
         }
         #endregion
 
-        #region Reportes de Comisiones de Ejecutivos
+        #region Reportes de Clientes Nuevos
         public DataSet reporteComiEjec(string tipo_reporte, string comision_transado, string tipo_moneda, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta, string ejecutivo, decimal expresado)
         {
             conexion = cls_DAL.trae_conexion("DSS", ref mensaje_error, ref numero_error);
@@ -278,6 +282,49 @@ namespace BLL
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 7, "@ejecutivo", SqlDbType.VarChar, ejecutivo);
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 8, "@expresado", SqlDbType.Decimal, expresado);
                     ds = cls_DAL.ejecuta_dataset(conexion, "sp_info_movto_ejecutivos", true, parametros, ref mensaje_error, ref numero_error);
+
+                    if (numero_error != 0)
+                    {
+                        conexion.Close();
+                        return null;
+                    }
+                    else
+                    {
+                        conexion.Close();
+                        return ds;
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Reportes de Comisiones de Ejecutivos
+        public DataSet reporteCtesNuev(string tipo_reporte, string asesor, string ejecutivo, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta)
+        {
+            conexion = cls_DAL.trae_conexion("DSS", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "No se pude realizar conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    ParamStruct[] parametros = new ParamStruct[7];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@tipo_rep", SqlDbType.VarChar, tipo_reporte);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@asesor", SqlDbType.VarChar, asesor);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 2, "@ejecutivo", SqlDbType.VarChar, ejecutivo);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 3, "@ano_desde", SqlDbType.Int, ano_desde);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 4, "@mes_desde", SqlDbType.Int, mes_desde);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 5, "@ano_hasta", SqlDbType.Int, ano_hasta);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 6, "@mes_hasta", SqlDbType.Int, mes_hasta);
+                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_info_nuevs_ctes", true, parametros, ref mensaje_error, ref numero_error);
 
                     if (numero_error != 0)
                     {

@@ -218,21 +218,23 @@
             // 
             this.cmb_ano_hasta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_ano_hasta.FormattingEnabled = true;
-            this.cmb_ano_hasta.Location = new System.Drawing.Point(90, 85);
+            this.cmb_ano_hasta.Location = new System.Drawing.Point(99, 85);
             this.cmb_ano_hasta.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_hasta.Name = "cmb_ano_hasta";
-            this.cmb_ano_hasta.Size = new System.Drawing.Size(73, 21);
+            this.cmb_ano_hasta.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_hasta.TabIndex = 6;
+            this.cmb_ano_hasta.SelectedValueChanged += new System.EventHandler(this.cmb_ano_hasta_SelectedValueChanged);
             // 
             // cmb_ano_desde
             // 
             this.cmb_ano_desde.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_ano_desde.FormattingEnabled = true;
-            this.cmb_ano_desde.Location = new System.Drawing.Point(4, 85);
+            this.cmb_ano_desde.Location = new System.Drawing.Point(13, 85);
             this.cmb_ano_desde.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_ano_desde.Name = "cmb_ano_desde";
-            this.cmb_ano_desde.Size = new System.Drawing.Size(73, 21);
+            this.cmb_ano_desde.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_desde.TabIndex = 1;
+            this.cmb_ano_desde.SelectedValueChanged += new System.EventHandler(this.cmb_ano_desde_SelectedValueChanged);
             // 
             // label2
             // 
@@ -308,7 +310,7 @@
             // cmb_ejecutivo
             // 
             this.cmb_ejecutivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_ejecutivo.DropDownWidth = 200;
+            this.cmb_ejecutivo.DropDownWidth = 225;
             this.cmb_ejecutivo.FormattingEnabled = true;
             this.cmb_ejecutivo.Items.AddRange(new object[] {
             "Todos",

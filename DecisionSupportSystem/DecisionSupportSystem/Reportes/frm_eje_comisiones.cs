@@ -4,7 +4,6 @@ using BLL;
 using System.Collections.Generic;
 using LiveCharts.Wpf;
 using System.Data;
-using LiveCharts;
 
 namespace DecisionSupportSystem.Reportes
 {
@@ -30,7 +29,7 @@ namespace DecisionSupportSystem.Reportes
             objFecha.cargarMes(cmb_mes_desde, "min");
             objFecha.cargarMes(cmb_mes_hasta, "max");
 
-            objFuncional.cargarEjecutivos(cmb_ejecutivo, 2000, 2017, "min");
+            objFuncional.cargarEjecutivos(cmb_ejecutivo, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), "%", "min");
 
             objFuncional.cargarExpresado(cmb_expresado, "min");
         }
@@ -45,6 +44,23 @@ namespace DecisionSupportSystem.Reportes
         {
             cmb_mes_desde.Enabled = true;
             cmb_mes_hasta.Enabled = true;
+        }
+
+        private void cmb_ano_desde_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmb_ano_desde.Items.Count > 0 && cmb_ano_hasta.Items.Count > 0 && cmb_ejecutivo.Items.Count > 0)
+            {
+                objFuncional.cargarEjecutivos(cmb_ejecutivo, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_ejecutivo.Text, "min");
+            }
+
+        }
+
+        private void cmb_ano_hasta_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmb_ano_desde.Items.Count > 0 && cmb_ano_hasta.Items.Count > 0 && cmb_ejecutivo.Items.Count > 0)
+            {
+                objFuncional.cargarEjecutivos(cmb_ejecutivo, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_ejecutivo.Text, "min");
+            }
         }
 
         private void btn_generar_Click(object sender, EventArgs e)
@@ -158,7 +174,7 @@ namespace DecisionSupportSystem.Reportes
 
             mainCartesianChart.AxisY.Add(new Axis
             {
-                Title = "MONTO "+ mto_detalle + " EN "+moneda + "["+ cmb_expresado.Text.ToUpper() + "]",
+                Title = "MONTO " + mto_detalle + " EN " + moneda + "[" + cmb_expresado.Text.ToUpper() + "]",
                 LabelFormatter = value => value.ToString("N")
 
             });

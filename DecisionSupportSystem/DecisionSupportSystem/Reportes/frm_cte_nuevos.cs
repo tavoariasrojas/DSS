@@ -1,242 +1,149 @@
-﻿using System;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
+using LiveCharts.Wpf;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace DecisionSupportSystem.Reportes
 {
     public partial class frm_cte_nuevos : Form
     {
-        BLL.Consulta obj_consulta = new Consulta();
-        BLL.Fecha obj_fecha = new Fecha();
+        Fecha objFecha = new Fecha();
+        Reporte objReporte = new Reporte();
+        Funciones objFunciones = new Funciones();
+        Funcional objFuncional = new Funcional();
+        Grafico objGrafico = new Grafico();
+        GraficoLiveCharts objGraficoLC = new GraficoLiveCharts();
 
         public frm_cte_nuevos()
         {
             InitializeComponent();
         }
 
-        private void frm_clientes_nuevos_Load(object sender, EventArgs e)
+        private void frm_cte_nuevos_Load(object sender, EventArgs e)
         {
+            objFecha.cargarAnos(cmb_ano_desde, "min");
+            objFecha.cargarAnos(cmb_ano_hasta, "max");
+
+            objFecha.cargarMes(cmb_mes_desde, "min");
+            objFecha.cargarMes(cmb_mes_hasta, "max");
+
+            objFuncional.cargarAsesor(cmb_asesor, "min");
+            objFuncional.cargarEjecutivos(cmb_ejecutivo, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), "%", "min");
         }
 
-        private void rb_ano_Click(object sender, EventArgs e)
+        private void rb_anual_CheckedChanged(object sender, EventArgs e)
         {
-            if (rb_ano.Checked)
-            {
-                cmb_ano_desde.Enabled = true;
-                cmb_ano_hasta.Enabled = true;
-                obj_fecha.cargarAnos(cmb_ano_desde, "min");
-                obj_fecha.cargarAnos(cmb_ano_hasta, "max");
-
-                cmb_mes_desde.Enabled = false;
-                cmb_mes_hasta.Enabled = false;
-                cmb_mes_desde.Items.Clear();
-                cmb_mes_hasta.Items.Clear();
-
-                cmb_semana_desde.Enabled = false;
-                cmb_semana_hasta.Enabled = false;
-                cmb_semana_desde.Items.Clear();
-                cmb_semana_hasta.Items.Clear();
-            }
+            cmb_mes_desde.Enabled = false;
+            cmb_mes_hasta.Enabled = false;
         }
 
-        private void rb_mes_Click(object sender, EventArgs e)
+        private void rb_mensual_CheckedChanged(object sender, EventArgs e)
         {
-            if (rb_mes.Checked)
-            {
-                cmb_ano_desde.Enabled = true;
-                cmb_ano_hasta.Enabled = true;
-                obj_fecha.cargarAnos(cmb_ano_desde, "min");
-                obj_fecha.cargarAnos(cmb_ano_hasta, "max");
-
-                cmb_mes_desde.Enabled = true;
-                cmb_mes_hasta.Enabled = true;
-                obj_fecha.cargarMes(cmb_mes_desde, "min");
-                obj_fecha.cargarMes(cmb_mes_hasta, "max");
-
-                cmb_semana_desde.Enabled = false;
-                cmb_semana_hasta.Enabled = false;
-                cmb_semana_desde.Items.Clear();
-                cmb_semana_hasta.Items.Clear();
-            }
-        }
-
-        private void rb_semana_Click(object sender, EventArgs e)
-        {
-            if (rb_semana.Checked)
-            {
-                cmb_ano_desde.Enabled = true;
-                cmb_ano_hasta.Enabled = true;
-                obj_fecha.cargarAnos(cmb_ano_desde, "min");
-                obj_fecha.cargarAnos(cmb_ano_hasta, "max");
-
-                cmb_semana_desde.Enabled = true;
-                cmb_semana_hasta.Enabled = true;
-                obj_fecha.cargarSemana(cmb_semana_desde, Int32.Parse(cmb_ano_desde.SelectedItem.ToString()), "min");
-                obj_fecha.cargarSemana(cmb_semana_hasta, Int32.Parse(cmb_ano_hasta.SelectedItem.ToString()), "max");
-
-                cmb_mes_desde.Enabled = false;
-                cmb_mes_hasta.Enabled = false;
-                cmb_mes_desde.Items.Clear();
-                cmb_mes_hasta.Items.Clear();
-            }
+            cmb_mes_desde.Enabled = true;
+            cmb_mes_hasta.Enabled = true;
         }
 
         private void btn_generar_Click(object sender, EventArgs e)
         {
-            if (rb_ano.Checked)
-           {
-                int ano_desde = int.Parse(cmb_ano_desde.SelectedItem.ToString());
-                int ano_hasta = int.Parse(cmb_ano_hasta.SelectedItem.ToString());
+            if (Int32.Parse(cmb_ano_desde.Text.ToString()) > Int32.Parse(cmb_ano_hasta.Text.ToString()))
+            {
+                MessageBox.Show("El año de desde no puede ser mayor al año hasta", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-                obj_consulta.sql_query = "SELECT ano AÑO, "+
-                                                "CAST((SUM(sama) * 1. / (SUM(sama) + SUM(cfs)) * 100) AS decimal) SAMA, " +
-                                                "CAST((SUM(cfs) * 1. / (SUM(sama) + SUM(cfs)) * 100) AS decimal) CPG " +
-                                            "FROM " +
-                                                "(SELECT DATEPART(YEAR, fecha_insercion)ano, " +
-                                                    "CASE " +
-                                                        "WHEN asesor_actual = 'SAMA' THEN COUNT(*) " +
-                                                        "ELSE 0 " +
-                                                    "END sama, " +
-                                                    "CASE " +
-                                                        "WHEN asesor_actual = 'CFS' THEN COUNT(*) " +
-                                                        "ELSE 0 " +
-                                                    "END cfs " +
-                                                "FROM cliente " +
-                                                "WHERE DATEPART(yy, fecha_insercion) BETWEEN "+ano_desde+" AND "+ano_hasta+" " +
-                                                "AND estado = 'A' " +
-                                                "GROUP BY DATEPART(YEAR, fecha_insercion), asesor_actual " +
-                                                ")tabla " +
-                                            "GROUP BY ano";
+            if (Int32.Parse(cmb_ano_desde.Text.ToString()) == Int32.Parse(cmb_ano_hasta.Text.ToString()) && Int32.Parse(cmb_mes_desde.SelectedValue.ToString()) > Int32.Parse(cmb_mes_hasta.SelectedValue.ToString()))
+            {
+                MessageBox.Show("El mes de desde no puede ser mayor al mes hasta cuando tienen el mismo año", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-                //dgv_reporte.DataSource = obj_consulta.reporteClientesNuevos().Tables[0];
-                cargarGrafico(obj_consulta.reporteClientesNuevos());
+            string tipo_reporte = String.Empty;
+            if (rb_anual.Checked)
+            {
+                tipo_reporte = "A";
+            }
+            if (rb_mensual.Checked)
+            {
+                tipo_reporte = "M";
+            }
 
-                //chart_cliente.DataSource = obj_consulta.reporteClientesNuevos().Tables[0]
-    }
+            string titulo_eje_x = String.Empty;
+            string asesor = cmb_ejecutivo.SelectedValue.ToString();
+            if (asesor.Equals("%"))
+            {
+                titulo_eje_x = "NOMBRE DE ASESOR";
+            }
+            else
+            {
+                titulo_eje_x = "NOMBRE DE EJECUTIVO";
+            }
 
-    /*   string ver, agrupado;
+            string ejecutivo = cmb_ejecutivo.SelectedValue.ToString();
+            if (ejecutivo.Equals("%"))
+            {
+                titulo_eje_x = "NOMBRE DE EJECUTIVOS";
+            }
+            else
+            {
+                titulo_eje_x = "NOMBRE DE EJECUTIVO";
+            }
 
-       obj_consulta.fecha_ini = dtp_fec_desde.Value;
-       obj_consulta.fecha_fin = dtp_fec_hasta.Value;
+            int ano_desde = Int32.Parse(cmb_ano_desde.Text.ToString());
+            int ano_hasta = Int32.Parse(cmb_ano_hasta.Text.ToString());
+            int mes_desde = 0;
+            int mes_hasta = 0;
+            if (tipo_reporte.Equals("M"))
+            {
+                mes_desde = Int32.Parse(cmb_mes_desde.SelectedValue.ToString());
+                mes_hasta = Int32.Parse(cmb_mes_hasta.SelectedValue.ToString());
+            }
 
-       int anos = 0, meses = 0;
-       ver = string.Empty;
-       agrupado = string.Empty;
+            DataSet ds = objReporte.reporteCtesNuev(tipo_reporte, asesor, ejecutivo, ano_desde, mes_desde, ano_hasta, mes_hasta);
+            List<string> series = new List<string>();
+            series = objFunciones.generarSeries(tipo_reporte, ano_desde, mes_desde, ano_hasta, mes_hasta);
+            //objGrafico.makeChartCteMayVolInv(dsg, chart, "Título reporte", series);
 
-       anos = obj_consulta.fecha_fin.Year - obj_consulta.fecha_ini.Year;
-       meses = obj_consulta.fecha_fin.Month - obj_consulta.fecha_ini.Month;
+            objGraficoLC.ds = ds;
+            objGraficoLC.lista = series;
+            objGraficoLC.limpiarGrafico(mainCartesianChart);
+            objGraficoLC.campo = "EJECUTIVO";
 
-       if (rb_ano.Checked)
-       {
-           if(anos > 0)
-           {
-               ver = "A";
-           }
-           else
-           {
-               MessageBox.Show("Debe existir mas de un año de diferencia entre las fechas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-               return;
-           }
-       }
 
-       if (rb_mes.Checked)
-       {
-           if(meses >= 0 && anos <= 0)
-           {
-               ver = "M";
-           }
-           else
-           {
-               MessageBox.Show("Las fechas no puede pasar de un año.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-               return;
-           }
-       }
+            for (int i = 0; i < series.Count; i++)
+            {
+                mainCartesianChart.Series.Add(new ColumnSeries
+                {
+                    Title = series[i].ToString(),
+                    Values = objGraficoLC.llenarChartValues(series[i].ToString()),
+                    Width = 1,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString("N")
+                });
+            }
 
-       if (rb_asesor.Checked)
-       {
-           agrupado = "A";
-       }
-       if (rb_ejecutivo.Checked)
-       {
-           agrupado = "E";
-       }
+            mainCartesianChart.AxisX.Add(new Axis
+            {
+                Title = titulo_eje_x,
+                Labels = objGraficoLC.llenarEje(),
+                Separator = new Separator
+                {
+                    Step = 1,
+                    IsEnabled = false
+                },
+                LabelsRotation = 15
+            });
 
-       if (ver.Equals("A") && agrupado.Equals("A"))
-       {
-           obj_consulta.sql_query = "SELECT YEAR(fecha_insercion) Año, " +
-                                               "asesor Asesor, " +
-                                               "COUNT(*) Cantidad " +
-                                       "FROM cliente " +
-                                       "WHERE estado = 'A' " +
-                                       "AND fecha_insercion BETWEEN @fec_ini AND @fec_fin " +
-                                       "GROUP BY YEAR(fecha_insercion), asesor " +
-                                       "ORDER BY 1, 2";
-       }
+            mainCartesianChart.AxisY.Add(new Axis
+            {
+                //Title = "MONTO " + mto_detalle + " EN " + moneda + "[" + cmb_expresado.Text.ToUpper() + "]",
+                LabelFormatter = value => value.ToString()
 
-       if (ver.Equals("A") && agrupado.Equals("E"))
-       {
-           obj_consulta.sql_query = "SELECT YEAR(fecha_insercion) Año, " +
-                                               "ejecutivo Ejecutivo, " +
-                                               "COUNT(*) Cantidad " +
-                                       "FROM cliente " +
-                                       "WHERE estado = 'A' " +
-                                       "AND fecha_insercion BETWEEN @fec_ini AND @fec_fin " +
-                                       "GROUP BY YEAR(fecha_insercion), ejecutivo " +
-                                       "ORDER BY 1, 2";
-       }
+            });
 
-       if (ver.Equals("M") && agrupado.Equals("A"))
-       {
-           obj_consulta.sql_query = "SELECT RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion) Mes, " +
-                                               "asesor Asesor, " +
-                                               "COUNT(*) Cantidad " +
-                                       "FROM cliente " +
-                                       "WHERE estado = 'A' " +
-                                       "AND fecha_insercion BETWEEN @fec_ini AND @fec_fin " +
-                                       "GROUP BY RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion), asesor " +
-                                       "ORDER BY RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion)";
-       }
-
-       if (ver.Equals("M") && agrupado.Equals("E"))
-       {
-           obj_consulta.sql_query = "SELECT RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion) Mes, " +
-                                           "ejecutivo Ejecutivo, " +
-                                           "COUNT(*)Cantidad " +
-                                   "FROM cliente " +
-                                   "WHERE estado = 'A' " +
-                                   "AND fecha_insercion BETWEEN @fec_ini AND @fec_fin  " +
-                                   "GROUP BY RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion), ejecutivo " +
-                                   "ORDER BY RTRIM(CAST( MONTH(fecha_insercion) AS  char)) +' - '+ DATENAME(MONTH, fecha_insercion)";
-       }
-
-       dgv_reporte.DataSource = obj_consulta.reporteClientesNuevos().Tables[0];
-       chart_cliente.DataSource = obj_consulta.reporteClientesNuevos().Tables[0];*/
-}
-
-        public void cargarGrafico(DataSet ds)
-        {
-            chart1.Series.Clear();
-            chart1.Titles.Clear();
-            chart1.DataSource = ds.Tables[0];
-            chart1.Titles.Add("Clientes nuevos por años");
-
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            series1.XValueMember = "AÑO";
-            series1.YValueMembers = "SAMA";
-            series1.LegendText = "Sama";
-            //series1.Label = "#PERCENT{P2}";
-
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            series2.XValueMember = "AÑO";
-            series2.YValueMembers = "CPG";
-            series2.LegendText = "Cpg";
-            //series2.Label = "#PERCENT{P2}";
-
-            chart1.Series.Add(series1);
-            chart1.Series.Add(series2);
-
+            dgv_info.DataSource = null;
+            dgv_info.DataSource = ds.Tables[0];
         }
-
     }
 }

@@ -71,7 +71,7 @@ namespace DecisionSupportSystem.Reportes
 
             string tipo_cliente = cmb_tipo_cliente.Text.ToString();
             string titulo_eje_x = String.Empty;
-            if (tipo_cliente == "Todos")
+            if (tipo_cliente == "TODOS")
             {
                 tipo_cliente = "%";
                 titulo_eje_x = "CÓDIGO DE CLIENTES";

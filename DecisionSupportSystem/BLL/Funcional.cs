@@ -21,11 +21,11 @@ namespace BLL
             {
                 Dictionary<string, int> cmbTmp = new Dictionary<string, int>();
 
-                cmbTmp.Add("Unidades", 1);
+                cmbTmp.Add("UNIDADES", 1);
                 /*cmbTmp.Add("Decenas", 10);
                 cmbTmp.Add("Cientos", 100);*/
-                cmbTmp.Add("Miles", 1000);
-                cmbTmp.Add("Millones", 1000000);
+                cmbTmp.Add("MILES", 1000);
+                cmbTmp.Add("MILLONES", 1000000);
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
                 cmb.DisplayMember = "Key";
@@ -55,12 +55,12 @@ namespace BLL
             {
                 Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
 
-                cmbTmp.Add("Todos", "%");
-                cmbTmp.Add("Acciones", "ACCIONES");
-                cmbTmp.Add("Bonos - Títulos", "BONOS - TÍTULOS");
-                cmbTmp.Add("Mercado Liquidez", "MERCADO LIQUIDEZ");
-                cmbTmp.Add("Participaciones", "PARTICIPACIONES");
-                cmbTmp.Add("Recompras", "RECOMPRAS");
+                cmbTmp.Add("TODOS", "%");
+                cmbTmp.Add("ACCIONES", "ACCIONES");
+                cmbTmp.Add("BONOS - TÍTULOS", "BONOS - TÍTULOS");
+                cmbTmp.Add("MERCADO LIQUIDEZ", "MERCADO LIQUIDEZ");
+                cmbTmp.Add("MERCADO", "PARTICIPACIONES");
+                cmbTmp.Add("RECOMPRAS", "RECOMPRAS");
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
                 cmb.DisplayMember = "Key";
@@ -84,10 +84,13 @@ namespace BLL
         #endregion
 
         #region Carga Combo Ejecutivo
-        public void cargarEjecutivos(ComboBox cmb, int ano_ini, int ano_fin, string posicion)
+        public void cargarEjecutivos(ComboBox cmb, int ano_ini, int ano_fin, string ejecutivo, string posicion)
         {
             try
             {
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                int index = 0;
                 ds = ReporteEjecutivos(ano_ini, ano_fin);
                 Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
 
@@ -95,6 +98,60 @@ namespace BLL
                 {
                     cmbTmp.Add(dr["nombre"].ToString(), dr["codigo"].ToString());
                 }
+
+                cmb.DataSource = new BindingSource(cmbTmp, null);
+                cmb.DisplayMember = "Key";
+                cmb.ValueMember = "Value";
+
+                if (ejecutivo.Equals("%"))
+                {
+                    if (posicion.Equals("min"))
+                    {
+                        cmb.SelectedIndex = 0;
+                    }
+                    if (posicion.Equals("max"))
+                    {
+                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                    }
+                }
+                else
+                {
+                    index = cmb.FindStringExact(ejecutivo);
+                    if(index > 0)
+                    {
+                        cmb.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        if (posicion.Equals("min"))
+                        {
+                            cmb.SelectedIndex = 0;
+                        }
+                        if (posicion.Equals("max"))
+                        {
+                            cmb.SelectedIndex = cmb.Items.Count - 1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+        }
+        #endregion
+
+        #region Carga Combro Asesor
+        public void cargarAsesor(ComboBox cmb, string posicion)
+        {
+            try
+            {
+                Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
+
+                cmbTmp.Add("TODOS", "%");
+                cmbTmp.Add("SAMA", "SAMA");
+                cmbTmp.Add("CPG", "CPG");
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
                 cmb.DisplayMember = "Key";
@@ -114,7 +171,6 @@ namespace BLL
 
                 throw;
             }
-            
         }
         #endregion
 
