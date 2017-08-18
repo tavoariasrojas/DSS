@@ -30,7 +30,7 @@ namespace DecisionSupportSystem.Reportes
             objFecha.cargarMes(cmb_mes_hasta, "max");
 
             objFuncional.cargarAsesor(cmb_asesor, "min");
-            objFuncional.cargarEjecutivos(cmb_ejecutivo, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), "%", "min");
+            objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), "%", "%", "min");
         }
 
         private void rb_anual_CheckedChanged(object sender, EventArgs e)
@@ -43,6 +43,30 @@ namespace DecisionSupportSystem.Reportes
         {
             cmb_mes_desde.Enabled = true;
             cmb_mes_hasta.Enabled = true;
+        }
+
+        private void cmb_ano_desde_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmb_ano_desde.Items.Count > 0 && cmb_ano_hasta.Items.Count > 0 && cmb_ejecutivo.Items.Count > 0)
+            {
+                objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_asesor.SelectedValue.ToString(), cmb_ejecutivo.Text, "min");
+            }
+        }
+
+        private void cmb_ano_hasta_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmb_ano_desde.Items.Count > 0 && cmb_ano_hasta.Items.Count > 0 && cmb_ejecutivo.Items.Count > 0)
+            {
+                objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_asesor.SelectedValue.ToString(), cmb_ejecutivo.Text, "min");
+            }
+        }
+
+        private void cmb_asesor_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmb_ano_desde.Items.Count > 0 && cmb_ano_hasta.Items.Count > 0 && cmb_ejecutivo.Items.Count > 0)
+            {
+                objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_asesor.SelectedValue.ToString(), cmb_ejecutivo.Text, "min");
+            }
         }
 
         private void btn_generar_Click(object sender, EventArgs e)
@@ -70,7 +94,7 @@ namespace DecisionSupportSystem.Reportes
             }
 
             string titulo_eje_x = String.Empty;
-            string asesor = cmb_ejecutivo.SelectedValue.ToString();
+            string asesor = cmb_asesor.SelectedValue.ToString();
             if (asesor.Equals("%"))
             {
                 titulo_eje_x = "NOMBRE DE ASESOR";
@@ -119,7 +143,7 @@ namespace DecisionSupportSystem.Reportes
                     Values = objGraficoLC.llenarChartValues(series[i].ToString()),
                     Width = 1,
                     DataLabels = true,
-                    LabelPoint = point => point.Y.ToString("N")
+                    LabelPoint = point => point.Y.ToString()
                 });
             }
 

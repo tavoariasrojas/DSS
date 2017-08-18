@@ -221,6 +221,7 @@
             this.cmb_ano_hasta.Name = "cmb_ano_hasta";
             this.cmb_ano_hasta.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_hasta.TabIndex = 6;
+            this.cmb_ano_hasta.SelectedValueChanged += new System.EventHandler(this.cmb_ano_hasta_SelectedValueChanged);
             // 
             // cmb_ano_desde
             // 
@@ -231,6 +232,7 @@
             this.cmb_ano_desde.Name = "cmb_ano_desde";
             this.cmb_ano_desde.Size = new System.Drawing.Size(54, 21);
             this.cmb_ano_desde.TabIndex = 1;
+            this.cmb_ano_desde.SelectedValueChanged += new System.EventHandler(this.cmb_ano_desde_SelectedValueChanged);
             // 
             // label2
             // 
@@ -267,14 +269,17 @@
             // 
             // cmb_asesor
             // 
+            this.cmb_asesor.DropDownHeight = 80;
             this.cmb_asesor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_asesor.DropDownWidth = 225;
+            this.cmb_asesor.DropDownWidth = 100;
             this.cmb_asesor.FormattingEnabled = true;
-            this.cmb_asesor.Location = new System.Drawing.Point(30, 17);
+            this.cmb_asesor.IntegralHeight = false;
+            this.cmb_asesor.Location = new System.Drawing.Point(42, 17);
             this.cmb_asesor.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_asesor.Name = "cmb_asesor";
-            this.cmb_asesor.Size = new System.Drawing.Size(86, 21);
+            this.cmb_asesor.Size = new System.Drawing.Size(80, 21);
             this.cmb_asesor.TabIndex = 0;
+            this.cmb_asesor.SelectedValueChanged += new System.EventHandler(this.cmb_asesor_SelectedValueChanged);
             // 
             // groupBox2
             // 

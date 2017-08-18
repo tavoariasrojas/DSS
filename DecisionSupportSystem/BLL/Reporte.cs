@@ -212,7 +212,7 @@ namespace BLL
         #endregion
 
         #region Reporte Lista de Ejecutivos Rango de Años
-        public DataSet ReporteEjecutivos(int ano_inicial, int ano_final)
+        public DataSet reporteEjecutivos(int indicador, int ano_inicial, int ano_final, string asesor)
         {
             if (ano_inicial > 0 && ano_final > 0)
             {
@@ -231,9 +231,11 @@ namespace BLL
                     }
                     else
                     {
-                        ParamStruct[] parametros = new ParamStruct[2];
-                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@ano_desde", SqlDbType.Int, ano_inicial);
-                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@ano_hasta", SqlDbType.Int, ano_final);
+                        ParamStruct[] parametros = new ParamStruct[4];
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@indicador", SqlDbType.Int, indicador);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@ano_desde", SqlDbType.Int, ano_inicial);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 2, "@ano_hasta", SqlDbType.Int, ano_final);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 3, "@asesor", SqlDbType.VarChar, asesor);
                         ds = cls_DAL.ejecuta_dataset(conexion, "sp_filtra_ejecutivo", true, parametros, ref mensaje_error, ref numero_error);
 
                         if (numero_error != 0)

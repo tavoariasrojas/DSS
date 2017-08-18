@@ -67,7 +67,7 @@ namespace BLL
                     }
                     if (posicion.Equals("max"))
                     {
-                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                        cmb.SelectedIndex = (cmb.Items.Count - 1);
                     }
                 }
             }

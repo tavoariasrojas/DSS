@@ -84,14 +84,14 @@ namespace BLL
         #endregion
 
         #region Carga Combo Ejecutivo
-        public void cargarEjecutivos(ComboBox cmb, int ano_ini, int ano_fin, string ejecutivo, string posicion)
+        public void cargarEjecutivos(ComboBox cmb, int indicador, int ano_ini, int ano_fin, string asesor, string ejecutivo, string posicion)
         {
             try
             {
                 cmb.DataSource = null;
                 cmb.Items.Clear();
                 int index = 0;
-                ds = ReporteEjecutivos(ano_ini, ano_fin);
+                ds = reporteEjecutivos(indicador, ano_ini, ano_fin, asesor);
                 Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -151,7 +151,7 @@ namespace BLL
 
                 cmbTmp.Add("TODOS", "%");
                 cmbTmp.Add("SAMA", "SAMA");
-                cmbTmp.Add("CPG", "CPG");
+                cmbTmp.Add("CFS", "CFS");
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
                 cmb.DisplayMember = "Key";

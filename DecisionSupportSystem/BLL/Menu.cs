@@ -182,7 +182,8 @@ namespace BLL
                                         item.DropDownItems.Add(subitem);
                                         break;
                                     case 'A':
-                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\garias\Source\Original\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
+                                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\garias\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
+                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
                                         item.DropDownItems.Add(subitem);
                                         break;
                                 }
