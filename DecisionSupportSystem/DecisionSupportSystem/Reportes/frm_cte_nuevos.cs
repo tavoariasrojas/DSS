@@ -30,7 +30,7 @@ namespace DecisionSupportSystem.Reportes
             objFecha.cargarMes(cmb_mes_hasta, "max");
 
             objFuncional.cargarAsesor(cmb_asesor, "min");
-            objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), "%", "%", "min");
+            objFuncional.cargarEjecutivos(cmb_ejecutivo, 2, Convert.ToInt32(cmb_ano_desde.SelectedItem.ToString()), Convert.ToInt32(cmb_ano_hasta.SelectedItem.ToString()), cmb_asesor.SelectedValue.ToString(), "%", "min");
         }
 
         private void rb_anual_CheckedChanged(object sender, EventArgs e)
