@@ -59,7 +59,7 @@ namespace BLL
                 cmbTmp.Add("ACCIONES", "ACCIONES");
                 cmbTmp.Add("BONOS - TÍTULOS", "BONOS - TÍTULOS");
                 cmbTmp.Add("MERCADO LIQUIDEZ", "MERCADO LIQUIDEZ");
-                cmbTmp.Add("MERCADO", "PARTICIPACIONES");
+                cmbTmp.Add("PARTICIPACIONES", "PARTICIPACIONES");
                 cmbTmp.Add("RECOMPRAS", "RECOMPRAS");
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
