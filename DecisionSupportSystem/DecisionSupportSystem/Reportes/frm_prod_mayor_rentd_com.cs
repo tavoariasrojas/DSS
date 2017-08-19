@@ -93,7 +93,7 @@ namespace DecisionSupportSystem.Reportes
                 string tipo_reporte = "A";
 
                 string tipo_instrumento = cmb_instrumento.Text.ToString();
-                if (tipo_instrumento == "Todos")
+                if (tipo_instrumento.ToUpper() == "TODOS")
                 {
                     tipo_instrumento = "%";
                 }
