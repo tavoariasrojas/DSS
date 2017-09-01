@@ -28,7 +28,8 @@ namespace DecisionSupportSystem.Reportes
             obj_fecha.cargarMes(cmb_mes_desde, "min");
             obj_fecha.cargarMes(cmb_mes_hasta, "max");
 
-            objFuncinal.cargarTipoTitulo(cmb_instrumento, "min");
+            objFuncinal.cargarTipoTitulo(chk_box_list_instrumento);
+            //objFuncinal.cargarTipoTitulo(cmb_instrumento, "min");
         }
 
         public static List<string> f_series(string tipo, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta)
@@ -92,7 +93,22 @@ namespace DecisionSupportSystem.Reportes
 
                 string tipo_reporte = "A";
 
-                string tipo_instrumento = cmb_instrumento.Text.ToString();
+                string tipo_instrumento = string.Empty;
+                foreach(string elemento in chk_box_list_instrumento.CheckedItems)
+                {
+                    tipo_instrumento += elemento.ToString()+",";
+                }
+
+                if (string.IsNullOrEmpty(tipo_instrumento))
+                {
+                    MessageBox.Show("Debe seleccionar al menos 1 tipo de instrumento", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    tipo_instrumento = tipo_instrumento.Substring(0, tipo_instrumento.Length - 1);
+                }
+
                 if (tipo_instrumento.ToUpper() == "TODOS")
                 {
                     tipo_instrumento = "%";
@@ -161,10 +177,20 @@ namespace DecisionSupportSystem.Reportes
 
                 string tipo_reporte = "M";
 
-                string tipo_instrumento = cmb_instrumento.Text.ToString();
-                if (tipo_instrumento == "Todos")
+                string tipo_instrumento = string.Empty;
+                foreach (string elemento in chk_box_list_instrumento.CheckedItems)
                 {
-                    tipo_instrumento = "%";
+                    tipo_instrumento += elemento.ToString() + ",";
+                }
+
+                if (string.IsNullOrEmpty(tipo_instrumento))
+                {
+                    MessageBox.Show("Debe seleccionar al menos 1 tipo de instrumento", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    tipo_instrumento = tipo_instrumento.Substring(0, tipo_instrumento.Length - 2);
                 }
 
                 string tipo_moneda = string.Empty;

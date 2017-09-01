@@ -24,7 +24,7 @@ namespace DecisionSupportSystem
 
         private void frm_main_Load(object sender, EventArgs e)
         {
-            VG.Variables.connectionString = "Data Source=localhost;Initial Catalog=Sama_DSS;User ID=" + VG.Variables.usuario_bd+";Password="+ VG.Variables.password_db+"";
+            VG.Variables.connectionString = "Data Source=192.168.32.230;Initial Catalog=Sama_DSS;User ID=" + VG.Variables.usuario_bd+";Password="+ VG.Variables.password_db+"";
             VG.Variables.mdiForm = this; 
             MenuStrip menu = objMenu.crearMenu();
             this.Controls.Add(menu);

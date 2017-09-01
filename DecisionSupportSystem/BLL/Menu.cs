@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
-using System.IO;
 
 namespace BLL
 {
@@ -182,8 +181,10 @@ namespace BLL
                                         item.DropDownItems.Add(subitem);
                                         break;
                                     case 'A':
-                                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\garias\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
-                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
+                                        string path = Environment.GetEnvironmentVariable("USERPROFILE");
+                                        path += @"\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png";
+                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(path), new EventHandler(accionMenu));
+                                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
                                         item.DropDownItems.Add(subitem);
                                         break;
                                 }

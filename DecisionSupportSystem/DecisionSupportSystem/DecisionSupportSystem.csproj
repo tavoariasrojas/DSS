@@ -38,16 +38,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -109,24 +109,6 @@
     <Compile Include="Reportes\frm_eje_comisiones.Designer.cs">
       <DependentUpon>frm_eje_comisiones.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\frm_ope_apalancamiento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\frm_ope_apalancamiento.Designer.cs">
-      <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\frm_ope_com_minimas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\frm_ope_com_minimas.Designer.cs">
-      <DependentUpon>frm_ope_com_minimas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\frm_prod_desempeno.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\frm_prod_desempeno.Designer.cs">
-      <DependentUpon>frm_prod_desempeno.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reportes\frm_prod_mayor_rentd_com.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,15 +142,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_eje_comisiones.resx">
       <DependentUpon>frm_eje_comisiones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\frm_ope_apalancamiento.resx">
-      <DependentUpon>frm_ope_apalancamiento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\frm_ope_com_minimas.resx">
-      <DependentUpon>frm_ope_com_minimas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\frm_prod_desempeno.resx">
-      <DependentUpon>frm_prod_desempeno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frm_prod_mayor_rentd_com.resx">
       <DependentUpon>frm_prod_mayor_rentd_com.cs</DependentUpon>

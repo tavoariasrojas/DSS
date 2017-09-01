@@ -83,6 +83,26 @@ namespace BLL
         }
         #endregion
 
+
+        #region Carga Combo Tipo Título
+        public void cargarTipoTitulo(CheckedListBox clb)
+        {
+            try
+            {
+                clb.Items.Add("ACCIONES", true);
+                clb.Items.Add("BONOS - TÍTULOS", true);
+                clb.Items.Add("MERCADO LIQUIDEZ", true);
+                clb.Items.Add("PARTICIPACIONES", true);
+                clb.Items.Add("RECOMPRAS", true);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+
         #region Carga Combo Ejecutivo
         public void cargarEjecutivos(ComboBox cmb, int indicador, int ano_ini, int ano_fin, string asesor, string ejecutivo, string posicion)
         {
