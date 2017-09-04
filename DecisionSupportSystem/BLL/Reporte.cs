@@ -121,6 +121,46 @@ namespace BLL
         }
         #endregion
 
+        #region Reportes Información de Clientes
+        public DataSet reporteCteInfo(string tipo, string @estado, string @asesor)
+        {
+            conexion = cls_DAL.trae_conexion("DSS", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "No se pude realizar conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    ParamStruct[] parametros = new ParamStruct[3];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@tipo", SqlDbType.VarChar, tipo);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@estado", SqlDbType.VarChar, estado);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 2, "@asesor", SqlDbType.VarChar, asesor);
+                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_cte_info", true, parametros, ref mensaje_error, ref numero_error);
+
+                    if (numero_error != 0)
+                    {
+                        conexion.Close();
+                        return null;
+                    }
+                    else
+                    {
+                        conexion.Close();
+                        return ds;
+                    }
+                }
+            }
+        }
+        #endregion
+
+
         #region Reportes Clientes Mayor Volumen Inversion
         public DataSet reporteMayVolInv(string tipo_reporte, string tipo_cliente, string tipo_moneda, string mto_com, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta, decimal top, decimal expresado)
         {

@@ -33,7 +33,7 @@ namespace BLL
         }
         #endregion
 
-        #region Utilidades
+        #region Utilidades de gráficos
         public void limpiarGrafico(LiveCharts.WinForms.CartesianChart cht)
         {
             int cantidad = 0;
@@ -68,7 +68,9 @@ namespace BLL
         #endregion
 
         #region metodos
-        public LiveCharts.Wpf.ColumnSeries agregarColumSeries(string columna)
+
+        #region Agregar columnas
+        public ColumnSeries agregarColumSeries(string columna)
         {
             LiveCharts.Wpf.ColumnSeries col = new ColumnSeries
             {
@@ -78,7 +80,9 @@ namespace BLL
 
             return col;
         }
+        #endregion
 
+        #region Llenar valores
         public ChartValues<double> llenarChartValues(string columna)
         {
             var tmpcv = new List<double>();
@@ -92,7 +96,9 @@ namespace BLL
 
             return cv;
         }
+        #endregion
 
+        #region Llenar eje
         public List<string> llenarEje()
         {
             var tmpax = new List<string>();
@@ -103,6 +109,7 @@ namespace BLL
             }
             return tmpax;
         }
+        #endregion
 
         #endregion
     }

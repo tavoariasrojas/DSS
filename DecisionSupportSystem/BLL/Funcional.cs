@@ -83,7 +83,6 @@ namespace BLL
         }
         #endregion
 
-
         #region Carga Combo Tipo Título
         public void cargarTipoTitulo(CheckedListBox clb)
         {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace BLL
 {
     public class Funciones
     {
+        #region Generar Lista de Series
         public List<string> generarSeries(string tipo, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta)
         {
             string[] meses = new string[12] { "ENE-", "FEB-", "MAR-", "ABR-", "MAY-", "JUN-", "JUL-", "AGO-", "SEP-", "OCT-", "NOV-", "DIC-" };
@@ -33,5 +35,19 @@ namespace BLL
             }
             return list;
         }
+        #endregion
+
+        #region Pasar DataSet a Diccionary
+        public Dictionary<string, Int32> convertirDStoDictionary(DataSet ds)
+        {
+            Dictionary<string, Int32> dic = new Dictionary<string, Int32>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                dic.Add(dr[0].ToString(), Convert.ToInt32(dr[1].ToString()));
+            }
+            return dic;
+        }
+        #endregion
     }
 }

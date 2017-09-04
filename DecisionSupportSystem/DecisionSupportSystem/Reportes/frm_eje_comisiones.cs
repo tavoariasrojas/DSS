@@ -122,7 +122,7 @@ namespace DecisionSupportSystem.Reportes
 
             if (rb_comision.Checked)
             {
-                mto_com = "comision_puesto";
+                mto_com = "mto_comision_pue";
                 mto_detalle = "COMISIÓN";
             }
 
