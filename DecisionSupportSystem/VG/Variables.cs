@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VG
@@ -10,6 +6,7 @@ namespace VG
     public class Variables
     {
         #region aplicacion
+        public static string codigoAplicacion = "TD";
         public static string nombreAplicacion = "Sistema Toma de Desiciones";
         #endregion
 
@@ -30,10 +27,18 @@ namespace VG
         public static Form mdiForm;
         #endregion
 
-        #region conexion
-        public static string serverIpAddress = "192.168.32.230";
-        public static string serverDataBase = "Sama_DSS";
+        #region Conexion
         public static string connectionString;
+        #endregion
+
+        #region conexion DSS
+        public static string serverIpAddressSM = "192.168.32.230";
+        public static string serverDataBaseSM = "SM";
+        #endregion
+
+        #region conexion DSS
+        public static string serverIpAddressDSS = "192.168.32.230";
+        public static string serverDataBaseDSS = "Sama_DSS";
         #endregion
 
         #region Paths

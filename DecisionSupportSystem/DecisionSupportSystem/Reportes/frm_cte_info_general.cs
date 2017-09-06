@@ -12,7 +12,6 @@ namespace DecisionSupportSystem.Reportes
     {
         Reporte objReporte = new Reporte();
         Funciones objFunciones = new Funciones();
-        int PushOut = 0;
 
         public frm_cte_info_general()
         {
@@ -28,6 +27,14 @@ namespace DecisionSupportSystem.Reportes
             cargarTotalGenero();
             cargarGeneroSama();
             cargarGeneroCfs();
+
+            cargarTotalEdad();
+            cargarEdadSama();
+            cargarEdadCfs();
+
+            cargarTotalCivil();
+            cargarCivilSama();
+            cargarCivilCfs();
         }
 
         private void cargarTotalTipo()
@@ -43,10 +50,10 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
-                    }
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+            }
                 );
             }
             pieChartTotalTipo.LegendLocation = LegendLocation.Bottom;
@@ -65,9 +72,9 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
                     }
                 );
             }
@@ -87,9 +94,9 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
                     }
                 );
             }
@@ -109,13 +116,12 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
                     }
                 );
             }
-            //pieChartTotalGenero.InnerRadius = 100;
             pieChartTotalGenero.LegendLocation = LegendLocation.Bottom;
         }
 
@@ -132,13 +138,12 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
                     }
                 );
             }
-            //pieChartCteGeneroSama.InnerRadius = 100;
             pieChartCteGeneroSama.LegendLocation = LegendLocation.Bottom;
         }
 
@@ -155,14 +160,145 @@ namespace DecisionSupportSystem.Reportes
                     {
                         Title = item.Key,
                         Values = new ChartValues<double> { item.Value },
-                        PushOut = PushOut,
                         DataLabels = true,
-                        LabelPoint = labelPoint
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
                     }
                 );
             }
-            //pieChartCteGeneroCfs.InnerRadius = 100;
             pieChartCteGeneroCfs.LegendLocation = LegendLocation.Bottom;
+        }
+
+        private void cargarTotalEdad()
+        {
+            DataSet ds = objReporte.reporteCteInfo("E", "A", "");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartTotalEdad.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartTotalEdad.LegendLocation = LegendLocation.Right;
+        }
+
+        private void cargarEdadSama()
+        {
+            DataSet ds = objReporte.reporteCteInfo("E", "A", "SAMA");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartCteEdadSama.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartCteEdadSama.LegendLocation = LegendLocation.Right;
+        }
+
+        private void cargarEdadCfs()
+        {
+            DataSet ds = objReporte.reporteCteInfo("E", "A", "CFS");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartCteEdadCfs.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartCteEdadCfs.LegendLocation = LegendLocation.Right;
+        }
+
+        private void cargarTotalCivil()
+        {
+            DataSet ds = objReporte.reporteCteInfo("C", "A", "");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartTotalCivil.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartTotalCivil.LegendLocation = LegendLocation.Right;
+        }
+
+        private void cargarCivilSama()
+        {
+            DataSet ds = objReporte.reporteCteInfo("C", "A", "SAMA");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartCteCivilSama.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartCteCivilSama.LegendLocation = LegendLocation.Right;
+        }
+
+        private void cargarCivilCfs()
+        {
+            DataSet ds = objReporte.reporteCteInfo("C", "A", "CFS");
+            Dictionary<string, Int32> dic = objFunciones.convertirDStoDictionary(ds);
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0}", chartPoint.Y);
+
+            foreach (var item in dic)
+            {
+                pieChartCteCivilCfs.Series.Add(
+                    new PieSeries
+                    {
+                        Title = item.Key,
+                        Values = new ChartValues<double> { item.Value },
+                        DataLabels = true,
+                        LabelPoint = labelPoint,
+                        Stroke = System.Windows.Media.Brushes.Transparent
+                    }
+                );
+            }
+            pieChartCteCivilCfs.LegendLocation = LegendLocation.Right;
         }
     }
 }

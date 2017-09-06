@@ -74,7 +74,7 @@ namespace BLL
         #region Metodos
         public DataSet obtieneMenuUsuario()
         {
-            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
             if (conexion == null)
             {
                 MessageBox.Show(mensaje_error, "Error al obtener cadena de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -118,14 +118,15 @@ namespace BLL
                             "AND UXR.sg_rol_ind_estado = 'A' " +
                             "AND AR.sg_acc_ind_estado = 'A' " +
 
-                            "GROUP BY OBJ.sg_con_cod_obj_contenedor, " +
+                            "GROUP BY OBJ.sg_obj_num_secuencia, "+
+                                    "OBJ.sg_con_cod_obj_contenedor, " +
                                     "OBJ.sg_obj_cod_objeto, " +
                                     "OBJ.sg_obj_cod_objeto_padre, " +
                                     "OBJ.sg_obj_nom_objeto, " +
                                     "OBJ.sg_obj_ind_tipo_objeto, " +
                                     "OBJ.sg_nombre_frm " +
 
-                            "ORDER BY OBJ.sg_obj_cod_objeto_padre";
+                            "ORDER BY OBJ.sg_obj_num_secuencia, OBJ.sg_obj_cod_objeto_padre";
 
                     ParamStruct[] parametros = new ParamStruct[0];
                     //cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
@@ -161,6 +162,7 @@ namespace BLL
         public MenuStrip crearMenu()
         {
             MenuStrip menu = new MenuStrip();
+            menu.BackColor = System.Drawing.Color.LightSteelBlue;
 
             if (llenarMenu())
             {
@@ -199,7 +201,7 @@ namespace BLL
 
         private void accionMenu(object sender, EventArgs e)
         {
-            if (sender.ToString().Equals("Salir"))
+            if (sender.ToString().ToLower().Equals("salir"))
             {
                 Application.Exit();
             }

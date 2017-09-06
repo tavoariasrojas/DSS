@@ -104,7 +104,7 @@ namespace BLL
         public Boolean usuarioExiste(string usuario)
         {
             int cantidad = 0;
-            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
             if (conexion == null)
             {
                 MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -147,7 +147,7 @@ namespace BLL
             string info = string.Empty;
             Login login = new Login();
 
-            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
             if (conexion == null)
             {
                 MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);

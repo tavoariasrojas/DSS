@@ -193,6 +193,65 @@ namespace BLL
         }
         #endregion
 
+        #region Carga Combo Roles
+       /* public void cargarRoles(ComboBox cmb)
+        {
+            try
+            {
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                int index = 0;
+                ds = reporteEjecutivos(indicador, ano_ini, ano_fin, asesor);
+                Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    cmbTmp.Add(dr["nombre"].ToString(), dr["codigo"].ToString());
+                }
+
+                cmb.DataSource = new BindingSource(cmbTmp, null);
+                cmb.DisplayMember = "Key";
+                cmb.ValueMember = "Value";
+
+                if (ejecutivo.Equals("%"))
+                {
+                    if (posicion.Equals("min"))
+                    {
+                        cmb.SelectedIndex = 0;
+                    }
+                    if (posicion.Equals("max"))
+                    {
+                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                    }
+                }
+                else
+                {
+                    index = cmb.FindStringExact(ejecutivo);
+                    if (index > 0)
+                    {
+                        cmb.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        if (posicion.Equals("min"))
+                        {
+                            cmb.SelectedIndex = 0;
+                        }
+                        if (posicion.Equals("max"))
+                        {
+                            cmb.SelectedIndex = cmb.Items.Count - 1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }*/
+        #endregion
+
         #endregion
     }
 }

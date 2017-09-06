@@ -29,13 +29,13 @@ namespace DAL
             {
                 string cadena_conexion = "";
 
-                if (nombre_conexion.Equals("SM"))
+                if (nombre_conexion.Equals("INI"))
                 {
                     cadena_conexion = ConfigurationManager.ConnectionStrings[nombre_conexion].ToString();
                 }
-
-                if (nombre_conexion.Equals("DSS"))
+                else
                 {
+                    crear_string_conexion(nombre_conexion);
                     cadena_conexion = VG.Variables.connectionString;
                 }
 
@@ -57,6 +57,18 @@ namespace DAL
                 return null;
             }
 
+        }
+
+        public static void crear_string_conexion(string bd)
+        {
+            if (bd.Equals("SM"))
+            {
+                VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressSM + ";Initial Catalog=" + VG.Variables.serverDataBaseSM + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+            }
+            else
+            {
+                VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressDSS + ";Initial Catalog=" + VG.Variables.serverDataBaseDSS + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+            }
         }
 
         /// <summary>

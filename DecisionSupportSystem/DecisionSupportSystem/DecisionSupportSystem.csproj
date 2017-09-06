@@ -41,9 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveCharts.WinForms.0.9.7\lib\net45\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,6 +82,18 @@
     </Compile>
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimiento\frm_rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimiento\frm_rol.Designer.cs">
+      <DependentUpon>frm_rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimiento\frm_usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimiento\frm_usuario.Designer.cs">
+      <DependentUpon>frm_usuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Mapa\GeoMapExample.cs">
       <SubType>Form</SubType>
@@ -132,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimiento\frm_rol.resx">
+      <DependentUpon>frm_rol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mapa\GeoMapExample.resx">
       <DependentUpon>GeoMapExample.cs</DependentUpon>
