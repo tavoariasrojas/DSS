@@ -136,7 +136,7 @@ namespace BLL
                 else
                 {
                     index = cmb.FindStringExact(ejecutivo);
-                    if(index > 0)
+                    if (index > 0)
                     {
                         cmb.SelectedIndex = index;
                     }
@@ -157,7 +157,7 @@ namespace BLL
             {
                 throw;
             }
-            
+
         }
         #endregion
 
@@ -194,14 +194,13 @@ namespace BLL
         #endregion
 
         #region Carga Combo Roles
-       /* public void cargarRoles(ComboBox cmb)
+        public void cargarRoles(ComboBox cmb, string posicion)
         {
             try
             {
                 cmb.DataSource = null;
                 cmb.Items.Clear();
-                int index = 0;
-                ds = reporteEjecutivos(indicador, ano_ini, ano_fin, asesor);
+                ds = reporteRoles();
                 Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -213,7 +212,7 @@ namespace BLL
                 cmb.DisplayMember = "Key";
                 cmb.ValueMember = "Value";
 
-                if (ejecutivo.Equals("%"))
+                if (!string.IsNullOrEmpty(posicion))
                 {
                     if (posicion.Equals("min"))
                     {
@@ -223,33 +222,14 @@ namespace BLL
                     {
                         cmb.SelectedIndex = cmb.Items.Count - 1;
                     }
-                }
-                else
-                {
-                    index = cmb.FindStringExact(ejecutivo);
-                    if (index > 0)
-                    {
-                        cmb.SelectedIndex = index;
-                    }
-                    else
-                    {
-                        if (posicion.Equals("min"))
-                        {
-                            cmb.SelectedIndex = 0;
-                        }
-                        if (posicion.Equals("max"))
-                        {
-                            cmb.SelectedIndex = cmb.Items.Count - 1;
-                        }
-                    }
-                }
+                }                
             }
             catch (Exception ex)
             {
                 throw;
             }
 
-        }*/
+        }
         #endregion
 
         #endregion

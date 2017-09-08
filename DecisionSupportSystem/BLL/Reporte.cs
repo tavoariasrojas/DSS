@@ -160,7 +160,6 @@ namespace BLL
         }
         #endregion
 
-
         #region Reportes Clientes Mayor Volumen Inversion
         public DataSet reporteMayVolInv(string tipo_reporte, string tipo_cliente, string tipo_moneda, string mto_com, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta, decimal top, decimal expresado)
         {
@@ -367,6 +366,43 @@ namespace BLL
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 5, "@ano_hasta", SqlDbType.Int, ano_hasta);
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 6, "@mes_hasta", SqlDbType.Int, mes_hasta);
                     ds = cls_DAL.ejecuta_dataset(conexion, "sp_info_nuevs_ctes", true, parametros, ref mensaje_error, ref numero_error);
+
+                    if (numero_error != 0)
+                    {
+                        conexion.Close();
+                        return null;
+                    }
+                    else
+                    {
+                        conexion.Close();
+                        return ds;
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Reportes de Roles
+        public DataSet reporteRoles()
+        {
+            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "No se pude realizar conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    ParamStruct[] parametros = new ParamStruct[1];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@cod_sistema", SqlDbType.VarChar, VG.Variables.codigoAplicacion);
+                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_lista_roles", true, parametros, ref mensaje_error, ref numero_error);
 
                     if (numero_error != 0)
                     {
