@@ -191,11 +191,12 @@
             // btn_generar
             // 
             this.btn_generar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_generar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_generar.Image = ((System.Drawing.Image)(resources.GetObject("btn_generar.Image")));
             this.btn_generar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_generar.Location = new System.Drawing.Point(35, 420);
             this.btn_generar.Name = "btn_generar";
-            this.btn_generar.Size = new System.Drawing.Size(104, 32);
+            this.btn_generar.Size = new System.Drawing.Size(105, 32);
             this.btn_generar.TabIndex = 11;
             this.btn_generar.Text = "&GENERAR";
             this.btn_generar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

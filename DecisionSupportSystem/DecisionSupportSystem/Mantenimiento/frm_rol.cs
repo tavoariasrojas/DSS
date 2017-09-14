@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace DecisionSupportSystem.Mantenimiento
@@ -33,17 +34,49 @@ namespace DecisionSupportSystem.Mantenimiento
 
         private void cmb_roles_SelectedValueChanged(object sender, EventArgs e)
         {
-            /*ComboBox comboBox = (ComboBox)sender;
-            if (comboBox.SelectedIndex > 0)
-            {*/
-                tv_rol.Nodes.Clear();
-                objRol.dibujaRol(cmb_roles.SelectedValue.ToString(), tv_rol);
-            //}
+            tv_rol.Nodes.Clear();
+            objRol.dibujaRol(cmb_roles.SelectedValue.ToString(), tv_rol);
         }
 
-        private void txt_cod_rol_TextChanged(object sender, EventArgs e)
+        private void txt_cod_rol_Leave(object sender, EventArgs e)
         {
-            txt_cod_rol.Text =  txt_cod_rol.Text.ToUpper().Replace(" ", "_");
+            txt_cod_rol.Text = txt_cod_rol.Text.ToUpper().Replace(" ", "_");
+        }
+
+        private void tv_rol_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            tv_rol.AfterCheck -= tv_rol_AfterCheck;
+            if (e.Node.Parent == null)
+            {
+                replicarHijos(e.Node, e.Node.Checked);
+            }
+            else
+            {
+                marcarPadre(e.Node.Parent, e.Node.Checked);
+            }
+            tv_rol.AfterCheck += tv_rol_AfterCheck;
+        }
+
+        private void replicarHijos(TreeNode treeNode, bool check)
+        {
+            foreach (TreeNode tn in treeNode.Nodes)
+            {
+                tn.Checked = check;
+                replicarHijos(tn, check);
+            }
+        }
+
+        private void marcarPadre(TreeNode treeNode, bool check)
+        {
+            if(treeNode.Parent != null)
+            {
+                treeNode.Checked = check;
+                marcarPadre(treeNode.Parent, check);
+            }
+            else
+            {
+                treeNode.Checked = check;
+            }
         }
     }
 }

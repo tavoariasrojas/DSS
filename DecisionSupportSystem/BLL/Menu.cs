@@ -95,7 +95,7 @@ namespace BLL
             return ds;
         }
 
-        public Boolean llenarMenu()
+        private Boolean llenarMenu()
         {
             foreach (DataRow row in obtieneMenuUsuario().Tables[0].Rows)
             {
@@ -127,35 +127,45 @@ namespace BLL
             {
                 for (int a = 0; a < listaMenu.Count; a++)
                 {
-                    if (string.IsNullOrEmpty(listaMenu[a].objeto_padre))
-                    {
-                        ToolStripMenuItem item = new ToolStripMenuItem(listaMenu[a].objeto_nombre);
-                        for (int b = 0; b < listaMenu.Count; b++)
-                        {
-                            if (listaMenu[b].objeto_padre.Equals(listaMenu[a].objeto))
-                            {
-                                ToolStripMenuItem subitem;
-                                switch (listaMenu[b].tipo)
-                                {
-                                    case 'M':
-                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre);
-                                        item.DropDownItems.Add(subitem);
-                                        break;
-                                    case 'A':
-                                        string path = Environment.GetEnvironmentVariable("USERPROFILE");
-                                        path += @"\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png";
-                                        subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(path), new EventHandler(accionMenu));
-                                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
-                                        item.DropDownItems.Add(subitem);
-                                        break;
-                                }
-                            }
-                        }
-                        menu.Items.Add(item);
+                    if (string.IsNullOrEmpty(listaMenu[a].objeto_padre)){
+                        menu.Items.Add(agregarPadre(a));
                     }
                 }
             }
             return menu;
+        }
+
+        private ToolStripMenuItem agregarPadre(int posicion){
+            ToolStripMenuItem item = new ToolStripMenuItem(listaMenu[posicion].objeto_nombre);
+            agregarHijo(listaMenu[posicion].tipo, listaMenu[posicion].objeto, item);
+            return item;
+        }
+
+        private void agregarHijo(char tipo, string obj_padre, ToolStripMenuItem item) {
+            ToolStripMenuItem subitem;
+
+            for (int a = 0; a < listaMenu.Count; a++)
+            {
+                if (listaMenu[a].objeto_padre.Equals(obj_padre))
+                {
+                    if (listaMenu[a].tipo.Equals('M')) {
+                        subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre);
+                        agregarHijo(listaMenu[a].tipo, listaMenu[a].objeto, subitem);
+                        item.DropDownItems.Add(subitem);
+                    }
+
+                    if (listaMenu[a].tipo.Equals('A'))
+                    {
+                        subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre);
+                        string path = Environment.GetEnvironmentVariable("USERPROFILE");
+                        path += @"\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png";
+                        subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre, System.Drawing.Image.FromFile(path), new EventHandler(accionMenu));
+                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
+                        item.DropDownItems.Add(subitem);
+                    }
+                }
+                
+            }
         }
 
         private void accionMenu(object sender, EventArgs e)
