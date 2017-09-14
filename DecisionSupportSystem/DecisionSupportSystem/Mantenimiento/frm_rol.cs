@@ -52,7 +52,8 @@ namespace DecisionSupportSystem.Mantenimiento
             }
             else
             {
-                marcarPadre(e.Node.Parent, e.Node.Checked);
+                replicarPadre(e.Node.Parent, e.Node.Checked);
+                replicarHijos(e.Node, e.Node.Checked);
             }
             tv_rol.AfterCheck += tv_rol_AfterCheck;
         }
@@ -66,16 +67,68 @@ namespace DecisionSupportSystem.Mantenimiento
             }
         }
 
-        private void marcarPadre(TreeNode treeNode, bool check)
+        private void replicarPadre(TreeNode treeNode, bool check)
         {
             if(treeNode.Parent != null)
             {
-                treeNode.Checked = check;
-                marcarPadre(treeNode.Parent, check);
+                if (check)
+                {
+                    treeNode.Checked = check;
+                    replicarPadre(treeNode.Parent, check);
+                }
+                else
+                {
+                    if(treeNode.Nodes.Count > 1)
+                    {
+                        int contador = 0;
+                        for (int a = 0; a < treeNode.Nodes.Count; a++)
+                        {
+                            if (treeNode.Nodes[a].Checked)
+                            {
+                                contador++;
+                            }
+                        }
+                        if(contador > 0)
+                        {
+                            treeNode.Checked = check;
+                            replicarPadre(treeNode.Parent, check);
+                        }
+                    }
+                    else
+                    {
+                        treeNode.Checked = check;
+                        replicarPadre(treeNode.Parent, check);
+                    }
+                }
             }
             else
             {
-                treeNode.Checked = check;
+                if (check)
+                {
+                    treeNode.Checked = check;
+                }
+                else
+                {
+                    if (treeNode.Nodes.Count > 1)
+                    {
+                        int contador = 0;
+                        for (int a = 0; a < treeNode.Nodes.Count; a++)
+                        {
+                            if (treeNode.Nodes[a].Checked)
+                            {
+                                contador++;
+                            }
+                        }
+                        if (contador == 0)
+                        {
+                            treeNode.Checked = check;
+                        }
+                    }
+                    else
+                    {
+                        treeNode.Checked = check;
+                    }
+                }
             }
         }
     }

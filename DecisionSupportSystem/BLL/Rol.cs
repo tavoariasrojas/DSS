@@ -131,7 +131,7 @@ namespace BLL
                 {
                     if (string.IsNullOrEmpty(listaRol[a].objeto_padre))
                     {
-                        tv.Nodes.Add(agregarNodoRaiz(listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado));
+                        tv.Nodes.Add(agregarNodoRaiz(listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado, listaRol[a].objeto));
                     }
                 }
                 tv.ExpandAll();
@@ -142,9 +142,10 @@ namespace BLL
             }
         }
 
-        private TreeNode agregarNodoRaiz(string codigo, string nombre, char chk)
+        private TreeNode agregarNodoRaiz(string codigo, string nombre, char chk, string tag)
         {
             TreeNode tn = new TreeNode(nombre);
+            tn.Tag = tag;
             if (chk.Equals('S'))
             {
                 tn.Checked = true;
@@ -153,13 +154,13 @@ namespace BLL
             {
                 if (listaRol[a].objeto_padre.Equals(codigo))
                 {
-                    agregarNodo(tn, listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado);
+                    agregarNodo(tn, listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado, listaRol[a].objeto);
                 }
             }
             return tn;
         }
 
-        private void agregarNodo(TreeNode tnr, string codigo, string nombre, char chk)
+        private void agregarNodo(TreeNode tnr, string codigo, string nombre, char chk, string tag)
         {
             TreeNode tn = new TreeNode(nombre);
             if (chk.Equals('S'))
@@ -170,7 +171,7 @@ namespace BLL
             {
                 if (listaRol[a].objeto_padre.Equals(codigo))
                 {
-                    agregarNodo(tn, listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado);
+                    agregarNodo(tn, listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado, listaRol[a].objeto);
                 }
             }
             tnr.Nodes.Add(tn);
