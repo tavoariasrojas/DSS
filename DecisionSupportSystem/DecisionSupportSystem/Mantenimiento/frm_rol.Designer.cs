@@ -36,7 +36,7 @@
             this.txt_cod_rol = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_guardar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tv_rol = new System.Windows.Forms.TreeView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -118,18 +118,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Código del rol";
             // 
-            // button1
+            // btn_guardar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(100, 573);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 32);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "&GUARDAR";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
+            this.btn_guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_guardar.Location = new System.Drawing.Point(100, 573);
+            this.btn_guardar.Name = "btn_guardar";
+            this.btn_guardar.Size = new System.Drawing.Size(105, 32);
+            this.btn_guardar.TabIndex = 4;
+            this.btn_guardar.Text = "&GUARDAR";
+            this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_guardar.UseVisualStyleBackColor = true;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // groupBox3
             // 
@@ -149,6 +150,7 @@
             this.tv_rol.Name = "tv_rol";
             this.tv_rol.Size = new System.Drawing.Size(298, 353);
             this.tv_rol.TabIndex = 0;
+            this.tv_rol.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tv_rol_BeforeCheck);
             this.tv_rol.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tv_rol_AfterCheck);
             // 
             // groupBox4
@@ -166,7 +168,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 612);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -193,7 +195,7 @@
         private System.Windows.Forms.TextBox txt_cod_rol;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_guardar;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TreeView tv_rol;
         private System.Windows.Forms.GroupBox groupBox4;

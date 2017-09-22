@@ -272,7 +272,7 @@
             // cmb_ejecutivo
             // 
             this.cmb_ejecutivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_ejecutivo.DropDownWidth = 225;
+            this.cmb_ejecutivo.DropDownWidth = 200;
             this.cmb_ejecutivo.FormattingEnabled = true;
             this.cmb_ejecutivo.Location = new System.Drawing.Point(4, 16);
             this.cmb_ejecutivo.Margin = new System.Windows.Forms.Padding(2);

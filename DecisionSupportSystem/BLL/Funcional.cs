@@ -232,6 +232,45 @@ namespace BLL
         }
         #endregion
 
+        #region Carga Combo Usuarios
+        public void cargarUsuarios(ComboBox cmb, string posicion)
+        {
+            try
+            {
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                ds = reporteUsuarios();
+                Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
+
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    cmbTmp.Add(dr["nombre"].ToString(), dr["codigo"].ToString());
+                }
+
+                cmb.DataSource = new BindingSource(cmbTmp, null);
+                cmb.DisplayMember = "Key";
+                cmb.ValueMember = "Value";
+
+                if (!string.IsNullOrEmpty(posicion))
+                {
+                    if (posicion.Equals("min"))
+                    {
+                        cmb.SelectedIndex = 0;
+                    }
+                    if (posicion.Equals("max"))
+                    {
+                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+        #endregion
+
         #endregion
     }
 }

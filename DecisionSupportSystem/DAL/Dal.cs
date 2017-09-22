@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using VG;
 
 namespace DAL
 {
@@ -61,13 +60,20 @@ namespace DAL
 
         public static void crear_string_conexion(string bd)
         {
-            if (bd.Equals("SM"))
+            try
             {
-                VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressSM + ";Initial Catalog=" + VG.Variables.serverDataBaseSM + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+                if (bd.Equals("SM"))
+                {
+                    VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressSM + ";Initial Catalog=" + VG.Variables.serverDataBaseSM + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+                }
+                else
+                {
+                    VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressDSS + ";Initial Catalog=" + VG.Variables.serverDataBaseDSS + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+                }
             }
-            else
+            catch (Exception)
             {
-                VG.Variables.connectionString = "Data Source=" + VG.Variables.serverIpAddressDSS + ";Initial Catalog=" + VG.Variables.serverDataBaseDSS + ";User ID=" + VG.Variables.usuario_bd + ";Password=" + VG.Variables.password_db + "";
+                throw;
             }
         }
 
@@ -119,6 +125,41 @@ namespace DAL
             }
         }
         /// <summary>
+        /// realiza la carga de un dataset con parametros.
+        /// </summary>
+        /// <param name="sql">Sentencia sql o nombre del procedimiento almacenado</param>
+        /// <param name="conexion">variable donde recide la conexion</param>        
+        /// <param name="numero_error">numero de error</param>
+        /// <param name="mensaje_error">mensaje de error</param>
+        /// <param name="parametros">lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecución</param>        
+        /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>        
+        ///
+        public static void ejecuta_sp(SqlConnection conexion, SqlTransaction transaccion, string sql, bool es_procedimiento_almacenado, ParamStruct[] parametros, ref string mensaje_error, ref int numero_error)
+        {
+            SqlCommand sql_command;
+            try
+            {
+                int resultado = 0;
+                sql_command = new SqlCommand(sql, conexion, transaccion);
+                if (es_procedimiento_almacenado)
+                {
+                    sql_command.CommandType = CommandType.StoredProcedure;
+                }
+                foreach (ParamStruct var in parametros)
+                {
+                    Agrega_parametro(ref sql_command, var.Nombre_Parametro, var.Valor_Parametro.ToString(), var.Tipo_Dato);
+                }
+                resultado = sql_command.ExecuteNonQuery();
+                numero_error = 0;
+                mensaje_error = "";
+            }
+            catch (SqlException ex)
+            {
+                numero_error = ex.Number;
+                mensaje_error = ex.Message;
+            }
+        }
+        /// <summary>
         /// realiza la carga de un dataset de solo lectura.
         /// </summary>
         /// <param name="sql">Sentencia sql o nombre del SP</param>
@@ -150,7 +191,6 @@ namespace DAL
                 return null;
             }
         }
-
         /// <summary>
         /// realiza la carga de un dataset con parametros.
         /// </summary>
@@ -252,7 +292,7 @@ namespace DAL
             SqlCommand sql_command;
             try
             {
-                int resultado = 0;
+                //int resultado = 0;
                 sql_command = new SqlCommand(sql, conexion);
                 if (es_procedimiento_almacenado)
                 {
@@ -262,7 +302,7 @@ namespace DAL
                 {
                     Agrega_parametro(ref sql_command, var.Nombre_Parametro, var.Valor_Parametro.ToString(), var.Tipo_Dato);
                 }
-                resultado = sql_command.ExecuteNonQuery();
+                //resultado = sql_command.ExecuteNonQuery();
                 mensaje_error = "";
                 numero_error = 0;
             }
@@ -278,7 +318,7 @@ namespace DAL
             SqlCommand sql_command;
             try
             {
-                int resultado = 0;
+                //int resultado = 0;
                 sql_command = new SqlCommand(sql, conexion);
                 sql_command.Transaction = transaccion;
                 if (es_procedimiento_almacenado)
@@ -291,7 +331,7 @@ namespace DAL
                     Agrega_parametro(ref sql_command, var.Nombre_Parametro, var.Valor_Parametro, var.Tipo_Dato);
 
                 }
-                resultado = sql_command.ExecuteNonQuery();
+                //resultado = sql_command.ExecuteNonQuery();
                 mensaje_error = "";
                 numero_error = 0;
             }

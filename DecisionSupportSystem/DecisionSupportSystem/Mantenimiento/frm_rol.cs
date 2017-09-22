@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace DecisionSupportSystem.Mantenimiento
     {
         Funcional objFuncional = new Funcional();
         Rol objRol = new Rol();
+        string tipo_ingreso = string.Empty;
 
         public frm_rol()
         {
@@ -17,23 +19,53 @@ namespace DecisionSupportSystem.Mantenimiento
 
         private void frm_rol_Load(object sender, EventArgs e)
         {
+            inicio();
+        }
+
+        private void inicio()
+        {
+            cmb_roles.SelectedValueChanged -= cmb_roles_SelectedValueChanged;
             objFuncional.cargarRoles(cmb_roles, null);
-            if (cmb_roles.SelectedValue.ToString().Equals("NEW"))
-            {
-                txt_cod_rol.Enabled = true;
-                txt_nom_rol.Enabled = true;
-            }
-            else
-            {
-                txt_cod_rol.Enabled = false;
-                txt_nom_rol.Enabled = false;
-            }
+            tipo_ingreso = "I";
+            txt_cod_rol.Text = string.Empty;
+            txt_nom_rol.Text = string.Empty;
+            cmb_roles.SelectedValueChanged += cmb_roles_SelectedValueChanged;
+
+            habilitaCampos(cmb_roles.SelectedValue.ToString());
+
             tv_rol.Nodes.Clear();
             objRol.dibujaRol(cmb_roles.SelectedValue.ToString(), tv_rol);
         }
 
+        private void habilitaCampos(string rol)
+        {
+            if (rol.Equals("NEW"))
+            {
+                txt_cod_rol.Enabled = true;
+            }
+            else
+            {
+                txt_cod_rol.Enabled = false;
+            }
+        }
+
         private void cmb_roles_SelectedValueChanged(object sender, EventArgs e)
         {
+            string cod_rol = cmb_roles.SelectedValue.ToString();
+            habilitaCampos(cod_rol);
+            if (cod_rol.Equals("NEW"))
+            {
+                txt_cod_rol.Text = string.Empty;
+                txt_nom_rol.Text = string.Empty;
+                tipo_ingreso = "I";
+            }
+            else
+            {
+                DataSet ds = objRol.obtenerRol('I', cmb_roles.SelectedValue.ToString());
+                txt_cod_rol.Text = ds.Tables[0].Rows[0][0].ToString();
+                txt_nom_rol.Text = ds.Tables[0].Rows[0][1].ToString();
+                tipo_ingreso = "U";
+            }
             tv_rol.Nodes.Clear();
             objRol.dibujaRol(cmb_roles.SelectedValue.ToString(), tv_rol);
         }
@@ -130,6 +162,44 @@ namespace DecisionSupportSystem.Mantenimiento
                     }
                 }
             }
+        }
+
+        private void btn_guardar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_cod_rol.Text))
+            {
+                MessageBox.Show("Debe digitar un código para identificar el rol.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txt_nom_rol.Text))
+            {
+                MessageBox.Show("Debe digitar una descripción para dicho rol.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<Rol> opciones = new List<Rol>();
+            opciones = objRol.recorerArbol(tv_rol, opciones);
+            if (objRol.verificaChequeados(opciones) <= 0)
+            {
+                MessageBox.Show("No hay opciones seleccionadas.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (objRol.manejarRol(tipo_ingreso, txt_cod_rol.Text, txt_nom_rol.Text, opciones))
+            {
+                MessageBox.Show("Rol agregado correctamente.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                inicio();
+            }
+            else
+            {
+                MessageBox.Show("Ocurrió un error al agregar el perfil.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tv_rol_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+        {
+             if (e.Node.Tag.ToString().Equals("S")) e.Cancel = true;
         }
     }
 }
