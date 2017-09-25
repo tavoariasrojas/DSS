@@ -115,7 +115,7 @@ namespace BLL
                             {
                                 if (accion.Equals("I"))
                                 {
-                                    if(lista[i].chequeado == 'S')
+                                    if (lista[i].chequeado == 'S')
                                     {
                                         estado = manejarAccionesRol(conexion, transaccion, accion, cod_rol, lista[i].objeto);
                                     }
@@ -134,7 +134,7 @@ namespace BLL
 
                                 if (!estado)
                                 {
-                                    break;;
+                                    break; ;
                                 }
                             }
 
@@ -181,12 +181,10 @@ namespace BLL
 
                 if (numero_error == 0)
                 {
-                    //cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
                     return true;
                 }
                 else
                 {
-                    //cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
                     return false;
                 }
             }
@@ -196,7 +194,93 @@ namespace BLL
                 mensaje_error = Ex.Message;
                 return false;
             }
+        }
 
+        public bool asignarRolUsuario(List<string[]> lista, string usuario)
+        {
+            bool estado = true;
+
+            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error al realizar consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+                {
+                    try
+                    {
+                        cls_DAL.conectar(conexion, ref mensaje_error, ref numero_error);
+                        transaccion = conexion.BeginTransaction();
+                        for (int i = 0; i < lista.Count; i++)
+                        {
+                            if (estado)
+                            {
+                                estado = asignarRol(conexion, transaccion, lista[i][1], usuario, lista[i][0]);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                        if (estado)
+                        {
+                            transaccion.Commit();
+                            cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
+                            return true;
+                        }
+                        else
+                        {
+                            transaccion.Rollback();
+                            cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
+                            return false;
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        numero_error = Ex.HResult;
+                        mensaje_error = Ex.Message;
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool asignarRol(SqlConnection conexion, SqlTransaction transaccion, string accion, string cod_usuario, string cod_rol)
+        {
+            try
+            {
+                ParamStruct[] parametros = new ParamStruct[5];
+                cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@accion", SqlDbType.VarChar, accion);
+                cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@cod_usuario", SqlDbType.VarChar, cod_usuario);
+                cls_DAL.agregar_datos_estructura_parametros(ref parametros, 2, "@cod_compania", SqlDbType.VarChar, VG.Variables.codigoCompania);
+                cls_DAL.agregar_datos_estructura_parametros(ref parametros, 3, "@cod_rol", SqlDbType.VarChar, cod_rol);
+                cls_DAL.agregar_datos_estructura_parametros(ref parametros, 4, "@cod_sistema", SqlDbType.VarChar, VG.Variables.codigoAplicacion);
+                cls_DAL.ejecuta_sp(conexion, transaccion, "sp_manejo_sg_usuario_x_rol", true, parametros, ref mensaje_error, ref numero_error);
+
+                if (numero_error == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception Ex)
+            {
+                numero_error = Ex.HResult;
+                mensaje_error = Ex.Message;
+                return false;
+            }
         }
 
         public Boolean llenarRol(string cod_rol)
@@ -327,7 +411,7 @@ namespace BLL
             int contador = 0;
             for (int i = 0; i < lista.Count; i++)
             {
-                if(lista[i].chequeado == 'S')
+                if (lista[i].chequeado == 'S')
                 {
                     contador++;
                 }

@@ -167,6 +167,7 @@
             this.btn_guardar.Text = "&GUARDAR";
             this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_guardar.UseVisualStyleBackColor = true;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // frm_mant_roles
             // 

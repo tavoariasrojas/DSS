@@ -8,6 +8,7 @@ namespace VG
         #region aplicacion
         public static string codigoAplicacion = "TD";
         public static string nombreAplicacion = "Sistema Toma de Desiciones";
+        public static string codigoCompania = "001";
         #endregion
 
         #region usuario
