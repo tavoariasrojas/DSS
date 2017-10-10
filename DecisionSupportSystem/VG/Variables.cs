@@ -28,11 +28,11 @@ namespace VG
         public static Form mdiForm;
         #endregion
 
-        #region Conexion
+        #region ConexionString
         public static string connectionString;
         #endregion
 
-        #region conexion DSS
+        #region conexion SAMA
         public static string serverIpAddressSM = "192.168.32.230";
         public static string serverDataBaseSM = "SM";
         #endregion

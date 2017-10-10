@@ -40,8 +40,19 @@
             // 
             this.il_menu.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("il_menu.ImageStream")));
             this.il_menu.TransparentColor = System.Drawing.Color.Transparent;
-            this.il_menu.Images.SetKeyName(0, "cliente_16_16.png");
-            this.il_menu.Images.SetKeyName(1, "cliente_32_32.png");
+            this.il_menu.Images.SetKeyName(0, "default_32.png");
+            this.il_menu.Images.SetKeyName(1, "password_32.png");
+            this.il_menu.Images.SetKeyName(2, "exit_blue_32.png");
+            this.il_menu.Images.SetKeyName(3, "resumen_clientes_32.png");
+            this.il_menu.Images.SetKeyName(4, "bolsa_dinero_32.png");
+            this.il_menu.Images.SetKeyName(5, "cliente_informacion_32.png");
+            this.il_menu.Images.SetKeyName(6, "cliente_profile_32.png");
+            this.il_menu.Images.SetKeyName(7, "grafico_ascenso_32.png");
+            this.il_menu.Images.SetKeyName(8, "informacion_usuario_32.png");
+            this.il_menu.Images.SetKeyName(9, "listado_32.png");
+            this.il_menu.Images.SetKeyName(10, "rendimiento_32.png");
+            this.il_menu.Images.SetKeyName(11, "report_green_32.png");
+            this.il_menu.Images.SetKeyName(12, "roles_32.png");
             // 
             // statusStrip1
             // 

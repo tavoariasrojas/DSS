@@ -7,18 +7,14 @@ namespace DecisionSupportSystem
     public partial class frm_login : Form
     {
         Login objLogin = new Login();
+        Funcional objFuncional = new Funcional();
 
         public frm_login()
         {
             InitializeComponent();
         }
 
-        private void btn_cancelar_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btn_ingresar_Click(object sender, EventArgs e)
+        private void ingresarSistema()
         {
             if (String.IsNullOrEmpty(txt_sesion.Text))
             {
@@ -29,8 +25,15 @@ namespace DecisionSupportSystem
 
             if (String.IsNullOrEmpty(txt_password.Text))
             {
-                MessageBox.Show("Debe digitar una contraseña", "Validación del sistema.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe digitar una contraseña.", "Validación del sistema.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txt_password.Focus();
+                return;
+            }
+
+            if (String.IsNullOrEmpty(cmb_compania.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Debe seleccionar una compañía.", "Validación del sistema.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cmb_compania.Focus();
                 return;
             }
 
@@ -76,6 +79,45 @@ namespace DecisionSupportSystem
             else
             {
                 MessageBox.Show("El usuario no se encuentra registrado en la base de datos.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btn_ingresar_Click(object sender, EventArgs e)
+        {
+            ingresarSistema();
+        }
+
+        private void txt_sesion_Leave(object sender, EventArgs e)
+        {
+            objFuncional.cargarCompania(cmb_compania, txt_sesion.Text, "min");
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txt_sesion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ingresarSistema();
+            }
+        }
+
+        private void txt_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ingresarSistema();
+            }
+        }
+
+        private void cmb_compania_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ingresarSistema();
             }
         }
     }

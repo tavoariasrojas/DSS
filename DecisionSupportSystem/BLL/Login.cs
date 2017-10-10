@@ -2,9 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
-using System.Configuration;
 using DAL;
-using VG;
 
 namespace BLL
 {
@@ -226,7 +224,6 @@ namespace BLL
 
             return 0;
         }
-
         #endregion
 
         #region Constructor

@@ -83,6 +83,12 @@
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimiento\frm_cambiar_clave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimiento\frm_cambiar_clave.Designer.cs">
+      <DependentUpon>frm_cambiar_clave.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenimiento\frm_mant_roles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,11 +157,17 @@
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimiento\frm_cambiar_clave.resx">
+      <DependentUpon>frm_cambiar_clave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenimiento\frm_mant_roles.resx">
       <DependentUpon>frm_mant_roles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenimiento\frm_rol.resx">
       <DependentUpon>frm_rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimiento\frm_usuario.resx">
+      <DependentUpon>frm_usuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mapa\GeoMapExample.resx">
       <DependentUpon>GeoMapExample.cs</DependentUpon>

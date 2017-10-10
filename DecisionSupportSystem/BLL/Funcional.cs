@@ -1,8 +1,6 @@
-﻿using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace BLL
@@ -14,6 +12,45 @@ namespace BLL
         #endregion
 
         #region Métodos
+        #region Carga Combo Compañía
+        public void cargarCompania(ComboBox cmb, string usuario, string posicion)
+        {
+            try
+            {
+                cmb.DataSource = null;
+                cmb.Items.Clear();
+                ds = reporteCompania(usuario);
+                if(ds.Tables[0].Rows.Count > 0)
+                {
+                    Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        cmbTmp.Add(dr["nombre"].ToString(), dr["codigo"].ToString());
+                    }
+
+                    cmb.DataSource = new BindingSource(cmbTmp, null);
+                    cmb.DisplayMember = "Key";
+                    cmb.ValueMember = "Value";
+
+                    if (posicion.Equals("min"))
+                    {
+                        cmb.SelectedIndex = 0;
+                    }
+                    if (posicion.Equals("max"))
+                    {
+                        cmb.SelectedIndex = cmb.Items.Count - 1;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
+
         #region Carga Combro Expresado
         public void cargarExpresado(ComboBox cmb, string posicion)
         {
@@ -157,7 +194,6 @@ namespace BLL
             {
                 throw;
             }
-
         }
         #endregion
 
@@ -171,6 +207,38 @@ namespace BLL
                 cmbTmp.Add("TODOS", "%");
                 cmbTmp.Add("SAMA", "SAMA");
                 cmbTmp.Add("CFS", "CFS");
+
+                cmb.DataSource = new BindingSource(cmbTmp, null);
+                cmb.DisplayMember = "Key";
+                cmb.ValueMember = "Value";
+
+                if (posicion.Equals("min"))
+                {
+                    cmb.SelectedIndex = 0;
+                }
+                if (posicion.Equals("max"))
+                {
+                    cmb.SelectedIndex = cmb.Items.Count - 1;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+
+        #region Carga Combro Tipo Cliente
+        public void cargarTipoCliente(ComboBox cmb, string posicion)
+        {
+            try
+            {
+                Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
+
+                cmbTmp.Add("TODOS", "%");
+                cmbTmp.Add("FÍSICO", "FISICO");
+                cmbTmp.Add("JURÍDICO", "JURIDICO");
 
                 cmb.DataSource = new BindingSource(cmbTmp, null);
                 cmb.DisplayMember = "Key";

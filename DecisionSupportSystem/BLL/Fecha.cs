@@ -17,7 +17,7 @@ namespace BLL
         int numero_error;
         DataSet ds;
 
-        public object[] ItemObject { get; private set; }
+        //public object[] ItemObject { get; private set; }
         #endregion
 
         #region metodos

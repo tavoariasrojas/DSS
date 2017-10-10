@@ -337,7 +337,6 @@ namespace BLL
                 case 'O':
                     tn.Checked = true;
                     tn.ForeColor = System.Drawing.Color.Blue;
-                    tn.Tag = 'S';
                     break;
             }
 
@@ -364,7 +363,6 @@ namespace BLL
                 case 'O':
                     tn.Checked = true;
                     tn.ForeColor = System.Drawing.Color.Blue;
-                    tn.Tag = 'S';
                     break;
             }
 

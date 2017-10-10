@@ -28,7 +28,8 @@ namespace DecisionSupportSystem.Reportes
             objFecha.cargarMes(cmb_mes_desde, "min");
             objFecha.cargarMes(cmb_mes_hasta, "max");
 
-            cmb_tipo_cliente.SelectedIndex = 0;
+            objFuncional.cargarTipoCliente(cmb_tipo_cliente, "min");
+            //cmb_tipo_cliente.SelectedIndex = 0;
 
             objFuncional.cargarExpresado(cmb_expresado, "min");
         }
@@ -69,11 +70,10 @@ namespace DecisionSupportSystem.Reportes
                 tipo_reporte = "M";
             }
 
-            string tipo_cliente = cmb_tipo_cliente.Text.ToString();
+            string tipo_cliente = cmb_tipo_cliente.SelectedValue.ToString();
             string titulo_eje_x = String.Empty;
-            if (tipo_cliente.ToUpper() == "TODOS")
+            if (tipo_cliente.ToUpper().Equals("%"))
             {
-                tipo_cliente = "%";
                 titulo_eje_x = "CÓDIGO DE CLIENTES";
             }
             else
@@ -160,6 +160,7 @@ namespace DecisionSupportSystem.Reportes
 
             dgv_info.DataSource = null;
             dgv_info.DataSource = ds.Tables[0];
+            objFunciones.formatearDataGrid(dgv_info);
         }
     }
 }

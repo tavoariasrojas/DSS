@@ -15,6 +15,44 @@ namespace BLL
         #endregion
 
         #region Metodos
+        #region Reportes Compañías
+        public DataSet reporteCompania(string usuario)
+        {
+            conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error validar el usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    ParamStruct[] parametros = new ParamStruct[2];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@cod_sistema", SqlDbType.VarChar, VG.Variables.codigoAplicacion);
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@cod_usuario", SqlDbType.VarChar, usuario);
+                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_obtiene_companias", true, parametros, ref mensaje_error, ref numero_error);
+
+                    if (numero_error != 0)
+                    {
+                        conexion.Close();
+                        return null;
+                    }
+                    else
+                    {
+                        conexion.Close();
+                        return ds;
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region Reportes Resumen
         public DataSet reporteCteGenero(string tipo)
         {

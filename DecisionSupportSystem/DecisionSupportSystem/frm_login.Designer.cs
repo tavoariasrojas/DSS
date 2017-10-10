@@ -38,7 +38,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.axSupport11 = new AxSUPPORT1Lib.AxSupport1();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmb_compania = new System.Windows.Forms.ComboBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_ingresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -49,16 +49,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 27);
+            this.label1.Location = new System.Drawing.Point(50, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Inicio de sesión:";
+            this.label1.Text = "Usuario de inicio:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 53);
+            this.label2.Location = new System.Drawing.Point(71, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 1;
@@ -71,15 +71,18 @@
             this.txt_sesion.Size = new System.Drawing.Size(112, 21);
             this.txt_sesion.TabIndex = 1;
             this.txt_sesion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_sesion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_sesion_KeyDown);
+            this.txt_sesion.Leave += new System.EventHandler(this.txt_sesion_Leave);
             // 
             // txt_password
             // 
-            this.txt_password.Location = new System.Drawing.Point(140, 45);
+            this.txt_password.Location = new System.Drawing.Point(140, 47);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(112, 21);
             this.txt_password.TabIndex = 2;
             this.txt_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_password_KeyDown);
             // 
             // label3
             // 
@@ -105,7 +108,7 @@
             // 
             this.groupBox1.Controls.Add(this.axSupport11);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmb_compania);
             this.groupBox1.Controls.Add(this.btn_cancelar);
             this.groupBox1.Controls.Add(this.btn_ingresar);
             this.groupBox1.Controls.Add(this.label1);
@@ -140,14 +143,16 @@
             this.label4.Size = new System.Drawing.Size(354, 1);
             this.label4.TabIndex = 8;
             // 
-            // comboBox1
+            // cmb_compania
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(140, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(199, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cmb_compania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_compania.DropDownWidth = 250;
+            this.cmb_compania.FormattingEnabled = true;
+            this.cmb_compania.Location = new System.Drawing.Point(140, 75);
+            this.cmb_compania.Name = "cmb_compania";
+            this.cmb_compania.Size = new System.Drawing.Size(208, 21);
+            this.cmb_compania.TabIndex = 3;
+            this.cmb_compania.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_compania_KeyDown);
             // 
             // btn_cancelar
             // 
@@ -201,7 +206,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmb_compania;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_ingresar;
         private System.Windows.Forms.Label label4;

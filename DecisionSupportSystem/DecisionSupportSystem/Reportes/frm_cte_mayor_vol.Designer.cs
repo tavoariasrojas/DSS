@@ -261,8 +261,8 @@
             this.cmb_tipo_cliente.FormattingEnabled = true;
             this.cmb_tipo_cliente.Items.AddRange(new object[] {
             "TODOS",
-            "FÍSICO",
-            "JURÍDICO"});
+            "FISICO",
+            "JURIDICO"});
             this.cmb_tipo_cliente.Location = new System.Drawing.Point(37, 16);
             this.cmb_tipo_cliente.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_tipo_cliente.Name = "cmb_tipo_cliente";
@@ -403,12 +403,14 @@
             // 
             this.dgv_info.AllowUserToAddRows = false;
             this.dgv_info.AllowUserToDeleteRows = false;
-            this.dgv_info.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_info.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_info.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_info.Location = new System.Drawing.Point(3, 16);
             this.dgv_info.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_info.Name = "dgv_info";
             this.dgv_info.ReadOnly = true;
+            this.dgv_info.RowHeadersVisible = false;
+            this.dgv_info.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgv_info.RowTemplate.Height = 28;
             this.dgv_info.Size = new System.Drawing.Size(1278, 131);
             this.dgv_info.TabIndex = 1;

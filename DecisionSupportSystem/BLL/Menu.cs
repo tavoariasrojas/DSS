@@ -61,6 +61,24 @@ namespace BLL
             get { return _frm_name; }
             set { _frm_name = value; }
         }
+
+        private int _imagen;
+
+        public int imagen
+        {
+            get { return _imagen; }
+            set { _imagen = value; }
+        }
+
+
+        private ImageList _imagen_menu;
+
+        public ImageList imagen_menu
+        {
+            get { return _imagen_menu; }
+            set { _imagen_menu = value; }
+        }
+
         #endregion
 
         #region variables privadas
@@ -89,7 +107,7 @@ namespace BLL
                     ParamStruct[] parametros = new ParamStruct[2];
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@cod_sistema", SqlDbType.VarChar, VG.Variables.codigoAplicacion);
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@cod_usuario", SqlDbType.VarChar, VG.Variables.usuario_bd);
-                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_obtiene_rol", true, parametros, ref mensaje_error, ref numero_error);
+                    ds = cls_DAL.ejecuta_dataset(conexion, "sp_obtiene_opciones_usuario", true, parametros, ref mensaje_error, ref numero_error);
                 }
             }
             return ds;
@@ -106,6 +124,7 @@ namespace BLL
                 menu.objeto_nombre = Convert.ToString(row[3]);
                 menu.tipo = Convert.ToChar(row[4]);
                 menu.frm_name = Convert.ToString(row[5]);
+                menu.imagen = Convert.ToInt32(row[6]);
                 listaMenu.Add(menu);
             }
             if (listaMenu.Count() > 0)
@@ -118,10 +137,11 @@ namespace BLL
             }
         }
 
-        public MenuStrip crearMenu()
+        public MenuStrip crearMenu(ImageList img)
         {
             MenuStrip menu = new MenuStrip();
             menu.BackColor = System.Drawing.Color.LightSteelBlue;
+            imagen_menu = img;
 
             if (llenarMenu())
             {
@@ -141,7 +161,8 @@ namespace BLL
             return item;
         }
 
-        private void agregarHijo(char tipo, string obj_padre, ToolStripMenuItem item) {
+        private void agregarHijo(char tipo, string obj_padre, ToolStripMenuItem item)
+        {
             ToolStripMenuItem subitem;
 
             for (int a = 0; a < listaMenu.Count; a++)
@@ -157,10 +178,8 @@ namespace BLL
                     if (listaMenu[a].tipo.Equals('A'))
                     {
                         subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre);
-                        string path = Environment.GetEnvironmentVariable("USERPROFILE");
-                        path += @"\Source\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png";
-                        subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre, System.Drawing.Image.FromFile(path), new EventHandler(accionMenu));
-                        //subitem = new ToolStripMenuItem(listaMenu[b].objeto_nombre, System.Drawing.Image.FromFile(@"C:\Users\jason\Source\Repos\DSS\DecisionSupportSystem\DecisionSupportSystem\Images\Menu\cliente_32_32.png"), new EventHandler(accionMenu));
+                        System.Drawing.Image img = imagen_menu.Images[listaMenu[a].imagen];
+                        subitem = new ToolStripMenuItem(listaMenu[a].objeto_nombre, img, new EventHandler(accionMenu));
                         item.DropDownItems.Add(subitem);
                     }
                 }
@@ -205,9 +224,7 @@ namespace BLL
                     }
                 }
             }
-
         }
-
         #endregion
 
         #region Constructor
@@ -219,6 +236,7 @@ namespace BLL
             objeto_nombre = string.Empty;
             tipo = Convert.ToChar(0);
             frm_name = string.Empty;
+            imagen = 0;
         }
         #endregion
 

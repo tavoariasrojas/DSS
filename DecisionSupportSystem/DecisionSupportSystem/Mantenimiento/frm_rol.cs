@@ -199,7 +199,7 @@ namespace DecisionSupportSystem.Mantenimiento
 
         private void tv_rol_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
-             if (e.Node.Tag.ToString().Equals("S")) e.Cancel = true;
+             if (e.Node.ForeColor.Name.Equals("Blue")) e.Cancel = true;
         }
     }
 }
