@@ -30,11 +30,21 @@ namespace DecisionSupportSystem
             this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Size.Width, Screen.PrimaryScreen.Bounds.Size.Height);
             MenuStrip menu = objMenu.crearMenu(il_menu);
             this.Controls.Add(menu);
+            this.tssl_usuario.Text = tssl_usuario + " " + VG.Variables.usuario_bd;
+            this.tssl_servidor.Text = tssl_servidor + " " + VG.Variables.serverIpAddressDSS;
+            this.tssl_database.Text = tssl_database + " " + VG.Variables.serverDataBaseDSS;
+            t_main.Start();
         }
 
         private void frm_main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void t_main_Tick(object sender, EventArgs e)
+        {
+            
+            this.tssl_fecha.Text = "Fecha y hora actual: " + System.DateTime.Now.ToString();
         }
     }
 }

@@ -38,16 +38,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="LiveCharts.WinForms, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -107,11 +107,11 @@
     <Compile Include="Mantenimiento\frm_usuario.Designer.cs">
       <DependentUpon>frm_usuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mapa\GeoMapExample.cs">
+    <Compile Include="Mapa\frm_mapa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mapa\GeoMapExample.designer.cs">
-      <DependentUpon>GeoMapExample.cs</DependentUpon>
+    <Compile Include="Mapa\frm_mapa.Designer.cs">
+      <DependentUpon>frm_mapa.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="Mantenimiento\frm_usuario.resx">
       <DependentUpon>frm_usuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapa\GeoMapExample.resx">
-      <DependentUpon>GeoMapExample.cs</DependentUpon>
+    <EmbeddedResource Include="Mapa\frm_mapa.resx">
+      <DependentUpon>frm_mapa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -216,7 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\blue_line.png" />
-    <Content Include="Mapa\World.xml" />
+    <Content Include="Mapa\Costa Rica.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mapa\World.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base de datos\" />
