@@ -96,6 +96,7 @@ namespace BLL
         string mensaje_error;
         int numero_error;
         DataSet ds;
+        SqlTransaction transaccion;
         #endregion
 
         #region Métodos
@@ -225,7 +226,7 @@ namespace BLL
             }
 
             DateTime ldt_fecha = obtieneFechaServidor();
-            if (ldt_fecha > this.fecha_vencimiento)
+            if (ldt_fecha > this.fecha_vencimiento || cambiar_password =='S')
             {
                 return 3;
             }
@@ -251,7 +252,7 @@ namespace BLL
                 }
                 else
                 {
-                    sql = "SELECT sg_usu_nombre_completo " +
+                    sql = "SELECT rtrim(sg_usu_nombre_completo) " +
                         "FROM seg_usuarios " +
                         "WHERE sg_usu_nombre_usuario = @usuario ";
 
@@ -270,6 +271,59 @@ namespace BLL
                 }
             }
             return info;
+        }
+
+        public bool manejoUsuario(string tipo, string cod_usuario, string nombre, string clave_bd, string clave_app, string cod_compania, string cod_sistema)
+        {
+            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error al realizar consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+                {
+                    try
+                    {
+                        ParamStruct[] parametros = new ParamStruct[7];
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@tipo", SqlDbType.VarChar, tipo);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 1, "@cod_usuario", SqlDbType.VarChar, cod_usuario);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 2, "@nombre", SqlDbType.VarChar, nombre);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 3, "@clave_bd", SqlDbType.VarChar, clave_bd);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 4, "@clave_app", SqlDbType.VarChar, clave_app);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 5, "@cod_compania", SqlDbType.VarChar, cod_compania);
+                        cls_DAL.agregar_datos_estructura_parametros(ref parametros, 6, "@cod_sistema", SqlDbType.VarChar, cod_sistema);
+                        cls_DAL.conectar(conexion, ref mensaje_error, ref numero_error);
+                        transaccion = conexion.BeginTransaction();
+                        cls_DAL.ejecuta_sp(conexion, transaccion, "sp_manejo_usuario", true, parametros, ref mensaje_error, ref numero_error);
+                        if (numero_error == 0)
+                        {
+                            transaccion.Commit();
+                            cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
+                            return true;
+                        }
+                        else
+                        {
+                            transaccion.Rollback();
+                            cls_DAL.desconectar(conexion, ref mensaje_error, ref numero_error);
+                            return false;
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        numero_error = Ex.HResult;
+                        mensaje_error = Ex.Message;
+                        return false;
+                    }
+                }
+            }
         }
         #endregion
 

@@ -33,7 +33,11 @@
             this.cmb_usuario = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_valida_clave = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nup_dias = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,16 +53,12 @@
             this.txt_nombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_guardar = new System.Windows.Forms.Button();
-            this.txt_valida_clave = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.axSupport11 = new AxSUPPORT1Lib.AxSupport1();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
+            this.axSupport_usuario = new AxSUPPORT1Lib.AxSupport1();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nup_dias)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport_usuario)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -110,6 +110,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información sobre el usuario";
             // 
+            // txt_valida_clave
+            // 
+            this.txt_valida_clave.Location = new System.Drawing.Point(125, 105);
+            this.txt_valida_clave.MaxLength = 50;
+            this.txt_valida_clave.Name = "txt_valida_clave";
+            this.txt_valida_clave.PasswordChar = '*';
+            this.txt_valida_clave.Size = new System.Drawing.Size(121, 20);
+            this.txt_valida_clave.TabIndex = 3;
+            this.txt_valida_clave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_valida_clave.UseSystemPasswordChar = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 109);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Verifica contraseña";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dtp_fecha);
@@ -129,10 +149,28 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Configuración adicional";
             // 
+            // dtp_fecha
+            // 
+            this.dtp_fecha.Enabled = false;
+            this.dtp_fecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_fecha.Location = new System.Drawing.Point(108, 16);
+            this.dtp_fecha.Name = "dtp_fecha";
+            this.dtp_fecha.Size = new System.Drawing.Size(80, 20);
+            this.dtp_fecha.TabIndex = 9;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Fecha vencimiento";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(160, 167);
+            this.label6.Location = new System.Drawing.Point(159, 167);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 7;
@@ -140,9 +178,14 @@
             // 
             // nup_dias
             // 
-            this.nup_dias.Location = new System.Drawing.Point(113, 163);
+            this.nup_dias.Location = new System.Drawing.Point(114, 163);
             this.nup_dias.Maximum = new decimal(new int[] {
-            900,
+            90,
+            0,
+            0,
+            0});
+            this.nup_dias.Minimum = new decimal(new int[] {
+            30,
             0,
             0,
             0});
@@ -150,7 +193,7 @@
             this.nup_dias.Size = new System.Drawing.Size(38, 20);
             this.nup_dias.TabIndex = 6;
             this.nup_dias.Value = new decimal(new int[] {
-            900,
+            30,
             0,
             0,
             0});
@@ -291,61 +334,23 @@
             this.btn_guardar.Text = "&GUARDAR";
             this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_guardar.UseVisualStyleBackColor = true;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
-            // txt_valida_clave
+            // axSupport_usuario
             // 
-            this.txt_valida_clave.Location = new System.Drawing.Point(125, 105);
-            this.txt_valida_clave.MaxLength = 50;
-            this.txt_valida_clave.Name = "txt_valida_clave";
-            this.txt_valida_clave.PasswordChar = '*';
-            this.txt_valida_clave.Size = new System.Drawing.Size(121, 20);
-            this.txt_valida_clave.TabIndex = 3;
-            this.txt_valida_clave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txt_valida_clave.UseSystemPasswordChar = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 109);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Verifica contraseña";
-            // 
-            // axSupport11
-            // 
-            this.axSupport11.Enabled = true;
-            this.axSupport11.Location = new System.Drawing.Point(7, 411);
-            this.axSupport11.Name = "axSupport11";
-            this.axSupport11.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport11.OcxState")));
-            this.axSupport11.Size = new System.Drawing.Size(38, 31);
-            this.axSupport11.TabIndex = 10;
-            this.axSupport11.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Fecha vencimiento";
-            // 
-            // dtp_fecha
-            // 
-            this.dtp_fecha.Enabled = false;
-            this.dtp_fecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha.Location = new System.Drawing.Point(108, 16);
-            this.dtp_fecha.Name = "dtp_fecha";
-            this.dtp_fecha.Size = new System.Drawing.Size(80, 20);
-            this.dtp_fecha.TabIndex = 9;
+            this.axSupport_usuario.Enabled = true;
+            this.axSupport_usuario.Location = new System.Drawing.Point(22, 406);
+            this.axSupport_usuario.Name = "axSupport_usuario";
+            this.axSupport_usuario.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport_usuario.OcxState")));
+            this.axSupport_usuario.Size = new System.Drawing.Size(38, 36);
+            this.axSupport_usuario.TabIndex = 9;
             // 
             // frm_usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 466);
-            this.Controls.Add(this.axSupport11);
+            this.ClientSize = new System.Drawing.Size(340, 450);
+            this.Controls.Add(this.axSupport_usuario);
             this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -360,7 +365,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nup_dias)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport_usuario)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,8 +394,8 @@
         private System.Windows.Forms.Button btn_guardar;
         private System.Windows.Forms.TextBox txt_valida_clave;
         private System.Windows.Forms.Label label7;
-        private AxSUPPORT1Lib.AxSupport1 axSupport11;
         private System.Windows.Forms.DateTimePicker dtp_fecha;
         private System.Windows.Forms.Label label8;
+        private AxSUPPORT1Lib.AxSupport1 axSupport_usuario;
     }
 }

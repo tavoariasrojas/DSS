@@ -36,8 +36,8 @@
             this.tssl_servidor = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_database = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_fecha = new System.Windows.Forms.ToolStripStatusLabel();
-            this.t_main = new System.Windows.Forms.Timer(this.components);
             this.tssl_hora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.t_main = new System.Windows.Forms.Timer(this.components);
             this.ss_main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,7 @@
             this.il_menu.Images.SetKeyName(10, "rendimiento_32.png");
             this.il_menu.Images.SetKeyName(11, "report_green_32.png");
             this.il_menu.Images.SetKeyName(12, "roles_32.png");
+            this.il_menu.Images.SetKeyName(13, "manual_32.png");
             // 
             // ss_main
             // 
@@ -80,7 +81,7 @@
             this.tssl_usuario.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tssl_usuario.Image = ((System.Drawing.Image)(resources.GetObject("tssl_usuario.Image")));
             this.tssl_usuario.Name = "tssl_usuario";
-            this.tssl_usuario.Size = new System.Drawing.Size(155, 20);
+            this.tssl_usuario.Size = new System.Drawing.Size(161, 20);
             this.tssl_usuario.Spring = true;
             this.tssl_usuario.Text = "Usuario actual:";
             // 
@@ -89,7 +90,7 @@
             this.tssl_servidor.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tssl_servidor.Image = ((System.Drawing.Image)(resources.GetObject("tssl_servidor.Image")));
             this.tssl_servidor.Name = "tssl_servidor";
-            this.tssl_servidor.Size = new System.Drawing.Size(155, 20);
+            this.tssl_servidor.Size = new System.Drawing.Size(161, 20);
             this.tssl_servidor.Spring = true;
             this.tssl_servidor.Text = "Conectado al servidor:";
             // 
@@ -98,7 +99,7 @@
             this.tssl_database.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tssl_database.Image = ((System.Drawing.Image)(resources.GetObject("tssl_database.Image")));
             this.tssl_database.Name = "tssl_database";
-            this.tssl_database.Size = new System.Drawing.Size(155, 20);
+            this.tssl_database.Size = new System.Drawing.Size(161, 20);
             this.tssl_database.Spring = true;
             this.tssl_database.Text = "Utilizando base de datos:";
             // 
@@ -107,22 +108,22 @@
             this.tssl_fecha.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.tssl_fecha.Image = ((System.Drawing.Image)(resources.GetObject("tssl_fecha.Image")));
             this.tssl_fecha.Name = "tssl_fecha";
-            this.tssl_fecha.Size = new System.Drawing.Size(155, 20);
+            this.tssl_fecha.Size = new System.Drawing.Size(161, 20);
             this.tssl_fecha.Spring = true;
             this.tssl_fecha.Text = "Fecha:";
-            // 
-            // t_main
-            // 
-            this.t_main.Interval = 1000;
-            this.t_main.Tick += new System.EventHandler(this.t_main_Tick);
             // 
             // tssl_hora
             // 
             this.tssl_hora.Image = ((System.Drawing.Image)(resources.GetObject("tssl_hora.Image")));
             this.tssl_hora.Name = "tssl_hora";
-            this.tssl_hora.Size = new System.Drawing.Size(155, 20);
+            this.tssl_hora.Size = new System.Drawing.Size(161, 20);
             this.tssl_hora.Spring = true;
             this.tssl_hora.Text = "Hora actual:";
+            // 
+            // t_main
+            // 
+            this.t_main.Interval = 1000;
+            this.t_main.Tick += new System.EventHandler(this.t_main_Tick);
             // 
             // frm_main
             // 

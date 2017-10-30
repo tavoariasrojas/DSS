@@ -36,14 +36,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.axSupport11 = new AxSUPPORT1Lib.AxSupport1();
+            this.axSupport_login = new AxSUPPORT1Lib.AxSupport1();
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_compania = new System.Windows.Forms.ComboBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_ingresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport_login)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -106,7 +106,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.axSupport11);
+            this.groupBox1.Controls.Add(this.axSupport_login);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cmb_compania);
             this.groupBox1.Controls.Add(this.btn_cancelar);
@@ -125,15 +125,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese sus credenciales";
             // 
-            // axSupport11
+            // axSupport_login
             // 
-            this.axSupport11.Enabled = true;
-            this.axSupport11.Location = new System.Drawing.Point(6, 112);
-            this.axSupport11.Name = "axSupport11";
-            this.axSupport11.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport11.OcxState")));
-            this.axSupport11.Size = new System.Drawing.Size(32, 45);
-            this.axSupport11.TabIndex = 9;
-            this.axSupport11.Visible = false;
+            this.axSupport_login.Enabled = true;
+            this.axSupport_login.Location = new System.Drawing.Point(6, 112);
+            this.axSupport_login.Name = "axSupport_login";
+            this.axSupport_login.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport_login.OcxState")));
+            this.axSupport_login.Size = new System.Drawing.Size(32, 45);
+            this.axSupport_login.TabIndex = 9;
+            this.axSupport_login.Visible = false;
             // 
             // label4
             // 
@@ -192,7 +192,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axSupport11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axSupport_login)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,7 +210,7 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_ingresar;
         private System.Windows.Forms.Label label4;
-        private AxSUPPORT1Lib.AxSupport1 axSupport11;
+        private AxSUPPORT1Lib.AxSupport1 axSupport_login;
     }
 }
 

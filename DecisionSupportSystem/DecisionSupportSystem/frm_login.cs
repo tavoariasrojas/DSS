@@ -30,7 +30,7 @@ namespace DecisionSupportSystem
                 return;
             }
 
-            if (String.IsNullOrEmpty(cmb_compania.SelectedValue.ToString()))
+            if (cmb_compania.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar una compañía.", "Validación del sistema.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cmb_compania.Focus();
@@ -47,12 +47,12 @@ namespace DecisionSupportSystem
                 }
                 else
                 {
-                    axSupport11.encrypted = info_encrypt;
-                    axSupport11.passkey = txt_sesion.Text;
-                    int resultado = axSupport11.Unencrypt();
+                    axSupport_login.encrypted = info_encrypt;
+                    axSupport_login.passkey = txt_sesion.Text;
+                    int resultado = axSupport_login.Unencrypt();
                     if (resultado > 0)
                     {
-                        string desencriptado = axSupport11.unencrypted;
+                        string desencriptado = axSupport_login.unencrypted;
                         objLogin.descomponeInfoEncriptada(desencriptado);
 
                         int valor = objLogin.verificaDatos(txt_password.Text);
@@ -71,6 +71,7 @@ namespace DecisionSupportSystem
                                 frm_main ventana = new frm_main();
                                 ventana.Show();
                                 this.Visible = false;
+                                axSupport_login.Dispose();
                                 break;
                         }
                     }

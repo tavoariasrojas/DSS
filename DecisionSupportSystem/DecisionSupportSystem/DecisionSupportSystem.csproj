@@ -200,6 +200,7 @@
     <EmbeddedResource Include="Reportes\frm_prod_mayor_rentd_com.resx">
       <DependentUpon>frm_prod_mayor_rentd_com.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Ayuda\ayuda.chm" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -245,6 +246,15 @@
       <Lcid>0</Lcid>
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="SUPPORT1Lib">
+      <Guid>{0D52B800-6360-11D0-BA98-0080AD1CB502}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -193,6 +193,12 @@ namespace BLL
             {
                 Application.Exit();
             }
+
+            if (sender.ToString().ToLower().Equals("manual de usuario"))
+            {
+                System.Diagnostics.Process.Start(Application.StartupPath + @"\Ayuda\ayuda.chm");
+            }
+
             Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
             foreach (Type type in frmAssembly.GetTypes())
             {
@@ -209,7 +215,6 @@ namespace BLL
                     if (type.Name == frm_name)
                     {
                         Form frmShow = (Form)frmAssembly.CreateInstance(type.ToString());
-                        //frmShow.WindowState = FormWindowState.Maximized;
 
                         foreach (Form form in VG.Variables.mdiForm.MdiChildren)
                         {

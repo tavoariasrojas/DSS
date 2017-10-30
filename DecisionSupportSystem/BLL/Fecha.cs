@@ -48,6 +48,33 @@ namespace BLL
             return fecha;
         }
 
+        public DateTime obtieneProximaFecha(string dias)
+        {
+            DateTime fecha = new DateTime(1900, 1, 1);
+
+            conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error al conectar con la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    sql = "SELECT DATEADD(dd, "+dias+", CAST(CAST(GETDATE() as date) as datetime))";
+
+                    ParamStruct[] parametros = new ParamStruct[0];
+                    ds = cls_DAL.ejecuta_dataset(conexion, sql, false, parametros, ref mensaje_error, ref numero_error);
+                    fecha = Convert.ToDateTime(ds.Tables[0].Rows[0][0].ToString());
+                }
+            }
+            return fecha;
+        }
+
         public void cargarAnos(ComboBox cmb, string posicion)
         {
             try
