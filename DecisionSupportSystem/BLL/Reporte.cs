@@ -458,7 +458,7 @@ namespace BLL
         #endregion
 
         #region Reportes de Usuarios
-        public DataSet reporteUsuarios()
+        public DataSet reporteUsuarios(int tipo)
         {
             conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
             if (conexion == null)
@@ -475,8 +475,8 @@ namespace BLL
                 }
                 else
                 {
-                    ParamStruct[] parametros = new ParamStruct[0];
-                    //cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@cod_sistema", SqlDbType.VarChar, VG.Variables.codigoAplicacion);
+                    ParamStruct[] parametros = new ParamStruct[1];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@tipo", SqlDbType.Int, tipo);
                     ds = cls_DAL.ejecuta_dataset(conexion, "sp_lista_usuarios", true, parametros, ref mensaje_error, ref numero_error);
 
                     if (numero_error != 0)

@@ -24,7 +24,7 @@ namespace DecisionSupportSystem.Mantenimiento
         private void inicio()
         {
             cmb_usuarios.SelectedValueChanged -= cmb_usuarios_SelectedValueChanged;
-            objFuncional.cargarUsuarios(cmb_usuarios, null);
+            objFuncional.cargarUsuarios(1, cmb_usuarios, null);
             cmb_usuarios.SelectedValueChanged += cmb_usuarios_SelectedValueChanged;
 
             cargarListView(lv_rol_asignado);

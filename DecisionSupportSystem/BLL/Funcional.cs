@@ -301,13 +301,13 @@ namespace BLL
         #endregion
 
         #region Carga Combo Usuarios
-        public void cargarUsuarios(ComboBox cmb, string posicion)
+        public void cargarUsuarios(int tipo, ComboBox cmb, string posicion)
         {
             try
             {
                 cmb.DataSource = null;
                 cmb.Items.Clear();
-                ds = reporteUsuarios();
+                ds = reporteUsuarios(tipo);
                 Dictionary<string, string> cmbTmp = new Dictionary<string, string>();
 
                 foreach (DataRow dr in ds.Tables[0].Rows)

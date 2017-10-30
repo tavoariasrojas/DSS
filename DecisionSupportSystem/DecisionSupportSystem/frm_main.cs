@@ -12,17 +12,6 @@ namespace DecisionSupportSystem
             InitializeComponent();
         }
 
-        /*public void windowOpen() {
-            int theHeight = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height;
-            int theWidth = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
-
-            this.Height = theHeight;
-            this.Width = theWidth;
-
-            this.Top = 0;
-            this.Left = 0;
-        }*/
-
         private void frm_main_Load(object sender, EventArgs e)
         {
             VG.Variables.mdiForm = this;
@@ -33,6 +22,8 @@ namespace DecisionSupportSystem
             this.tssl_usuario.Text = tssl_usuario + " " + VG.Variables.usuario_bd;
             this.tssl_servidor.Text = tssl_servidor + " " + VG.Variables.serverIpAddressDSS;
             this.tssl_database.Text = tssl_database + " " + VG.Variables.serverDataBaseDSS;
+            this.tssl_fecha.Text = "Fecha actual: " + System.DateTime.Now.ToString("dd-MM-yyyy");
+            this.tssl_hora.Text = "Hora actual: " + System.DateTime.Now.ToString("hh:mm:ss tt");
             t_main.Start();
         }
 
@@ -44,7 +35,8 @@ namespace DecisionSupportSystem
         private void t_main_Tick(object sender, EventArgs e)
         {
             
-            this.tssl_fecha.Text = "Fecha y hora actual: " + System.DateTime.Now.ToString();
+            this.tssl_fecha.Text = "Fecha actual: " + System.DateTime.Now.ToString("dd-MM-yyyy");
+            this.tssl_hora.Text = "Hora actual: " + System.DateTime.Now.ToString("hh:mm:ss tt");
         }
     }
 }

@@ -165,7 +165,15 @@ namespace BLL
                     ParamStruct[] parametros = new ParamStruct[1];
                     cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
                     ds = cls_DAL.ejecuta_dataset(conexion, sql, false, parametros, ref mensaje_error, ref numero_error);
-                    info = ds.Tables[0].Rows[0][0].ToString();
+                    if (ds != null)
+                    {
+                        info = ds.Tables[0].Rows[0][0].ToString();
+                    }
+                    else
+                    {
+                        info = null;
+                    }
+                    
                 }
             }
             return info;
@@ -223,6 +231,45 @@ namespace BLL
             }
 
             return 0;
+        }
+
+        public string obtieneNombreUsuario(string usuario)
+        {
+            string info = string.Empty;
+            Login login = new Login();
+
+            conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
+            if (conexion == null)
+            {
+                MessageBox.Show(mensaje_error, "Error al obtener cadena de conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (numero_error != 0)
+                {
+                    MessageBox.Show(mensaje_error, "Error validar el usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    sql = "SELECT sg_usu_nombre_completo " +
+                        "FROM seg_usuarios " +
+                        "WHERE sg_usu_nombre_usuario = @usuario ";
+
+                    ParamStruct[] parametros = new ParamStruct[1];
+                    cls_DAL.agregar_datos_estructura_parametros(ref parametros, 0, "@usuario", SqlDbType.VarChar, usuario);
+                    ds = cls_DAL.ejecuta_dataset(conexion, sql, false, parametros, ref mensaje_error, ref numero_error);
+                    if (ds != null)
+                    {
+                        info = ds.Tables[0].Rows[0][0].ToString();
+                    }
+                    else
+                    {
+                        info = null;
+                    }
+
+                }
+            }
+            return info;
         }
         #endregion
 

@@ -128,10 +128,10 @@
             // axSupport11
             // 
             this.axSupport11.Enabled = true;
-            this.axSupport11.Location = new System.Drawing.Point(575, 224);
+            this.axSupport11.Location = new System.Drawing.Point(6, 112);
             this.axSupport11.Name = "axSupport11";
             this.axSupport11.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport11.OcxState")));
-            this.axSupport11.Size = new System.Drawing.Size(44, 40);
+            this.axSupport11.Size = new System.Drawing.Size(32, 45);
             this.axSupport11.TabIndex = 9;
             this.axSupport11.Visible = false;
             // 

@@ -41,7 +41,7 @@ namespace DecisionSupportSystem
             {
                 string info_encrypt = objLogin.obtieneInfoEncriptada(txt_sesion.Text);
 
-                if (String.IsNullOrEmpty(txt_password.Text))
+                if (String.IsNullOrEmpty(info_encrypt))
                 {
                     MessageBox.Show("No se pudo obtener información del usuario.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
