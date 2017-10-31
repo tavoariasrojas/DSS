@@ -59,6 +59,7 @@
             this.il_menu.Images.SetKeyName(11, "report_green_32.png");
             this.il_menu.Images.SetKeyName(12, "roles_32.png");
             this.il_menu.Images.SetKeyName(13, "manual_32.png");
+            this.il_menu.Images.SetKeyName(14, "test_32.png");
             // 
             // ss_main
             // 

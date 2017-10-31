@@ -118,7 +118,7 @@ namespace BLL
                 cmbMes.Add("Junio", 6);
                 cmbMes.Add("Julio", 7);
                 cmbMes.Add("Agosto", 8);
-                cmbMes.Add("Septiempre", 9);
+                cmbMes.Add("Septiembre", 9);
                 cmbMes.Add("Octubre", 10);
                 cmbMes.Add("Noviembre", 11);
                 cmbMes.Add("Diciembre", 12);

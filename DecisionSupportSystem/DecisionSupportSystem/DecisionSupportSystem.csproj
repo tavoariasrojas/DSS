@@ -71,6 +71,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Capacitacion\frm_capacitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capacitacion\frm_capacitacion.Designer.cs">
+      <DependentUpon>frm_capacitacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     <Compile Include="Reportes\frm_prod_mayor_rentd_com.Designer.cs">
       <DependentUpon>frm_prod_mayor_rentd_com.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Capacitacion\frm_capacitacion.resx">
+      <DependentUpon>frm_capacitacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>

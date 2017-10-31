@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Capacitar.cs" />
     <Compile Include="Consulta.cs" />
     <Compile Include="Fecha.cs" />
     <Compile Include="Funcional.cs" />

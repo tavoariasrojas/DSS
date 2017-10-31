@@ -181,6 +181,7 @@ namespace DecisionSupportSystem.Reportes
 
             dgv_info.DataSource = null;
             dgv_info.DataSource = ds.Tables[0];
+            objFunciones.formatearDataGrid(dgv_info);
         }
     }
 }

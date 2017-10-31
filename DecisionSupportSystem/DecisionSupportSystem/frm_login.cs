@@ -121,5 +121,10 @@ namespace DecisionSupportSystem
                 ingresarSistema();
             }
         }
+
+        private void frm_login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
