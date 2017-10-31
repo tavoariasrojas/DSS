@@ -43,9 +43,9 @@
             this.txt_ruta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ofd_participantes = new System.Windows.Forms.OpenFileDialog();
-            this.btn_generar = new System.Windows.Forms.Button();
             this.l_participante = new System.Windows.Forms.Label();
+            this.btn_generar = new System.Windows.Forms.Button();
+            this.ofd_participantes = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -140,7 +140,7 @@
             this.btn_guardar.Location = new System.Drawing.Point(221, 12);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(132, 23);
-            this.btn_guardar.TabIndex = 3;
+            this.btn_guardar.TabIndex = 0;
             this.btn_guardar.Text = "Guardar datos";
             this.btn_guardar.UseVisualStyleBackColor = true;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
@@ -164,7 +164,7 @@
             this.btn_cargar.Location = new System.Drawing.Point(472, 11);
             this.btn_cargar.Name = "btn_cargar";
             this.btn_cargar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cargar.TabIndex = 3;
+            this.btn_cargar.TabIndex = 2;
             this.btn_cargar.Text = "Cargar";
             this.btn_cargar.UseVisualStyleBackColor = true;
             this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
@@ -174,7 +174,7 @@
             this.btn_buscar.Location = new System.Drawing.Point(391, 11);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(75, 23);
-            this.btn_buscar.TabIndex = 2;
+            this.btn_buscar.TabIndex = 1;
             this.btn_buscar.Text = "Buscar";
             this.btn_buscar.UseVisualStyleBackColor = true;
             this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
@@ -184,7 +184,7 @@
             this.txt_ruta.Location = new System.Drawing.Point(94, 12);
             this.txt_ruta.Name = "txt_ruta";
             this.txt_ruta.Size = new System.Drawing.Size(291, 20);
-            this.txt_ruta.TabIndex = 1;
+            this.txt_ruta.TabIndex = 0;
             // 
             // label1
             // 
@@ -207,9 +207,16 @@
             this.tabPage2.Text = "Sorteo de tareas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ofd_participantes
+            // l_participante
             // 
-            this.ofd_participantes.FileName = "openFileDialog1";
+            this.l_participante.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_participante.ForeColor = System.Drawing.Color.DarkGreen;
+            this.l_participante.Location = new System.Drawing.Point(0, 63);
+            this.l_participante.Name = "l_participante";
+            this.l_participante.Size = new System.Drawing.Size(578, 39);
+            this.l_participante.TabIndex = 1;
+            this.l_participante.Text = "Participante";
+            this.l_participante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_generar
             // 
@@ -221,16 +228,9 @@
             this.btn_generar.UseVisualStyleBackColor = true;
             this.btn_generar.Click += new System.EventHandler(this.btn_generar_Click);
             // 
-            // l_participante
+            // ofd_participantes
             // 
-            this.l_participante.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.l_participante.ForeColor = System.Drawing.Color.DarkGreen;
-            this.l_participante.Location = new System.Drawing.Point(0, 63);
-            this.l_participante.Name = "l_participante";
-            this.l_participante.Size = new System.Drawing.Size(578, 39);
-            this.l_participante.TabIndex = 1;
-            this.l_participante.Text = "Participante";
-            this.l_participante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ofd_participantes.FileName = "openFileDialog1";
             // 
             // frm_capacitacion
             // 
