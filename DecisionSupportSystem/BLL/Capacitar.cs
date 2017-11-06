@@ -8,6 +8,15 @@ namespace BLL
 {
     public class Capacitar
     {
+        /// <summary>
+        /// Parámetros de la clase capacitar
+        /// </summary>
+        /// <param name="conexion">Conexión de la base de datos</param>
+        /// <param name="transaccion">Transacción de la base de datos</param>
+        /// <param name="ds">DataSet</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// 
         #region variables privadas
         SqlConnection conexion;
         SqlTransaction transaccion;
@@ -17,6 +26,10 @@ namespace BLL
         #endregion
 
         #region Métodos
+        /// <summary>
+        /// Método para ingresar los participantes
+        /// </summary>
+        /// <param name="participantes">Contiene la lista de participantes</param>
         public bool ingresarParticipante(List<string> participantes)
         {
             conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
@@ -76,7 +89,10 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para borrar los participantes
+        /// </summary>
+        /// <param name="accion">Acción a realizar</param>
         public bool borrarParticipante(string accion)
         {
             conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
@@ -125,7 +141,10 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para obtener la cantidad de participantes
+        /// </summary>
+        /// <param name="accion">Acción a realizar</param>
         public int cantidadParticipantes(string accion)
         {
             int cantidad = 0;
@@ -162,7 +181,11 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para seleccionar de forma aleatorea un participante
+        /// </summary>
+        /// <param name="accion">Acción a realizar</param>
+        /// <param name="numero">Numero a seleccionar</param>
         public string escogerParticipante(string accion, int numero)
         {
             string candidato = string.Empty;

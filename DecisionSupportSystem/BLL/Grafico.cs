@@ -8,6 +8,11 @@ namespace BLL
     public class Grafico
     {
         #region Utilidades
+        /// <summary>
+        /// Método para limpiar el gráfico
+        /// </summary>
+        /// <param name="cht">Gráfico</param>
+        ///
         public void limpiarGrafico(Chart cht)
         {
             int cantidad = 0;
@@ -49,6 +54,13 @@ namespace BLL
         #endregion
 
         #region Graficos Resumidos
+        /// <summary>
+        /// Método generar gráfico de clientes por género (General)
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="cht">Gráfico</param>
+        /// <param name="titulo">Título del gráfico</param>
+        ///
         public void makeChartGeneroG(DataSet ds, Chart cht, String titulo)
         {
             cht.Titles.Add(titulo);
@@ -70,7 +82,13 @@ namespace BLL
             cht.ChartAreas[0].Area3DStyle.Enable3D = true;
             cht.ChartAreas[0].Area3DStyle.Inclination = 40;
         }
-
+        /// <summary>
+        /// Método generar gráfico de clientes por género (Detallado)
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="cht">Gráfico</param>
+        /// <param name="titulo">Título del gráfico</param>
+        ///
         public void makeChartGeneroD(DataSet ds, Chart cht, String titulo)
         {
             cht.Titles.Add(titulo);
@@ -102,7 +120,13 @@ namespace BLL
             cht.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             cht.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
         }
-
+        /// <summary>
+        /// Método generar gráfico por edad
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="cht">Gráfico</param>
+        /// <param name="titulo">Título del gráfico</param>
+        ///
         public void makeChartEdad(DataSet ds, Chart cht, String titulo)
         {
             cht.Titles.Add(titulo);
@@ -122,7 +146,13 @@ namespace BLL
             cht.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             //cht.Series[0]["LineTension"] = "0.6";
         }
-
+        /// <summary>
+        /// Método generar gráfico por tipo de cliente
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="cht">Gráfico</param>
+        /// <param name="titulo">Título del gráfico</param>
+        ///
         public void makeChartTipoG(DataSet ds, Chart cht, String titulo)
         {
             cht.Titles.Add(titulo);
@@ -144,7 +174,14 @@ namespace BLL
             cht.ChartAreas[0].Area3DStyle.Inclination = 40;
         }
         #endregion
-
+        /// <summary>
+        /// Método generar gráfico clientes con mayor volumen de inversión
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="cht">Gráfico</param>
+        /// <param name="titulo">Título del gráfico</param>
+        /// <param name="series">Lista con la series</param>
+        ///
         #region Grafico Clientes Mayor Volumen Inversion
         public void makeChartCteMayVolInv(DataSet ds, Chart cht, String titulo, List<string> series)
         {

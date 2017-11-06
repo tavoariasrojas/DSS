@@ -12,6 +12,18 @@ namespace BLL
     public class Menu
     {
         #region propiedades
+        /// <summary>
+        /// Parámetros de la clase Menu
+        /// </summary>
+        /// <param name="contenedor">Nombre del contenedor</param>
+        /// <param name="objeto">Nombre del objeto</param>
+        /// <param name="objeto_padre">Nombre del objeto padre</param>
+        /// <param name="objeto_nombre">Nombre del objeto</param>
+        /// <param name="tipo">Tipo de objeto</param>
+        /// <param name="frm_name">Nombre del form asociado</param>
+        /// <param name="imagen">Numero de imagen</param>
+        /// <param name="imagen_menu">Imagen list</param>
+        ///
         List<Menu> listaMenu = new List<Menu>();
 
         private string _contenedor;
@@ -70,7 +82,6 @@ namespace BLL
             set { _imagen = value; }
         }
 
-
         private ImageList _imagen_menu;
 
         public ImageList imagen_menu
@@ -82,6 +93,14 @@ namespace BLL
         #endregion
 
         #region variables privadas
+        /// <summary>
+        /// Variables privadas de clase Menu
+        /// </summary>
+        /// <param name="conexion">Conexión de base de datos/param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="ds">DataSet</param>
+        ///
         SqlConnection conexion;
         string mensaje_error;
         int numero_error;
@@ -89,6 +108,10 @@ namespace BLL
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Método para obtener el menú del usuario
+        /// </summary>
+        ///
         public DataSet obtieneMenuUsuario()
         {
             conexion = cls_DAL.trae_conexion("INI", ref mensaje_error, ref numero_error);
@@ -112,7 +135,10 @@ namespace BLL
             }
             return ds;
         }
-
+        /// <summary>
+        /// Método para llenar el menu
+        /// </summary>
+        ///
         private Boolean llenarMenu()
         {
             foreach (DataRow row in obtieneMenuUsuario().Tables[0].Rows)
@@ -136,7 +162,11 @@ namespace BLL
                 return false;
             }
         }
-
+        /// <summary>
+        /// Método para crear menu
+        /// </summary>
+        /// <param name="img">Lista de imagenes del menu</param>
+        ///
         public MenuStrip crearMenu(ImageList img)
         {
             MenuStrip menu = new MenuStrip();
@@ -154,13 +184,23 @@ namespace BLL
             }
             return menu;
         }
-
+        /// <summary>
+        /// Método para agregar opciones padres del menu
+        /// </summary>
+        /// <param name="posicion">Número de posición</param>
+        ///
         private ToolStripMenuItem agregarPadre(int posicion){
             ToolStripMenuItem item = new ToolStripMenuItem(listaMenu[posicion].objeto_nombre);
             agregarHijo(listaMenu[posicion].tipo, listaMenu[posicion].objeto, item);
             return item;
         }
-
+        /// <summary>
+        /// Método para agregar hijos a las opciones padres
+        /// </summary>
+        /// <param name="tipo">Tipo</param>
+        /// <param name="obj_padre">Objeto padre</param>
+        /// /// <param name="item">Nombre del Tool Strip Menu</param>
+        ///
         private void agregarHijo(char tipo, string obj_padre, ToolStripMenuItem item)
         {
             ToolStripMenuItem subitem;
@@ -186,7 +226,10 @@ namespace BLL
                 
             }
         }
-
+        /// <summary>
+        /// Método para manejar opciones del menú
+        /// </summary>
+        ///
         private void accionMenu(object sender, EventArgs e)
         {
             if (sender.ToString().ToLower().Equals("salir"))

@@ -10,6 +10,13 @@ namespace BLL
     public class GraficoLiveCharts
     {
         #region variables
+        /// <summary>
+        /// Variables de la clase GraficoLivecharts
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        /// <param name="campo">Campo</param>
+        /// <param name="lista">Lista</param>
+        ///
         private DataSet _ds;
         public DataSet ds
         {
@@ -34,6 +41,11 @@ namespace BLL
         #endregion
 
         #region Utilidades de gráficos
+        /// <summary>
+        /// Método para limpiar gráfico
+        /// </summary>
+        /// <param name="cht">Gráfico</param>
+        ///
         public void limpiarGrafico(LiveCharts.WinForms.CartesianChart cht)
         {
             int cantidad = 0;
@@ -70,6 +82,11 @@ namespace BLL
         #region metodos
 
         #region Agregar columnas
+        /// <summary>
+        /// Método para agregar columnas
+        /// </summary>
+        /// <param name="columna">Columna</param>
+        ///
         public ColumnSeries agregarColumSeries(string columna)
         {
             LiveCharts.Wpf.ColumnSeries col = new ColumnSeries
@@ -81,7 +98,11 @@ namespace BLL
             return col;
         }
         #endregion
-
+        /// <summary>
+        /// Método para llenar valores
+        /// </summary>
+        /// <param name="columna">Columna</param>
+        ///
         #region Llenar valores
         public ChartValues<double> llenarChartValues(string columna)
         {
@@ -99,6 +120,10 @@ namespace BLL
         #endregion
 
         #region Llenar eje
+        /// <summary>
+        /// Método para llenar eje
+        /// </summary>
+        ///
         public List<string> llenarEje()
         {
             var tmpax = new List<string>();

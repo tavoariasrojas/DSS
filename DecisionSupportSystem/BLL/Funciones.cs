@@ -9,6 +9,15 @@ namespace BLL
     public class Funciones
     {
         #region Generar Lista de Series
+        /// <summary>
+        /// Método para cargar las listas de serie
+        /// </summary>
+        /// <param name="tipo">Tipo</param>
+        /// <param name="ano_desde">Año desde</param>
+        /// <param name="mes_desde">Mes desde</param>
+        /// <param name="ano_hasta">Año hasta</param>
+        /// <param name="mes_hasta">Mes hasta</param>
+        ///
         public List<string> generarSeries(string tipo, int ano_desde, int mes_desde, int ano_hasta, int mes_hasta)
         {
             string[] meses = new string[12] { "ENE-", "FEB-", "MAR-", "ABR-", "MAY-", "JUN-", "JUL-", "AGO-", "SEP-", "OCT-", "NOV-", "DIC-" };
@@ -40,6 +49,11 @@ namespace BLL
         #endregion
 
         #region Pasar DataSet a Diccionary
+        /// <summary>
+        /// Método para convertir DataSet en Dictionary
+        /// </summary>
+        /// <param name="ds">DataSet</param>
+        ///
         public Dictionary<string, Int32> convertirDStoDictionary(DataSet ds)
         {
             Dictionary<string, Int32> dic = new Dictionary<string, Int32>();
@@ -53,6 +67,11 @@ namespace BLL
         #endregion
 
         #region Dar formato al Data Grid View
+        /// <summary>
+        /// Método para formatear data grid
+        /// </summary>
+        /// <param name="dgv">Data grid view</param>
+        ///
         public void formatearDataGrid(DataGridView dgv)
         {
             dgv.AllowDrop = false;

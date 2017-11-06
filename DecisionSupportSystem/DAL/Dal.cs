@@ -5,6 +5,13 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
+    /// <summary>
+    /// Estructura para almacenar parámetros
+    /// </summary>
+    /// <param name="nombre_parametro">Almacena el nombre del parámetro</param>
+    /// <param name="tipo_dato">Almacena el tipo de dato</param>
+    /// <param name="valor_parametro">Valor que contiene el parámetro</param>
+    /// 
     public struct ParamStruct
     {
         public string Nombre_Parametro;
@@ -17,9 +24,9 @@ namespace DAL
         /// <summary>
         /// Inicializa un sqlconnection con una cadena de conexion si todo esta bien y null si fallo
         /// </summary>
-        /// <param name="nombre_conexion">nombre de la cadena conexion a buscar en el app.config</param>
-        /// <param name="mensaje_error">mensaje de error o confirmacion</param>
-        /// <param name="numero_error">numero del error</param>
+        /// <param name="nombre_conexion">Nombre de la cadena conexion a buscar en el app.config</param>
+        /// <param name="mensaje_error">Mensaje de error o confirmacion</param>
+        /// <param name="numero_error">Número del error</param>
         /// <returns></returns>
         public static SqlConnection trae_conexion(string nombre_conexion, ref string mensaje_error, ref int numero_error)
         {
@@ -57,7 +64,11 @@ namespace DAL
             }
 
         }
-
+        /// <summary>
+        /// Se crea string de conexión
+        /// </summary>
+        /// <param name="bd">Nombre de la base de datos</param>
+        /// 
         public static void crear_string_conexion(string bd)
         {
             try
@@ -78,11 +89,12 @@ namespace DAL
         }
 
         /// <summary>
-        /// realiza conexion contra la base de datos
+        /// Realiza conexion contra la base de datos
         /// </summary>
-        /// <param name="conexion">variable estilo sqlconnection que contiene la cadena de conexion</param>
-        /// <param name="mensaje_error">mensaje de error o confirmacion</param>
-        /// <param name="numero_error">numero de error</param>
+        /// <param name="conexion">Variable estilo sqlconnection que contiene la cadena de conexion</param>
+        /// <param name="mensaje_error">Mensaje de error o confirmacion</param>
+        /// <param name="numero_error">Número de error</param>
+        /// 
         public static void conectar(SqlConnection conexion, ref string mensaje_error, ref int numero_error)
         {
             try
@@ -99,10 +111,11 @@ namespace DAL
         }
 
         /// <summary>
-        /// realiza desconeccion contra la base de datos
+        /// Realiza desconección contra la base de datos
         /// </summary>
-        /// <param name="conexion">variable estilo sqlconnection que contiene la cadena de conexion</param>
-        /// <param name="mensaje_error">mensaje de error o confirmacion</param>
+        /// <param name="conexion">Variable estilo sqlconnection que contiene la cadena de conexion</param>
+        /// <param name="mensaje_error">Mensaje de error o confirmacion</param>
+        /// 
         public static void desconectar(SqlConnection conexion, ref string mensaje_error, ref int numero_error)
         {
             try
@@ -128,11 +141,11 @@ namespace DAL
         /// realiza la carga de un dataset con parametros.
         /// </summary>
         /// <param name="sql">Sentencia sql o nombre del procedimiento almacenado</param>
-        /// <param name="conexion">variable donde recide la conexion</param>        
-        /// <param name="numero_error">numero de error</param>
-        /// <param name="mensaje_error">mensaje de error</param>
+        /// <param name="conexion">Variable donde recide la conexion</param>        
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
         /// <param name="parametros">lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecución</param>        
-        /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>        
+        /// <param name="es_procedimiento_almacenado">Indica si se ejecuta un procedimiento almacenado</param>        
         ///
         public static void ejecuta_sp(SqlConnection conexion, SqlTransaction transaccion, string sql, bool es_procedimiento_almacenado, ParamStruct[] parametros, ref string mensaje_error, ref int numero_error)
         {
@@ -163,9 +176,9 @@ namespace DAL
         /// realiza la carga de un dataset de solo lectura.
         /// </summary>
         /// <param name="sql">Sentencia sql o nombre del SP</param>
-        /// <param name="conexion">variable donde recide la conexion</param>        
-        /// <param name="numero_error">numero de error</param>
-        /// <param name="mensaje_error">mensaje de error</param>
+        /// <param name="conexion">Variable donde recide la conexion</param>        
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
         /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>
         ///            
         public static DataSet ejecuta_dataset(SqlConnection conexion, string sql, bool es_procedimiento_almacenado, ref string mensaje_error, ref int numero_error)
@@ -195,10 +208,10 @@ namespace DAL
         /// realiza la carga de un dataset con parametros.
         /// </summary>
         /// <param name="sql">Sentencia sql o nombre del procedimiento almacenado</param>
-        /// <param name="conexion">variable donde recide la conexion</param>        
-        /// <param name="numero_error">numero de error</param>
-        /// <param name="mensaje_error">mensaje de error</param>
-        /// <param name="parametros">lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecución</param>        
+        /// <param name="conexion">Variable donde recide la conexion</param>        
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="parametros">Lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecución</param>        
         /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>        
         ///
         public static DataSet ejecuta_dataset(SqlConnection conexion, string sql, bool es_procedimiento_almacenado, ParamStruct[] parametros, ref string mensaje_error, ref int numero_error)
@@ -229,12 +242,12 @@ namespace DAL
             }
         }
         /// <summary>
-        /// 
+        /// Realiza la lectura de una sentencia SQL contra base de datos
         /// </summary>
-        /// <param name="sql_data_reader"></param>
-        /// <param name="sql_command"></param>
-        /// <param name="mensaje_error"></param>
-        /// <param name="numero_error"></param>
+        /// <param name="sql_data_reader">Comando de recuperación de datos</param>
+        /// <param name="sql_command">Comando sql</param>
+        /// <param name="mensaje_error">Mensaje de erro</param>
+        /// <param name="numero_error">Número de error</param>
         public static void ejecuta_datareader(ref SqlDataReader sql_data_reader, SqlCommand sql_command, ref string mensaje_error, ref int numero_error)
         {
             try
@@ -250,13 +263,13 @@ namespace DAL
             }
         }
         /// <summary>
-        /// ejecuta una sentecia de tipo SQL contra la base de datos
+        /// Ejecuta una sentecia de tipo SQL contra la base de datos
         /// </summary>
-        /// <param name="conexion">variable donde recide la conexion</param>
-        /// <param name="sql">sentencia sql o nombre del procedimiento almacenado</param>
-        /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>
-        /// <param name="mensaje_error">mensaje de error</param>
-        /// <param name="numero_error">numero de error</param>        
+        /// <param name="conexion">Variable donde recide la conexion</param>
+        /// <param name="sql">Sentencia sql o nombre del procedimiento almacenado</param>
+        /// <param name="es_procedimiento_almacenado">Indica si se ejecuta un procedimiento almacenado</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>        
         public static void ejecuta_sqlcommand(SqlConnection conexion, string sql, bool es_procedimiento_almacenado, ref string mensaje_error, ref int numero_error)
         {
             SqlCommand sql_command;
@@ -279,14 +292,14 @@ namespace DAL
             }
         }
         /// <summary>
-        /// ejecuta una sentecia de tipo SQL contra la base de datos
+        /// Ejecuta una sentecia de tipo SQL contra la base de datos, método sobre cargado
         /// </summary>
-        /// <param name="conexion">variable donde recide la conexion</param>
-        /// <param name="sql">sentencia sql o nombre del procedimiento almacenado</param>
-        /// <param name="es_procedimiento_almacenado">indica si se ejecuta un procedimiento almacenado</param>
-        /// <param name="parametros">lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecucion</param>
-        /// <param name="mensaje_error">mensaje de error</param>
-        /// <param name="numero_error">numero de error</param>        
+        /// <param name="conexion">Variable donde recide la conexion</param>
+        /// <param name="sql">Sentencia sql o nombre del procedimiento almacenado</param>
+        /// <param name="es_procedimiento_almacenado">Indica si se ejecuta un procedimiento almacenado</param>
+        /// <param name="parametros">Lista de parametros que necesita el procedimiento almacenado o sentencia SQL para su ejecucion</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>        
         public static void ejecuta_sqlcommand(SqlConnection conexion, string sql, bool es_procedimiento_almacenado, ParamStruct[] parametros, ref string mensaje_error, ref int numero_error)
         {
             SqlCommand sql_command;
@@ -341,7 +354,13 @@ namespace DAL
                 numero_error = ex.Number;
             }
         }
-
+        /// <summary>
+        /// Agrega un parametro a un procedimiento almacenado cuando se realiza el llamado a la base de datos, método sobrecargado
+        /// </summary>
+        /// <param name="sql_comand">Comando sql</param>
+        /// <param name="nombre_parametro">Nombre del parametro</param>
+        /// <param name="valor parametro">Valor que contiene el parámetro</param>
+        /// <param name="tipo_dato">Tipo de datos</param>
         public static void Agrega_parametro(ref SqlCommand sql_command, string nombre_parametro, string valor_parametro, SqlDbType tipo_dato)
         {
             SqlParameter param = new SqlParameter();
@@ -368,7 +387,14 @@ namespace DAL
             param.SqlDbType = tipo_dato;
             sql_data_adapter.SelectCommand.Parameters.Add(param);
         }
-
+        /// <summary>
+        /// Estructura pra almacenar parametros
+        /// </summary>
+        /// <param name="parametros">Estructura que contiene los parametros</param>
+        /// <param name="posicion">Número de posición del parámetro</param>
+        /// <param name="nombre_parametro">Nombre del parámetro</param>
+        /// <param name="tipo_dato_parametro">Tipo de datos</param>
+        /// /// <param name="valor_parametro">Valor que contiene el parámetro</param>
         public static void agregar_datos_estructura_parametros(ref ParamStruct[] parametros, int posicion, string nombre_parametro, SqlDbType tipo_dato_parametro, object valor_parametro)
         {
             parametros[posicion].Nombre_Parametro = nombre_parametro.ToString();

@@ -8,6 +8,13 @@ namespace BLL
 {
     public class Consulta
     {
+        /// <summary>
+        /// Parámetros de clase consulta
+        /// </summary>
+        /// <param name="sql_query">Comando sql</param>
+        /// <param name="fecha_ini">Fecha inicial</param>
+        /// <param name="fecha_fin">Fecha final</param>
+        /// 
         #region parametros
         private string _sql_query;
 
@@ -35,6 +42,14 @@ namespace BLL
         #endregion
 
         #region variables privadas
+        /// <summary>
+        /// Parámetros privados de clase consulta
+        /// </summary>
+        /// <param name="conexion">Conexión sql</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="ds">DataSe</param>
+        /// 
         SqlConnection conexion;
         string mensaje_error;
         int numero_error;
@@ -80,6 +95,9 @@ namespace BLL
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         public Consulta()
         {
             sql_query = string.Empty;

@@ -21,6 +21,10 @@ namespace BLL
         #endregion
 
         #region metodos
+        /// <summary>
+        /// Método para obtener la fecha actual del servidor
+        /// </summary>
+        /// 
         public DateTime obtieneFechaServidor()
         {
             DateTime fecha = new DateTime(1900, 1, 1);
@@ -47,7 +51,11 @@ namespace BLL
             }
             return fecha;
         }
-
+        /// <summary>
+        /// Método para obtener la próxima fecha 
+        /// <param name="dias">Cantidad de dias</param>
+        /// </summary>
+        /// 
         public DateTime obtieneProximaFecha(string dias)
         {
             DateTime fecha = new DateTime(1900, 1, 1);
@@ -74,7 +82,12 @@ namespace BLL
             }
             return fecha;
         }
-
+        /// <summary>
+        /// Método para cargar combo que contiene años
+        /// <param name="cmb">Combo que contiene los años</param>
+        /// /// <param name="posicion">Indicador para mostrar la posicion inicial</param>
+        /// </summary>
+        /// 
         public void cargarAnos(ComboBox cmb, string posicion)
         {
             try
@@ -103,7 +116,12 @@ namespace BLL
                 throw;
             }
         }
-
+        /// <summary>
+        /// Método para cargar combo que contiene meses
+        /// <param name="cmb">Combo que contiene los años</param>
+        /// /// <param name="posicion">Indicador para mostrar la posicion inicial</param>
+        /// </summary>
+        /// 
         public void cargarMes(ComboBox cmb, string posicion)
         {
             try

@@ -9,6 +9,20 @@ namespace BLL
     public class Login : Fecha
     {
         #region parametros
+        /// <summary>
+        /// Parámetros de la clase Login
+        /// </summary>
+        /// <param name="password">Almacena contraseña</param>
+        /// <param name="usuario_bd">Almacena usuario de base de datos</param>
+        /// <param name="password_db">Almacena contraseña de la base de datos</param>
+        /// <param name="fecha_vencimiento">Almacena fecha de vencimiento</param>
+        /// <param name="dias_habilita_clave">Almacena días que dura vigente la contraseña</param>
+        /// <param name="ind_desactivado">Almacena indicador de usuario activo</param>
+        /// <param name="ind_auditoria">Almacena indicador de auditoría</param>
+        /// <param name="ind_supervisor">Almacena indicador de supervisor</param>
+        /// <param name="multiples_conexiones">Almacena indicador de multiples conexiones</param>
+        /// <param name="cambiar_password">Almacena indicador cambiar password</param>
+        ///
         private string _password;
 
         public string password
@@ -91,6 +105,16 @@ namespace BLL
         #endregion
 
         #region variables privadas
+        /// <summary>
+        /// Variables privadas de clase Login
+        /// </summary>
+        /// <param name="conexion">Conexión de base de datos/param>
+        /// <param name="sql">sentencia sql</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="ds">DataSet</param>
+        /// <param name="transaccion">Transacción de base de datos</param>
+        /// 
         SqlConnection conexion;
         string sql;
         string mensaje_error;
@@ -100,6 +124,12 @@ namespace BLL
         #endregion
 
         #region Métodos
+        /// <summary>
+        /// Método para validar la existencia del usuario
+        /// </summary>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// 
         public Boolean usuarioExiste(string usuario)
         {
             int cantidad = 0;
@@ -140,7 +170,11 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para obtener información encriptada del usuario
+        /// </summary>
+        /// <param name="usuario">Código del usuario</param>
+        /// 
         public string obtieneInfoEncriptada(string usuario)
         {
             string info = string.Empty;
@@ -179,7 +213,11 @@ namespace BLL
             }
             return info;
         }
-
+        /// <summary>
+        /// Método para obtener desencriptar información encriptada del usuario
+        /// </summary>
+        /// <param name="info">Cadena de datos encriptada</param>
+        /// 
         public void descomponeInfoEncriptada(string info)
         {
             password            = info.Split(';')[0];
@@ -233,7 +271,11 @@ namespace BLL
 
             return 0;
         }
-
+        /// <summary>
+        /// Método para obtener el nombre del usuario
+        /// </summary>
+        /// <param name="usuario">Código del usuario</param>
+        /// 
         public string obtieneNombreUsuario(string usuario)
         {
             string info = string.Empty;
@@ -272,7 +314,17 @@ namespace BLL
             }
             return info;
         }
-
+        /// <summary>
+        /// Método para el manejo de usuarios
+        /// </summary>
+        /// <param name="tipo">Tipo de accion</param>
+        /// <param name="cod_usuario">Código del usuario</param>
+        /// <param name="nombre">Nombre del usuario</param>
+        /// <param name="clave_bd">Clave de la base de datos</param>
+        /// <param name="clave_app">Clave del sistema</param>
+        /// <param name="cod_compania">Código de la compañía</param>
+        /// <param name="cod_sistema">Código del sistema</param>
+        ///
         public bool manejoUsuario(string tipo, string cod_usuario, string nombre, string clave_bd, string clave_app, string cod_compania, string cod_sistema)
         {
             conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);

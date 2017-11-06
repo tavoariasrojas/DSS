@@ -10,6 +10,14 @@ namespace BLL
     public class Rol
     {
         #region Propiedades
+        /// <summary>
+        /// Propiedades del rol
+        /// </summary>
+        /// <param name="listaRol">Objeto tipo lista que almacena roles</param>
+        /// <param name="objeto">Tipo de objeto</param>
+        /// <param name="objeto_padre">Contiene el objeto padre</param>
+        /// <param name="nombre">Contiene el nombre del objeto</param>
+        /// <param name="chequeado">Indica si el objeto esta chequeado</param>
         List<Rol> listaRol = new List<Rol>();
 
         private string _objeto;
@@ -46,6 +54,14 @@ namespace BLL
         #endregion
 
         #region variables privadas
+        /// <summary>
+        /// Propiedades del rol
+        /// </summary>
+        /// <param name="conexion">Almacena la conexion a base de datos</param>
+        /// <param name="transaccion">Almacena la transacción</param>
+        /// <param name="mensaje_error">Mensaje de error</param>
+        /// <param name="numero_error">Número de error</param>
+        /// <param name="ds">DataSet</param>
         SqlConnection conexion;
         SqlTransaction transaccion;
         string mensaje_error;
@@ -54,6 +70,12 @@ namespace BLL
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Método para obtener la lista de los roles
+        /// </summary>
+        /// <param name="obtenerRol">Método para obtener el rol</param>
+        /// <param name="tipo">Indicador de tipo de rol</param>
+        /// <param name="cod_rol">Código que idebntifica el rol</param>
         public DataSet obtenerRol(char tipo, string cod_rol)
         {
             conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
@@ -78,7 +100,14 @@ namespace BLL
             }
             return ds;
         }
-
+        /// <summary>
+        /// Método para obtener la lista de los roles
+        /// </summary>
+        /// <param name="menejarRol">Método para el manejo de roles</param>
+        /// <param name="accion">Acción a realizar con el rol</param>
+        /// <param name="cod_rol">Código que idebntifica el rol</param>
+        /// <param name="nom_rol">Nombre del rol</param>
+        /// <param name="lista">Variable tipo lista para el almacenamiento del rol</param>
         public bool manejarRol(string accion, string cod_rol, string nom_rol, List<Rol> lista)
         {
             bool estado = false;
@@ -167,7 +196,14 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para controlar las acciones por roles
+        /// </summary>
+        /// <param name="conexion">Conexión a base de datos</param>
+        /// <param name="transaccion">Transacción de base de datos</param>
+        /// <param name="accion">Acción a realizar</param>
+        /// <param name="cod_rol">Código del rol</param>
+        /// <param name="cod_objeto">Código del objeto</param>
         public bool manejarAccionesRol(SqlConnection conexion, SqlTransaction transaccion, string accion, string cod_rol, string cod_objeto)
         {
             try
@@ -195,7 +231,11 @@ namespace BLL
                 return false;
             }
         }
-
+        /// <summary>
+        /// Método para asirnar roles al usuario
+        /// </summary>
+        /// <param name="lista">Lista que contiene las opciones asignar</param>
+        /// <param name="usuario">Código de usuario</param>
         public bool asignarRolUsuario(List<string[]> lista, string usuario)
         {
             bool estado = true;
@@ -253,7 +293,14 @@ namespace BLL
                 }
             }
         }
-
+        /// <summary>
+        /// Método para asirnar roles
+        /// </summary>
+        /// <param name="conexion">Conexión a base de datos</param>
+        /// <param name="transaccion">Transacción de base de datos</param>
+        /// <param name="accion">Acción a realizar</param>
+        /// <param name="cod_usuario">Código del rol</param>
+        /// <param name="cod_rol">Código del rol</param>
         public bool asignarRol(SqlConnection conexion, SqlTransaction transaccion, string accion, string cod_usuario, string cod_rol)
         {
             try
@@ -282,7 +329,10 @@ namespace BLL
                 return false;
             }
         }
-
+        /// <summary>
+        /// Método para llenar el rol
+        /// </summary>
+        /// <param name="cod_rol">Código del rol</param>
         public Boolean llenarRol(string cod_rol)
         {
             listaRol.Clear();
@@ -304,7 +354,11 @@ namespace BLL
                 return false;
             }
         }
-
+        /// <summary>
+        /// Método para dibujar el rol
+        /// </summary>
+        /// <param name="cod_rol">Código del rol</param>
+        /// <param name="tv">Objeto TreeView que mostrará las opciones del rol</param>
         public void dibujaRol(string cod_rol, TreeView tv)
         {
             if (llenarRol(cod_rol))
@@ -349,8 +403,15 @@ namespace BLL
             }
             return tn;
         }
-
-        private void agregarNodo(TreeNode tnr, string codigo, string nombre, char chk, string tag)
+        /// <summary>
+        /// Método para agregar nodos al TreeView
+        /// </summary>
+        /// <param name="tnr">TreeViewNode</param>
+        /// <param name="codigo">Código de la opción</param>
+        /// <param name="nombre">Nombre de la opción</param>
+        /// <param name="chk">Indicador de chequeado</param>
+        /// <param name="tag">Indicador tag del objeto</param>
+        private void agregarNodo(TreeNode trn, string codigo, string nombre, char chk, string tag)
         {
             TreeNode tn = new TreeNode(nombre);
             tn.Tag = tag;
@@ -373,10 +434,13 @@ namespace BLL
                     agregarNodo(tn, listaRol[a].objeto, listaRol[a].nombre, listaRol[a].chequeado, listaRol[a].objeto);
                 }
             }
-            tnr.Nodes.Add(tn);
+            trn.Nodes.Add(tn);
         }
-
-
+        /// <summary>
+        /// Método para recorrer el TreeView
+        /// </summary>
+        /// <param name="tv">Objeto TreeView</param>
+        /// <param name="opciones">Objeto de4 tipo rol que contiene las opciones del rol</param>
         public List<Rol> recorerArbol(TreeView tv, List<Rol> opciones)
         {
             TreeNodeCollection nodes = tv.Nodes;
@@ -403,7 +467,10 @@ namespace BLL
             }
             return opciones;
         }
-
+        /// <summary>
+        /// Método para verificar opciones chequeadas
+        /// </summary>
+        /// <param name="lista">Lista tipo rol para contener opciones</param>
         public int verificaChequeados(List<Rol> lista)
         {
             int contador = 0;
@@ -416,8 +483,12 @@ namespace BLL
             }
             return contador;
         }
-
-
+        /// <summary>
+        /// Método para ontener los roles de un usuario
+        /// </summary>
+        /// <param name="lista">Lista tipo rol para contener opciones</param>
+        /// <param name="accion">Obtener accion</param>
+        /// <param name="lista">Código de usuario</param>
         public DataSet obtenerRoles(ListView lista, string accion, string cod_usuario)
         {
             conexion = cls_DAL.trae_conexion("SM", ref mensaje_error, ref numero_error);
