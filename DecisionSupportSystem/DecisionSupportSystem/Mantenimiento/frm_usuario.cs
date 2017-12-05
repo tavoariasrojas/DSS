@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 
@@ -71,6 +65,7 @@ namespace DecisionSupportSystem.Mantenimiento
                 }
                 else
                 {
+                    axSupport_usuario.Refresh();
                     axSupport_usuario.encrypted = info_encrypt;
                     axSupport_usuario.passkey = cmb_usuario.SelectedValue.ToString().Trim();
                     int resultado = axSupport_usuario.Unencrypt();
@@ -151,7 +146,7 @@ namespace DecisionSupportSystem.Mantenimiento
             if (chk_cambiar_clave.Checked) { unir_datos += "S;"; } else { unir_datos += "N;"; }
 
             datos_nuevos = unir_datos.Split(';');
-            
+
             axSupport_usuario.unencrypted = unir_datos;
             axSupport_usuario.passkey = txt_usuario.Text;
             int resultado = axSupport_usuario.Encrypt();
@@ -163,17 +158,24 @@ namespace DecisionSupportSystem.Mantenimiento
 
             if (cmb_usuario.SelectedValue.ToString().Equals("NEW"))
             {
-                if(objLogin.manejoUsuario("N", txt_usuario.Text, txt_nombre.Text, (txt_usuario.Text + "123"), encriptado, VG.Variables.codigoCompania, VG.Variables.codigoAplicacion))
+                if (objLogin.manejoUsuario("N", txt_usuario.Text, txt_nombre.Text, (txt_usuario.Text + "123"), encriptado, VG.Variables.codigoCompania, VG.Variables.codigoAplicacion))
                 {
                     tipoUsuario("N");
                     inicio();
-                    axSupport_usuario.Dispose();
                     MessageBox.Show("Usuario agregado correctamente.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    axSupport_usuario.Dispose();
                 }
             }
             else
             {
-                if (datos_origen[0].Equals(datos_nuevos[0]))
+                if (!datos_origen[0].Equals(datos_nuevos[0]) ||
+                    !datos_origen[5].Equals(datos_nuevos[5]) ||
+                    !datos_origen[6].Equals(datos_nuevos[6]) ||
+                    !datos_origen[7].Equals(datos_nuevos[7]) ||
+                    !datos_origen[8].Equals(datos_nuevos[8]) ||
+                    !datos_origen[9].Equals(datos_nuevos[9]) ||
+                    !datos_origen[10].Equals(datos_nuevos[10])
+                    )
                 {
                     datos_nuevos[3] = datos_origen[3];
                     unir_datos = string.Empty;
@@ -200,6 +202,11 @@ namespace DecisionSupportSystem.Mantenimiento
                     }
                 }
             }
+        }
+
+        private void frm_usuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            axSupport_usuario.Dispose();
         }
     }
 }

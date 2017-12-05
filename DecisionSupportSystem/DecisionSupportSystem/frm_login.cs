@@ -65,6 +65,9 @@ namespace DecisionSupportSystem
                                 MessageBox.Show("El usuario se encuentra deshabilitado.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
                             case 3:
+                                MessageBox.Show("La clave a llegado a su fecha de vencimiento, debe cambiarla.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            case 4:
                                 MessageBox.Show("El usuario debe cambiar la contraseña.", "Validación del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
                             default:

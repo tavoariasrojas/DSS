@@ -24,6 +24,7 @@ namespace DecisionSupportSystem
             this.tssl_database.Text = tssl_database + " " + VG.Variables.serverDataBaseDSS;
             this.tssl_fecha.Text = "Fecha actual: " + System.DateTime.Now.ToString("dd-MM-yyyy");
             this.tssl_hora.Text = "Hora actual: " + System.DateTime.Now.ToString("hh:mm:ss tt");
+            this.tssl_version.Text =  " Versión: " + Application.ProductVersion.ToString();
             t_main.Start();
         }
 

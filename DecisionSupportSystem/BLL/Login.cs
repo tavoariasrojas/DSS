@@ -264,9 +264,14 @@ namespace BLL
             }
 
             DateTime ldt_fecha = obtieneFechaServidor();
-            if (ldt_fecha > this.fecha_vencimiento || cambiar_password =='S')
+            if (ldt_fecha > this.fecha_vencimiento)
             {
                 return 3;
+            }
+
+            if(cambiar_password == 'S')
+            {
+                return 4;
             }
 
             return 0;

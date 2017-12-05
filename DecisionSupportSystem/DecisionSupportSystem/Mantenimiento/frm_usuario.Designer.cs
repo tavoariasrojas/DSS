@@ -343,7 +343,7 @@
             this.axSupport_usuario.Name = "axSupport_usuario";
             this.axSupport_usuario.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axSupport_usuario.OcxState")));
             this.axSupport_usuario.Size = new System.Drawing.Size(38, 36);
-            this.axSupport_usuario.TabIndex = 9;
+            this.axSupport_usuario.TabIndex = 0;
             // 
             // frm_usuario
             // 
@@ -357,6 +357,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_usuario";
             this.Text = "Mantenimiento de usuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_usuario_FormClosing);
             this.Load += new System.EventHandler(this.frm_usuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

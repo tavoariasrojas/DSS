@@ -232,17 +232,20 @@ namespace BLL
         ///
         private void accionMenu(object sender, EventArgs e)
         {
+            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+
             if (sender.ToString().ToLower().Equals("salir"))
             {
-                Application.Exit();
+                Form frmShow = (Form)frmAssembly.CreateInstance("DecisionSupportSystem.frm_login");
+                frmShow.Show();
+                VG.Variables.mdiForm.Visible = false;
             }
 
             if (sender.ToString().ToLower().Equals("manual de usuario"))
             {
                 System.Diagnostics.Process.Start(Application.StartupPath + @"\Ayuda\ayuda.chm");
             }
-
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+            
             foreach (Type type in frmAssembly.GetTypes())
             {
                 if (type.BaseType == typeof(Form))
